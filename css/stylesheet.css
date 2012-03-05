@@ -1,0 +1,32 @@
+/* utf-8-marker: äöüß */
+
+
+div.yanp-news span.read-more {}
+
+
+/*
+ * If all news should be shown on a CMSimple page by a plugin call
+ * or CMSimple scripting, this could be enclosed in a <div id="newspage">
+ * and styled, e.g.:
+ */
+
+div#newspage div.yanp-news {
+    float: left;
+    width: 200px;
+    padding: 0 10px 10px 10px;
+    border: 1px solid #ccc;
+    margin: 0 10px 10px 0;
+}
+
+
+.yanp_plugin_icon {
+    display: block;
+    float: left; 
+    margin-right: 32px;
+}
+
+
+.yanp_license {
+    clear: both;
+    text-align: justify
+}

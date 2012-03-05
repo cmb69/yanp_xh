@@ -1,0 +1,23 @@
+TODO
+add Polish translation (contributed by learnandcode) + help.htm
+    credit plugin icon
+
+Version 1rc2 - released TODO
+cmb	added Slovak translation (contributed by Tata)
+    extended copyright
+cmb	updated manual accordingly
+
+Version 1rc1 - released 2011-12-25
+cmb	added Danish translation (provided by maeg)
+cmb	switched from implicit requirements check to explicit system check
+cmb	made minor corrections and improvements
+cmb	added title to "read more" link
+cmb	updated manual accordingly
+cmb	changed config option "feed enabled" from yes/no to 1/0
+cmb	added german translation
+cmb	translated manual to german
+cmb	added translation hints
+cmb	fixed bug: the feed's title and description were taken from the selected page
+
+Version 1beta1 - released 2011-09-22
+cmb	initial release

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<!-- utf-8-marker: äöüß -->
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="content-language" content="en">
+<title>Yanp_XH - Manual</title>
+<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+</head>
+
+<body>
+
+<h1>Yanp_XH - a CMSimple_XH Plugin</h1>
+<img src="../yanp.png" class="plugin_icon">
+<p>YANP is the acronym for <strong>y</strong>et <strong>a</strong>nother
+<strong>n</strong>ews <strong>p</strong>lugin.
+It facilitates semi-automatic handling of news of a CMSimple_XH website,
+that could be shown as newsbox and made available as RSS feed.
+Consider it an alternative to creating and maintaining newsboxes manually
+or using a fully automated solution, such as
+<a href="http://cmsimplewiki.com/doku.php/plugins/whatsnew">WhatsNew</a> or
+<a href="http://cmsimplewiki.com/doku.php/plugins/rss_feed">RSS Feed</a>.
+If you have further demands, consider using an advanced solution, such as
+<a href="http://cmsimplewiki.com/doku.php/plugins/advanced_news">AdvancedNews</a> or
+<a href="http://www.ge-webdesign.de/cmsimpleplugins/?Eigene_Plugins/realblog_XH">Realblog</a>.</p>
+
+<ul id="nav">
+<li><a href="#notice">Important Notice</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#settings">Settings</a></li>
+<li><a href="#usage">Usage</a></li>
+<!--<li><a href="#limitations">Limitations</a></li>-->
+<li><a href="#license">License</a></li>
+<li><a href="#credits">Credits</a></li>
+</ul>
+
+<div id="body">
+
+<p><strong>Please do read this documentation! Support might not be given otherwise.
+It's generally a good idea to read the documentation,
+<em>before</em> you encounter any problems!</strong></p>
+
+<h2><a name="notice">Important Notice</a></h2>
+<p><strong>Yanp_XH couldn't be tested so far in various environments.
+It is a so called BETA version. Use with caution!</strong></p>
+<div class="toplink"><a href="#">back to top</a></div>
+
+<h2><a name="requirements">Requirements</a></h2>
+<p>Yanp_XH is a plugin for CMSimple_XH.
+It requires an UTF-8 encoded version.</p>
+<div class="toplink"><a href="#">back to top</a></div>
+
+<h2><a name="installation">Installation</a></h2>
+<p>The installation is done as with many other CMSimple_XH plugins.
+See the <a href="http://www.cmsimple-xh.com/wiki/doku.php/manuals:users_manual:plugins:installation">
+CMSimple_XH wiki</a> for further details.</p>
+<ol>
+<li><strong>Backup the data on your server.</strong></li>
+<li>Unzip the distribution on your computer.</li>
+<li>Upload the whole directory yanp/ to your server into CMSimple_XH's plugins directory.</li>
+<li>Set write permissions to the subdirectories config/, css/, languages/ and to the plugin's data folder.</li>
+<li><strong>Switch to "Yanp" in the back-end to check if all requirements are fulfilled.</strong></li>
+</ol>
+<div class="toplink"><a href="#">back to top</a></div>
+
+<h2><a name="settings">Settings</a></h2>
+<p>The plugin's configuration is done as with many other
+CMSimple_XH plugins in the website's back-end.
+Select Yanp from "Plugins".</p>
+<p>You can change the default settings of Yanp_XH in "Plugin Config".
+Hints for the options will be displayed
+when hovering over the help icon with your mouse.</p>
+<p>Localization is done in "Plugin Language".
+You can translate the character strings to your own language,
+or customize them according to your needs.
+Particularly have a look at the entries in the "feed" and "news" group.</p>
+<p>The look of Yanp_XH can be customized in "Plugin Stylesheet",
+or alternatively in your template's stylesheet,
+as the newsbox and the feed link are tied to that very closely.</p>
+<div class="toplink"><a href="#">back to top</a></div>
+
+<h2><a name="usage">Usage</a></h2>
+<p>Yanp_XH's news are related to CMSimple pages.
+Each page could have an entry in the news.
+To control this, just switch to the tab "News" above the editor.
+If you enter any text as description, the page will be added to the news.
+If you delete the description, the page will be removed from the news.
+The timestamp of the news is used for ordering these (latest news will be on top).
+The timestamp will be updated when you save the tab,
+but it will not be more recent than the timestamp of the last edit of the according page.
+So, if you've made a typo in the page and correct it later,
+the timestamp of the news won't be affected.
+OTOH, if you save the news later, the timestamp won't be affected,
+as long as you don't save the page.</p>
+
+<h3>Displaying the newsbox</h3>
+<p>To display the newsbox you have to edit your template; replace the already existing
+newsbox() call to:</p>
+<pre>&lt;?php echo yanp_newsbox()?&gt;</pre>
+<p>or insert it, perhaps in addition to already existing newsbox() calls.</p>
+<p>Furthermore it's possible to display the newsbox on a CMSimple page
+by inserting the plugin call:</p>
+<pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
+
+<h3>Making available the RSS feed</h3>
+<p>The RSS feed is made available to many modern browsers
+automatically, because a &lt;link rel="alternate"&gt; tag is inserted
+to the &lt;head&gt; of your website's pages by Yanp_XH.
+To additionally display the RSS icon with a link to the RSS feed, you have to insert</p>
+<pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
+<p>into your template. This basically works like mailformlink().
+If you want to display another feed icon, just put it into your template's images/ folder,
+and give it's filename as parameter:</p>
+<pre>&lt;?php echo yanp_feedlink('filename.png')?&gt;</pre>
+<p>Depending on your web server's configuration, the feed will be served as text/xml,
+what may cause problems with the UTF-8 encoding.
+So it should be served as application/rss+xml or application/xml.
+For Apache servers the solution is to put an according .htaccess file into the plugin's data folder,
+which is already done for the default data/ folder.
+An alternative might be setting the "feed extension" to "rss".
+But anyway, you should <a href="http://www.rssboard.org/rss-validator/">validate</a>
+the RSS feed to be informed about possible problems.
+<div class="toplink"><a href="#">back to top</a></div>
+
+<!--<h2><a name="limitations">Limitations</a></h2>-->
+<!--<p></p>-->
+<!--<div class="toplink"><a href="#">back to top</a></div>-->
+
+<h2><a name="license">License</a></h2>
+<p>Yanp_XH is licensed under
+<a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
+<p>&copy; 2011 Christoph M. Becker</p>
+<p>Danish translation &copy; 2011 Jens Maegard</p>
+<p>Slovak translation &copy; 2011 Dr. Martin Sereday</p>
+<div class="toplink"><a href="#">back to top</a></div>
+
+<h2><a name="credits">Credits</a></h2>
+<p>This plugin uses feed icons from
+<a href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>.
+Many thanks for making these icons freely available.</p>
+<p>Many thanks to the community at the <a href="http://www.cmsimpleforum.com">CMSimple forum</a>
+for tips, suggestions and testing.</p>
+<p>And many thanks to all developers of <a href="http://www.cmsimple-xh.com">
+CMSimple_XH</a> without whom this amazing CMS wouldn't exist.</p>
+<div class="toplink"><a href="#">back to top</a></div>
+
+</div>
+
+</body>
+
+</html>
