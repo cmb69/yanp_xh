@@ -4,7 +4,7 @@
  * Back-end of Yanp_XH.
  * Copyright (c) 2011-2012 Christoph M. Becker (see license.txt)
  */
- 
+
 
 // utf-8 marker: äöüß
 
@@ -23,7 +23,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 function yanp_version() {
     global $pth;
 
-    return '<h1>Yanp_XH</h1>'."\n"
+    return '<h1><a href="http://3-magi.net/?CMSimple_XH/Yanp_XH">Yanp_XH</a></h1>'."\n"
 	    .tag('img src="'.$pth['folder']['plugins'].'yanp/yanp.png" class="yanp_plugin_icon"')
 	    .'<p>Version: '.YANP_VERSION.'</p>'."\n"
 	    .'<p>Copyright &copy; 2011-2012 <a href="http://3-magi.net">Christoph M. Becker</a></p>'."\n"
@@ -87,7 +87,7 @@ function yanp_system_check() { // RELEASE-TODO
  */
 function yanp_rss_item($id) {
     global $pd_router, $sn, $u, $h, $c;
-    
+
     $pd = $pd_router->find_page($id);
     $link = 'http://'.$_SERVER['SERVER_NAME'].$sn.'?'.$u[$id];
     $xml = '  <item>'."\n"
@@ -108,7 +108,7 @@ function yanp_rss_item($id) {
  */
 function yanp_rss() {
     global $pth, $sn, $cf, $sl, $txc, $plugin_cf, $plugin_tx;
-    
+
     $pcf =& $plugin_cf['yanp'];
     $ptx =& $plugin_tx['yanp'];
     $link = 'http://'.$_SERVER['SERVER_NAME'].$sn;
@@ -151,7 +151,7 @@ function yanp_rss() {
  */
 function yanp_write_rss() {
     global $pth, $sl, $plugin_cf;
-    
+
     $pcf =& $plugin_cf['yanp'];
     $fn = yanp_data_folder().'feed-'.$sl.'.'.$pcf['feed_extension'];
     if (($fh = fopen($fn, 'w')) === FALSE || fwrite($fh, yanp_rss()) === FALSE) {
@@ -189,9 +189,9 @@ if ($plugin_cf['yanp']['feed_enabled']
 if (!empty($yanp)) {
     initvar('admin');
     initvar('action');
-    
+
     $o .= print_plugin_admin('off');
-    
+
     switch ($admin) {
 	case '':
 	    $o .= yanp_version().yanp_system_check();

@@ -27,12 +27,10 @@ Wenn Sie weiter gehende Ansprüche haben, sollten sie die Verwendung einer fortg
 <a href="http://www.ge-webdesign.de/cmsimpleplugins/?Eigene_Plugins/realblog_XH">Realblog</a> in Erwägung ziehen.</p>
 
 <ul id="nav">
-<li><a href="#notice">Wichtiger Hinweis</a></li>
 <li><a href="#requirements">Vorraussetzungen</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#settings">Einstellungen</a></li>
 <li><a href="#usage">Verwendung</a></li>
-<!--<li><a href="#limitations">Limitations</a></li>-->
 <li><a href="#license">Lizenz</a></li>
 <li><a href="#credits">Danksagung</a></li>
 </ul>
@@ -43,12 +41,6 @@ Wenn Sie weiter gehende Ansprüche haben, sollten sie die Verwendung einer fortg
 Andernfalls wird möglicherweise kein Support gewährt.
 Es ist grundsätzlich eine gute Idee, die Dokumentation zu lesen,
 <em>bevor</em> Sie auf Probleme stoßen!</strong></p>
-
-<h2><a name="notice">Wichtiger Hinweis</a></h2>
-<p><strong>Yanp_XH konnte bislang noch keinen ausführlichen Tests
-in diversen Umgebungen unterzogen werden.
-Es handelt sich also um eine so genannte BETA-Version.</strong></p>
-<div class="toplink"><a href="#">back to top</a></div>
 
 <h2><a name="requirements">Vorraussetzungen</a></h2>
 <p>Yanp_XH ist ein Plugin für CMSimple_XH.
@@ -73,10 +65,10 @@ und prüfen Sie, ob alle Vorraussetzungen erfüllt sind.</strong></li>
 <p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen CMSimple_XH-Plugins
 auch im Administrationsbereich der Homepage. Wählen Sie unter "Plugins"
 "Yanp" aus.</p>
-<p>Sie können die Original-Einstellungen von Yanp_XH in der "Plugin-Konfiguration" ändern.
+<p>Sie können die Voreinstellungen von Yanp_XH in der "Plugin-Konfiguration" ändern.
 Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den Einstellungen angezeigt.</p>
 <p>Die Lokalisierung wird unter "Plugin-Sprache" vorgenommen.
-Sie können die Zeichenketten in Ihre eigene Sprache übersetzen,
+Sie können die Texte in Ihre eigene Sprache übersetzen,
 oder sie entsprechend Ihren Anforderungen anpassen.
 Achten Sie besonders auf die Einträge in der "feed" und "news" Gruppe.</p>
 <p>Das Aussehen von Yanp_XH kann unter "Plugin Stylesheet" angepasst werden,
@@ -95,7 +87,7 @@ Der Zeitstempel wird aktualisiert, wenn Sie den Reiter sichern,
 aber er kann nie aktueller sein als der Zeitstempel der letzten Bearbeitung der entsprechenden Seite.
 Wenn Sie also einen Tippfehler auf der Seite gemacht haben, den Sie später korrigieren,
 ändert das nicht den Zeitstempel der Neuigkeit.
-Wenn Sie andererseits die Neuigkeit später speichern, wird der Zeitstempel nicht geändert,
+Wenn Sie andererseits die Neuigkeit später ändern, wird der Zeitstempel nicht geändert,
 solange sie nicht auch die Seite selbst speichern.</p>
 
 <h3>Anzeigen der Newsbox</h3>
@@ -120,7 +112,7 @@ und geben Sie dessen Dateinamen als Parameter an:</p>
 <p>Je nach Konfiguration Ihres Webservers wird der Feed als text/xml gesendet,
 was wegen der UTF-8-Kodierung problematisch ist.
 Daher sollte der Feed als application/rss+xml oder application/xml gesendet werden.
-Bei Apache-Servern erreichen Sie dies, indem Sie eine entsprechende .htaccess Datein im Datenordner des Plugins ablegen,
+Bei Apache-Servern erreichen Sie dies, indem Sie eine entsprechende .htaccess Datei im Datenordner des Plugins ablegen,
 was für den voreingestellten data/ Ordner bereits erfolgt ist.
 Alternativ können Sie "feed extension" auf "rss" stellen.
 Aber Sie sollten auf jeden Fall den RSS-Feed
@@ -128,25 +120,23 @@ Aber Sie sollten auf jeden Fall den RSS-Feed
 um mögliche Probleme zu erkennen.
 <div class="toplink"><a href="#">back to top</a></div>
 
-<!--<h2><a name="limitations">Limitations</a></h2>-->
-<!--<p></p>-->
-<!--<div class="toplink"><a href="#">back to top</a></div>-->
-
 <h2><a name="license">Lizenz</a></h2>
 <p>Yanp_XH kann unter Einhaltung der
 <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> verwendet werden.</p>
-<p>&copy; 2011 Christoph M. Becker</p>
-<p>Dänische Übersetzung &copy; 2011 Jens Maegard</p>
-<p>Slovakische Übersetzung &copy; 2011 Dr. Martin Sereday</p>
+<p>&copy; 2011-2012 Christoph M. Becker</p>
+<p>Dänische Übersetzung &copy; 2011 Jens Maegard<br>
+Slovakische Übersetzung &copy; 2011 Dr. Martin Sereday</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
 <h2><a name="credits">Danksagung</a></h2>
-<p>Dieses Plugin verwendet Feed-Icons von
-<a href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>.
-Vielen Dank für die freie Verfügbarkeit dieser.</p>
+<p>Das Plugin-Icon wurde von <a href="http://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen.
+Dieses Plugin verwendet Feed-Icons von
+<a href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>,
+und "free application icons" von <a href="http://www.aha-soft.com/">Aha-Soft</a>.
+Vielen Dank für die Veröffentlichung als Freeware.</p>
 <p>Vielen Dank an die Community im <a href="http://www.cmsimpleforum.com">CMSimple-Forum</a>
 für Tipps, Vorschläge und das Testen.</p>
-<p>Und vielen Dank an alle Entwickler von <a href="http://www.cmsimple-xh.com">
+<p>Und vielen Dank an alle Entwickler von <a href="http://www.cmsimple-xh.de">
 CMSimple_XH</a>, ohne die dieses phantastische CMS nicht existieren würde.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 

@@ -1,8 +1,6 @@
 /* utf-8-marker: äöüß */
 
-
 div.yanp-news span.read-more {}
-
 
 /*
  * If all news should be shown on a CMSimple page by a plugin call
@@ -18,13 +16,14 @@ div#newspage div.yanp-news {
     margin: 0 10px 10px 0;
 }
 
-
+/*
+ * Back-end
+ */
 .yanp_plugin_icon {
     display: block;
-    float: left; 
-    margin-right: 32px;
+    float: left;
+    margin-right: 20px;
 }
-
 
 .yanp_license {
     clear: both;

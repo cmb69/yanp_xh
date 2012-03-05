@@ -1,11 +1,10 @@
-TODO
-add Polish translation (contributed by learnandcode) + help.htm
-    credit plugin icon
-
-Version 1rc2 - released TODO
+Version 1 - released 2012-03-05
 cmb	added Slovak translation (contributed by Tata)
-    extended copyright
+cmb	add Polish translation (contributed by learnandcode)
+cmb	extended copyright
+cmb	added plugin icon
 cmb	updated manual accordingly
+cmb	made minor cosmetic changes
 
 Version 1rc1 - released 2011-12-25
 cmb	added Danish translation (provided by maeg)

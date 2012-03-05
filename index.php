@@ -4,7 +4,7 @@
  * Front-end of Yanp_XH.
  * Copyright (c) 2011-2012 Christoph M. Becker (see license.txt)
  */
- 
+
 
 // utf-8 marker: äöüß
 
@@ -15,7 +15,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 
-define('YANP_VERSION', '1rc2');
+define('YANP_VERSION', '1');
 
 
 /**
@@ -26,7 +26,7 @@ define('YANP_VERSION', '1rc2');
  */
 function yanp_absolute_url($url) {
     global $sn;
-    
+
     $parts = explode('/', $sn.$url);
     $i = 0;
     while ($i < count($parts)) {
@@ -53,9 +53,9 @@ function yanp_absolute_url($url) {
  */
 function yanp_data_folder() {
     global $pth, $plugin_cf;
-    
+
     $pcf =& $plugin_cf['yanp'];
-    
+
     $fn = $pcf['folder_data'] == ''
 	    ? $pth['folder']['plugins'].'yanp/data/'
 	    : $pth['folder']['base'].$pcf['folder_data'];
@@ -82,7 +82,7 @@ function yanp_data_folder() {
  */
 function yanp_feed_filename() {
     global $sl, $plugin_cf;
-    
+
     return yanp_data_folder().'feed-'.$sl.'.'.$plugin_cf['yanp']['feed_extension'];
 }
 
@@ -106,7 +106,7 @@ function yanp_timestamp($pd) {
  */
 function yanp_head_link() {
     global $hjs, $plugin_cf, $plugin_tx;
-    
+
     $fn = yanp_feed_filename();
     if ($plugin_cf['yanp']['feed_enabled']
 	    && file_exists($fn)) {
@@ -125,7 +125,7 @@ function yanp_head_link() {
  */
 function yanp_newsbox_item($id) {
     global $h, $u, $cf, $sn, $pd_router, $plugin_tx;
-    
+
     $ptx =& $plugin_tx['yanp'];
     $pd = $pd_router->find_page($id);
     $lvl = min($cf['menu']['levels'] + 1, 6);
@@ -183,7 +183,7 @@ function yanp_newsbox() {
  */
 function yanp_feedlink($icon = NULL) {
     global $pth, $plugin_cf, $plugin_tx, $sl;
-    
+
     $pcf =& $plugin_cf['yanp'];
     $ptx =& $plugin_tx['yanp'];
     $icon = isset($icon)
