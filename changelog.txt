@@ -1,10 +1,10 @@
 Version 1 - released 2012-03-05
 cmb	added Slovak translation (contributed by Tata)
-cmb	add Polish translation (contributed by learnandcode)
 cmb	extended copyright
 cmb	added plugin icon
 cmb	updated manual accordingly
 cmb	made minor cosmetic changes
+cmb	added defaultconfig.php
 
 Version 1rc1 - released 2011-12-25
 cmb	added Danish translation (provided by maeg)
