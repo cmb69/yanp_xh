@@ -24,7 +24,7 @@ $plugin_tx['yanp']['syscheck_writable']="Folder '%s' writable";
 
 $plugin_tx['yanp']['cf_utf-8-marker']="Internal usage. <strong>Do not change!</strong>";
 $plugin_tx['yanp']['cf_folder_data']="Path to a folder relative to the CMSimple root directory, where to store the plugin's data, e.g. \"userfiles/yanp/\". Leave empty to store into the plugin's data/ folder.";
-$plugin_tx['yanp']['cf_feed_enabled']="Wether the RSS feed will be created: \"1\" (yes) or \"0\" (no)";
+$plugin_tx['yanp']['cf_feed_enabled']="Whether the RSS feed will be created: \"1\" (yes) or \"0\" (no)";
 $plugin_tx['yanp']['cf_feed_image']="The name of a JPEG, PNG or GIF image in your images folder, that is integrated to the RSS feed as it's  logo (must not exceed 144x400 pixels)";
 $plugin_tx['yanp']['cf_feed_extension']="The extension of the RSS feed files. Typically \"xml\" or \"rss\"";
 

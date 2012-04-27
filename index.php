@@ -15,13 +15,13 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 
-define('YANP_VERSION', '1');
+define('YANP_VERSION', '1pl1');
 
 
 /**
  * Returns the absolute URL.
  *
- * @param string $url  The relative URL.
+ * @param string $url  A relative URL.
  * @return string
  */
 function yanp_absolute_url($url) {
@@ -54,7 +54,7 @@ function yanp_absolute_url($url) {
 function yanp_data_folder() {
     global $pth, $plugin_cf;
 
-    $pcf =& $plugin_cf['yanp'];
+    $pcf = $plugin_cf['yanp'];
 
     $fn = $pcf['folder_data'] == ''
 	    ? $pth['folder']['plugins'].'yanp/data/'
@@ -126,7 +126,7 @@ function yanp_head_link() {
 function yanp_newsbox_item($id) {
     global $h, $u, $cf, $sn, $pd_router, $plugin_tx;
 
-    $ptx =& $plugin_tx['yanp'];
+    $ptx = $plugin_tx['yanp'];
     $pd = $pd_router->find_page($id);
     $lvl = min($cf['menu']['levels'] + 1, 6);
     $htm = '<div class="yanp-news">'."\n"
@@ -184,8 +184,8 @@ function yanp_newsbox() {
 function yanp_feedlink($icon = NULL) {
     global $pth, $plugin_cf, $plugin_tx, $sl;
 
-    $pcf =& $plugin_cf['yanp'];
-    $ptx =& $plugin_tx['yanp'];
+    $pcf = $plugin_cf['yanp'];
+    $ptx = $plugin_tx['yanp'];
     $icon = isset($icon)
 	    ? $pth['folder']['templateimages'].$icon
 	    : $pth['folder']['plugins'].'yanp/images/feed.png';

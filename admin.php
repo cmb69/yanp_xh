@@ -109,8 +109,8 @@ function yanp_rss_item($id) {
 function yanp_rss() {
     global $pth, $sn, $cf, $sl, $txc, $plugin_cf, $plugin_tx;
 
-    $pcf =& $plugin_cf['yanp'];
-    $ptx =& $plugin_tx['yanp'];
+    $pcf = $plugin_cf['yanp'];
+    $ptx = $plugin_tx['yanp'];
     $link = 'http://'.$_SERVER['SERVER_NAME'].$sn;
     $title = $ptx['feed_title'] == ''
 	    ? (isset($txc['site']['title']) ? $txc['site']['title'] : $cf['site']['title'])
@@ -132,7 +132,7 @@ function yanp_rss() {
     if ($pcf['feed_image'] != '') {
 	chkfile($pth['folder']['images'].$pcf['feed_image'], FALSE);
 	$feed .= '  <image>'."\n"
-	    .'    <url>'.$link.$cf['folders']['images'].$pcf['feed_image'].'</url>'."\n"
+	    .'    <url>http://'.yanp_absolute_url($pth['folder']['images'].$pcf['feed_image']).'</url>'."\n"
 	    .'    <title>'.$title.'</title>'."\n"
 	    .'    <link>'.$link.'</link>'."\n"
 	    .'  </image>'."\n";
@@ -152,7 +152,7 @@ function yanp_rss() {
 function yanp_write_rss() {
     global $pth, $sl, $plugin_cf;
 
-    $pcf =& $plugin_cf['yanp'];
+    $pcf = $plugin_cf['yanp'];
     $fn = yanp_data_folder().'feed-'.$sl.'.'.$pcf['feed_extension'];
     if (($fh = fopen($fn, 'w')) === FALSE || fwrite($fh, yanp_rss()) === FALSE) {
 	e('cntwriteto', 'file', $fn);
@@ -187,9 +187,6 @@ if ($plugin_cf['yanp']['feed_enabled']
  * Plugin administration
  */
 if (!empty($yanp)) {
-    initvar('admin');
-    initvar('action');
-
     $o .= print_plugin_admin('off');
 
     switch ($admin) {

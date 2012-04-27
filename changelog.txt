@@ -1,3 +1,10 @@
+Version 1pl1 - released 2012-04-27
+cmb	fixed bug: the URL to the feed icon was wrong for subsites/second languages
+cmb	added czech translation (contributed by oldnema)
+cmb	updated slovak translation (contributed by Tata)
+cmb	updated danish translation (contributed by maeg)
+cmb	made minor improvements
+
 Version 1 - released 2012-03-05
 cmb	added Slovak translation (contributed by Tata)
 cmb	extended copyright
