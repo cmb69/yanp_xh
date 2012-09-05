@@ -86,14 +86,19 @@ function yanp_system_check() { // RELEASE-TODO
  * @return string
  */
 function yanp_rss_item($id) {
-    global $pd_router, $sn, $u, $h, $c;
+    global $pd_router, $sn, $u, $h, $c, $plugin_cf;
 
+    $pcf = $plugin_cf['yanp'];
     $pd = $pd_router->find_page($id);
     $link = 'http://'.$_SERVER['SERVER_NAME'].$sn.'?'.$u[$id];
+    $desc = htmlspecialchars($pd['yanp_description'], ENT_COMPAT, 'UTF-8');
+    if (!$pcf['html_markup']) {
+	$desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
+    }
     $xml = '  <item>'."\n"
             .'    <title>'.$h[$id].'</title>'."\n"
             .'    <link>'.$link.'</link>'."\n"
-            .'    <description>'.$pd['yanp_description'].'</description>'."\n"
+            .'    <description>'.$desc.'</description>'."\n"
             .'    <guid>'.$link.'</guid>'."\n"
             .'    <pubDate>'.date('r', yanp_timestamp($pd)).'</pubDate>'."\n"
 	    .'  </item>'."\n";

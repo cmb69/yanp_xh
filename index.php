@@ -15,7 +15,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 
-define('YANP_VERSION', '1pl1');
+define('YANP_VERSION', '1pl2');
 
 
 /**
@@ -124,15 +124,20 @@ function yanp_head_link() {
  * @return string
  */
 function yanp_newsbox_item($id) {
-    global $h, $u, $cf, $sn, $pd_router, $plugin_tx;
+    global $h, $u, $cf, $sn, $pd_router, $plugin_cf, $plugin_tx;
 
+    $pcf = $plugin_cf['yanp'];
     $ptx = $plugin_tx['yanp'];
     $pd = $pd_router->find_page($id);
     $lvl = min($cf['menu']['levels'] + 1, 6);
+    $desc = $pd['yanp_description'];
+    if (!$pcf['html_markup']) {
+	$desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
+    }
     $htm = '<div class="yanp-news">'."\n"
 	    .'<h'.$lvl.'>'.$h[$id].'</h'.$lvl.'>'."\n"
 	    .'<p><em>'.date($ptx['news_date_format'], yanp_timestamp($pd)).'</em></p>'."\n"
-	    .'<p>'.$pd['yanp_description']
+	    .'<p>'.$desc
 	    .' <span class="read-more"><a href="'.$sn.'?'.$u[$id].'" title="'.$h[$id].'">'
 	    .$ptx['news_read_more'].'</a></span></p>'."\n"
 	    .'</div>'."\n";
