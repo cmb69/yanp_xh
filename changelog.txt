@@ -1,3 +1,9 @@
+Version 1pl2 - released 2012-09-05
+cmb     fixed bug where saving of the language settings corrupted the file (reported by schteff)
+cmb     fixed bug where XHTML special chars were not properly escaped in the RSS feed (reported by schteff)
+cmb     added config option html_markup to allow to write plain text in the description
+cmb     fixed bug where newsreaders might not show changed items
+
 Version 1pl1 - released 2012-04-27
 cmb	fixed bug: the URL to the feed icon was wrong for subsites/second languages
 cmb	added czech translation (contributed by oldnema)
