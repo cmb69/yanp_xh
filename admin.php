@@ -95,11 +95,12 @@ function yanp_rss_item($id) {
     if (!$pcf['html_markup']) {
 	$desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
     }
+    $guid = $link . ' ' . yanp_timestamp($pd);
     $xml = '  <item>'."\n"
             .'    <title>'.$h[$id].'</title>'."\n"
             .'    <link>'.$link.'</link>'."\n"
             .'    <description>'.$desc.'</description>'."\n"
-            .'    <guid>'.$link.'</guid>'."\n"
+            .'    <guid isPermaLink="false">'.$guid.'</guid>'."\n"
             .'    <pubDate>'.date('r', yanp_timestamp($pd)).'</pubDate>'."\n"
 	    .'  </item>'."\n";
     return $xml;
