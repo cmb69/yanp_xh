@@ -22,10 +22,10 @@ $plugin_tx['yanp']['cf_folder_data']="Pfad zu einem Ordner relativ zum CMSimple-
 $plugin_tx['yanp']['cf_feed_enabled']="Ob der RSS-Feed erzeugt werden soll: \"1\" (ja) oder \"0\" (nein)";
 $plugin_tx['yanp']['cf_feed_image']="Der Name eines JPEG, PNG oder GIF-Bildes in Ihrem Bilderordner, das als Logo in den RSS-Feed eingebunden wird (darf 144x400 Pixel nicht überschreiten).";
 $plugin_tx['yanp']['cf_feed_extension']="Die Erweiterung der RSS-Feed-Datei. Normalerweise \"xml\" oder \"rss\".";
-$plugin_tx['yanp']['cf_feed_copyright']="Das &lt;copyright&gt; des RSS-Feeds.";
-$plugin_tx['yanp']['cf_feed_title']="Der &lt;title&gt; (Titel) des RSS-Feeds. Falls leer, wird der site_title verwendet.";
-$plugin_tx['yanp']['cf_feed_description']="Die &lt;description&gt; (Beschreibung) des RSS-Feeds. Falls leer, wird die meta_description verwendet.";
-$plugin_tx['yanp']['cf_feed_link_title']="Der Titel des sichtbaren Feed-Links und des Links im &lt;head&gt; der Website.";
+$plugin_tx['yanp']['cf_feed_copyright']="Das copyright des RSS-Feeds.";
+$plugin_tx['yanp']['cf_feed_title']="Der title (Titel) des RSS-Feeds. Falls leer, wird der site_title verwendet.";
+$plugin_tx['yanp']['cf_feed_description']="Die description (Beschreibung) des RSS-Feeds. Falls leer, wird die meta_description verwendet.";
+$plugin_tx['yanp']['cf_feed_link_title']="Der Titel des sichtbaren Feed-Links und des Links im head der Website.";
 $plugin_tx['yanp']['cf_news_date_format']="Details siehe http://de3.php.net/manual/de/function.date.php";
 $plugin_tx['yanp']['cf_news_read_more']="Der Text für den 'Read More' Link. Kann irgendein (X)HTML inline Element sein, so dass beispielsweise ein Bild eingefügt werden kann.";
 

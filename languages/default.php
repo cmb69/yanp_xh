@@ -28,10 +28,10 @@ $plugin_tx['yanp']['cf_feed_enabled']="Whether the RSS feed will be created: \"1
 $plugin_tx['yanp']['cf_feed_image']="The name of a JPEG, PNG or GIF image in your images folder, that is integrated to the RSS feed as it's  logo (must not exceed 144x400 pixels)";
 $plugin_tx['yanp']['cf_feed_extension']="The extension of the RSS feed files. Typically \"xml\" or \"rss\"";
 
-$plugin_tx['yanp']['cf_feed_copyright']="The &lt;copyright&gt; of the RSS feed.";
-$plugin_tx['yanp']['cf_feed_title']="The &lt;title&gt; of the RSS feed. If blank, the site_title will be used instead";
-$plugin_tx['yanp']['cf_feed_description']="The &lt;description&gt; of the RSS feed. If blank, the meta_description will be used instead";
-$plugin_tx['yanp']['cf_feed_link_title']="The title of the visible feed link and the link in the website's &lt;head&gt;";
+$plugin_tx['yanp']['cf_feed_copyright']="The copyright of the RSS feed.";
+$plugin_tx['yanp']['cf_feed_title']="The title of the RSS feed. If blank, the site_title will be used instead";
+$plugin_tx['yanp']['cf_feed_description']="The description of the RSS feed. If blank, the meta_description will be used instead";
+$plugin_tx['yanp']['cf_feed_link_title']="The title of the visible feed link and the link in the website's head";
 
 $plugin_tx['yanp']['cf_news_date_format']="For details see http://de.php.net/manual/en/function.date.php";
 $plugin_tx['yanp']['cf_news_read_more']="The text for the 'read more' link. Can be any (X)HTML inline element, so you can insert an image for example.";

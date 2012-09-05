@@ -22,10 +22,10 @@ $plugin_tx['yanp']['cf_folder_data']="Cesta k adresáři relatívní ke kořenov
 $plugin_tx['yanp']['cf_feed_enabled']="Má se vytvořit RSS feed: \"1\" (ano) nebo \"0\" (ne)";
 $plugin_tx['yanp']['cf_feed_image']="Název JPEG, PNG nebo GIF souboru v adresáři /images, který se integruje do RSS feedu jako logo (nesmí byť větší než 144x400 px)";
 $plugin_tx['yanp']['cf_feed_extension']="Přípona souborů RSS feedu. Obvykle \"xml\" nebo \"rss\"";
-$plugin_tx['yanp']['cf_feed_copyright']="&lt;copyright&gt; pro RSS feed.";
-$plugin_tx['yanp']['cf_feed_title']="&lt;Název&gt; RSS feedu. Pokud necháte prázdný, použije se site_title";
-$plugin_tx['yanp']['cf_feed_description']="&lt;Popis&gt; RSS feedu. Pokud necháte prázdný, použije se meta_description";
-$plugin_tx['yanp']['cf_feed_link_title']="Název viditelného odkazu na RSS a odkaz v &lt;hlavičce&gt; stránky";
+$plugin_tx['yanp']['cf_feed_copyright']="copyright pro RSS feed.";
+$plugin_tx['yanp']['cf_feed_title']="Název RSS feedu. Pokud necháte prázdný, použije se site_title";
+$plugin_tx['yanp']['cf_feed_description']="Popis RSS feedu. Pokud necháte prázdný, použije se meta_description";
+$plugin_tx['yanp']['cf_feed_link_title']="Název viditelného odkazu na RSS a odkaz v hlavičce stránky";
 $plugin_tx['yanp']['cf_news_date_format']="Vícec podrobností na http://de.php.net/manual/en/function.date.php";
 $plugin_tx['yanp']['cf_news_read_more']="Text pro odkaz 'Více...'. Možno použít jakýkoli (X)HTML inline element, např. i obrázek.";
 
