@@ -1,22 +1,22 @@
 Yanp_XH -- a CMSimple_XH plugin
 Copyright (c) 2011-2012 Christoph M. Becker
 
-Tento program je svobodnı software: mùete jej šíøit nebo modifikovat
-a to podle podmínek GNU General Public License, vydávané
-Free Software Foundation, buï ve verzi 3 licence, nebo
-(podle vašeho uváení) kterékoli pozdìjší verze.
+Tento program je svobodnÃ½ software: mÃ¹Å¾ete jej Å¡Ã­Ã¸it nebo modifikovat
+a to podle podmÃ­nek GNU General Public License, vydÃ¡vanÃ©
+Free Software Foundation, buÃ¯ ve verzi 3 licence, nebo
+(podle vaÅ¡eho uvÃ¡Å¾enÃ­) kterÃ©koli pozdÃ¬jÅ¡Ã­ verze.
 
-Tento program je rozšiøován v nadìji, e bude uiteènı,
-ale BEZ JAKÉKOLIV ZÁRUKY; dokonce i bez pøedpokládané záruky
-PRODEJNOSTI anebo VHODNOSTI PRO URÈITİ ÚÈEL. viz
-GNU General Public License pro více informací.
+Tento program je rozÅ¡iÃ¸ovÃ¡n v nadÃ¬ji, Å¾e bude uÅ¾iteÃ¨nÃ½,
+ale BEZ JAKÃ‰KOLIV ZÃRUKY; dokonce i bez pÃ¸edpoklÃ¡danÃ© zÃ¡ruky
+PRODEJNOSTI anebo VHODNOSTI PRO URÃˆITÃ ÃšÃˆEL. viz
+GNU General Public License pro vÃ­ce informacÃ­.
 
-Mìli by jste obdret kopii GNU General Public License
-spolu s tímto programem (viz license.txt).
+MÃ¬li by jste obdrÅ¾et kopii GNU General Public License
+spolu s tÃ­mto programem (viz license.txt).
 
-Pro další informace viz nápovìda help.htm.
+Pro dalÅ¡Ã­ informace viz nÃ¡povÃ¬da help.htm.
 
 Christoph M. Becker
-Präsident-Mohr-Straße 21
+PrÃ¤sident-Mohr-StraÃŸe 21
 55218 Ingelheim
 mailto: cmbecker69@gmx.de
