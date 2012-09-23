@@ -1,3 +1,6 @@
+Version 1pl3 - released 2012-09-23
+cmb     updated Czech translation and added Czech README and manual (contributed by oldnema)
+
 Version 1pl2 - released 2012-09-05
 cmb     fixed bug where saving of the language settings corrupted the file (reported by schteff)
 cmb     fixed bug where XHTML special chars were not properly escaped in the RSS feed (reported by schteff)
