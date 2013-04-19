@@ -1,3 +1,7 @@
+Version 1pl4 - released 2013-04-19
+cmb     fix bug, where feed icon file was reported as undefined, if set in configuration
+cmb     extended copyright to 2013
+
 Version 1pl3 - released 2012-09-23
 cmb     updated Czech translation and added Czech README and manual (contributed by oldnema)
 

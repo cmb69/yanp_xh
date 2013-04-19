@@ -15,7 +15,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 
-define('YANP_VERSION', '1pl3');
+define('YANP_VERSION', '1pl4');
 
 
 /**
