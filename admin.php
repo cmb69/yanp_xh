@@ -136,7 +136,9 @@ function yanp_rss() {
 	    .'  <generator>'.CMSIMPLE_XH_VERSION.' – Yanp_XH '.YANP_VERSION.'</generator>'."\n"
 	    .'  <atom:link href="http://'.yanp_absolute_url(yanp_feed_filename()).'" rel="self" type="application/rss+xml"/>'."\n";
     if ($pcf['feed_image'] != '') {
-	chkfile($pth['folder']['images'].$pcf['feed_image'], FALSE);
+	if (!is_readable($pth['folder']['images'].$pcf['feed_image'])) {
+	    e('missing', 'file', $pth['folder']['images'].$pcf['feed_image']);
+	}
 	$feed .= '  <image>'."\n"
 	    .'    <url>http://'.yanp_absolute_url($pth['folder']['images'].$pcf['feed_image']).'</url>'."\n"
 	    .'    <title>'.$title.'</title>'."\n"
