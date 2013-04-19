@@ -74,14 +74,14 @@ Zejména se podívejte na záznamy skupiny "feed" a "news".</p>
 <pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
 
 <h3>Zpřístupnění RSS zdroje</h3>
-<p>RSS feed je k dispozici v mnoha moderních prohlížečích automaticky, protože &lt;link rel="alternate"&gt;  tag se vloží 
+<p>RSS feed je k dispozici v mnoha moderních prohlížečích automaticky, protože &lt;link rel="alternate"&gt;  tag se vloží
 do &lt;head&gt; vaší stránky s Yanp_XH.
 Chcete-li navíc zobrazit ikonu RSS s odkazem na RSS feed, musíte vložit</p>
 <pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
 <p>do vašeho templatu. V podstatě funguje obdobně jako mailformlink().
 Pokud chcete zobrazit jinou ikonu RSS stačí ji dát do šablony do složky obrázky, a dát název souboru jako parametr:</p>
 <pre>&lt;?php echo yanp_feedlink('filename.png')?&gt;</pre>
-<p>V závislosti na konfiguraci vašeho webového serveru, bude se zdroj generovat jako text/xml, co může způsobit problémy s kódováním UTF-8. 
+<p>V závislosti na konfiguraci vašeho webového serveru, bude se zdroj generovat jako text/xml, co může způsobit problémy s kódováním UTF-8.
 Může to tedy sloužit jako aplikace/xml. Pro servery Apache je řesením přidání odpovídajícího souboru .htaccess do adresáře data pluginu, který je již obsažen v defaultní instalaci. Alternativou může též být nastaveni "feed extension" na "rss".
 Stejně by jste však měli <a href="http://www.rssboard.org/rss-validator/">zkontrolovat RSS</a>
 aby jste byli informováni o případných problémech.
@@ -90,7 +90,7 @@ aby jste byli informováni o případných problémech.
 <h2><a name="license">Licence</a></h2>
 <p>Yanp_XH je licencován pod
 <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
-<p>&copy; 2011-2012 Christoph M. Becker</p>
+<p>&copy; 2011-2013 Christoph M. Becker</p>
 <p>Dánský překlad &copy; 2011-2012 Jens Maegard<br>
 Slovenský překlad &copy; 2011-2012 Dr. Martin Sereday<br>
 Český překlad &copy; 2012 Josef Němec</p>

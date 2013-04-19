@@ -1,5 +1,5 @@
-Yanp_XH -- a CMSimple_XH plugin
-Copyright (c) 2011-2012 Christoph M. Becker
+ÔªøYanp_XH -- a CMSimple_XH plugin
+Copyright (c) 2011-2013 Christoph M. Becker
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,6 +17,6 @@ along with this program (see license.txt).
 For further information see help/help.htm.
 
 Christoph M. Becker
-Pr‰sident-Mohr-Straﬂe 21
+Pr√§sident-Mohr-Stra√üe 21
 55218 Ingelheim
 mailto: cmbecker69@gmx.de
