@@ -170,6 +170,12 @@ function yanp_write_rss() {
     }
 }
 
+/*
+ * Register plugin menu items.
+ */
+if (function_exists('XH_registerStandardPluginMenuItems')) {
+    XH_registerStandardPluginMenuItems(false);
+}
 
 /**
  * The pagedata hook
@@ -194,7 +200,10 @@ if ($plugin_cf['yanp']['feed_enabled']
 /**
  * Plugin administration
  */
-if (!empty($yanp)) {
+if (function_exists('XH_wantsPluginAdministration')
+    && XH_wantsPluginAdministration('yanp')
+    || isset($yanp) && $yanp == 'true'
+) {
     $o .= print_plugin_admin('off');
 
     switch ($admin) {
