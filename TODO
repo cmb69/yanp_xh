@@ -1,6 +1,5 @@
 * convert changelog.txt
-* CSRF protection
-* revise htmlspecialchars()
+* adjust back-end headings
 
 * get rid of utf-8-markers
 * min/max timestamp?

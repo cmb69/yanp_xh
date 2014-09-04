@@ -21,10 +21,10 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
  * @return string
  */
 function yanp_version() {
-    global $pth;
+    global $pth, $plugin_tx;
 
     return '<h1><a href="http://3-magi.net/?CMSimple_XH/Yanp_XH">Yanp_XH</a></h1>'."\n"
-	    .tag('img src="'.$pth['folder']['plugins'].'yanp/yanp.png" class="yanp_plugin_icon"')
+	    .tag('img src="'.$pth['folder']['plugins'].'yanp/yanp.png" class="yanp_plugin_icon" alt="'.$plugin_tx['yanp']['alt_logo'].'"')
 	    .'<p>Version: '.YANP_VERSION.'</p>'."\n"
 	    .'<p>Copyright &copy; 2011-2014 <a href="http://3-magi.net">Christoph M. Becker</a></p>'."\n"
 	    .'<p class="yanp_license">This program is free software: you can redistribute it and/or modify'
