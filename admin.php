@@ -23,10 +23,10 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 function yanp_version() {
     global $pth, $plugin_tx;
 
-    return '<h1><a href="http://3-magi.net/?CMSimple_XH/Yanp_XH">Yanp_XH</a></h1>'."\n"
+    return '<h1>Yanp</h1>'."\n"
 	    .tag('img src="'.$pth['folder']['plugins'].'yanp/yanp.png" class="yanp_plugin_icon" alt="'.$plugin_tx['yanp']['alt_logo'].'"')
 	    .'<p>Version: '.YANP_VERSION.'</p>'."\n"
-	    .'<p>Copyright &copy; 2011-2014 <a href="http://3-magi.net">Christoph M. Becker</a></p>'."\n"
+	    .'<p>Copyright &copy; 2011-2014 <a href="http://3-magi.net/" target="_blank">Christoph M. Becker</a></p>'."\n"
 	    .'<p class="yanp_license">This program is free software: you can redistribute it and/or modify'
 	    .' it under the terms of the GNU General Public License as published by'
 	    .' the Free Software Foundation, either version 3 of the License, or'
@@ -37,7 +37,7 @@ function yanp_version() {
 	    .' GNU General Public License for more details.</p>'."\n"
 	    .'<p class="yanp_license">You should have received a copy of the GNU General Public License'
 	    .' along with this program.  If not, see'
-	    .' <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>'."\n";
+	    .' <a href="http://www.gnu.org/licenses/" target="_blank">http://www.gnu.org/licenses/</a>.</p>'."\n";
 }
 
 
