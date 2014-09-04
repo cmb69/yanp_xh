@@ -2,7 +2,7 @@
 
 /**
  * Pagedata view of Yanp_XH.
- * Copyright (c) 2011-2013 Christoph M. Becker (see license.txt)
+ * Copyright (c) 2011-2014 Christoph M. Becker (see license.txt)
  */
 
 
