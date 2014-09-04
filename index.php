@@ -86,7 +86,9 @@ function yanp_data_folder() {
 	    e('cntopen', 'folder', $fn);
 	}
     } else {
-	if (!mkdir($fn, 0777, TRUE)) {
+	if (mkdir($fn, 0777, TRUE)) {
+	    chmod($fn, 0777);
+	} else {
 	    e('cntwriteto', 'folder', $fn);
 	}
     }
