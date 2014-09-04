@@ -1,6 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<!-- utf-8-marker: äöüß -->
+<!DOCTYPE html>
 <html lang="cs">
 
 <head>
@@ -19,14 +17,15 @@ Usnadňuje automatické zpracování zpráv webových stránek CMSimple_XH, kter
 <a href="http://cmsimplewiki.com/doku.php/plugins/whatsnew">WhatsNew</a> nebo
 <a href="http://cmsimplewiki.com/doku.php/plugins/rss_feed">RSS Feed</a>.
 Máte-li vyšší požadavky, zvažte použití vyspělejšího řešení, jako je například
-<a href="http://cmsimplewiki.com/doku.php/plugins/advanced_news">AdvancedNews</a> nebo
-<a href="http://www.ge-webdesign.de/cmsimpleplugins/?Eigene_Plugins/realblog_XH">Realblog</a>.</p>
+<a href="http://cmsimplewiki.com/doku.php/plugins/news">News</a> nebo
+<a href="http://3-magi.net/?CMSimple_XH/Realblog_XH">Realblog_XH</a>.</p>
 
 <ul id="nav">
 <li><a href="#requirements">Requirements</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#settings">Settings</a></li>
 <li><a href="#usage">Usage</a></li>
+<li><a href="#limitations">Limitations</a></li>
 <li><a href="#license">License</a></li>
 <li><a href="#credits">Credits</a></li>
 </ul>
@@ -35,12 +34,12 @@ Máte-li vyšší požadavky, zvažte použití vyspělejšího řešení, jako 
 
 <p><strong>Přečtěte si prosím tuto dokumentaci! Je to obecně dobrý nápad číst dokumentaci, ať nenarazíte na nějaké problémy!</strong></p>
 
-<h2><a name="requirements">Požadavky</a></h2>
+<h2 id="requirements">Požadavky</h2>
 <p>Yanp_XH je plugin pro CMSimple_XH.
 Vyžaduje kódování ve verzi UTF-8.</p>
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 
-<h2><a name="installation">Instalace</a></h2>
+<h2 id="installation">Instalace</h2>
 <p>Instalace se provádí stejně jako u mnoha dalších CMSimple_XH pluginů.
 Navštivte <a href="http://www.cmsimple-xh.org/wiki/doku.php/installation">
 CMSimple_XH wiki</a> pro více podrobností.</p>
@@ -53,16 +52,18 @@ CMSimple_XH wiki</a> pro více podrobností.</p>
 </ol>
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 
-<h2><a name="settings">Nastavení</a></h2>
+<h2 id="settings">Nastavení</h2>
 <p>Konfigurace se provádí stejně jako u mnoha dalších pluginů CMSimple_XH v administraci stránek. Zvolte "Yanp" v "Pluginech".
 </p>
-<p>Můžete změnit výchozí nastavení pluginu Yanp_XH v "Plugin Config". Tipy pro volby se zobrazí při najetí myší na ikony nápovědy.</p>
-<p>Lokalizace se provádí v "Jazyk". Můžete přeložit řetězce znaků do vašeho jazyka, nebo je upravit podle vašich potřeb.
-Zejména se podívejte na záznamy skupiny "feed" a "news".</p>
+<p>Můžete změnit výchozí nastavení pluginu Yanp_XH v "Config". Tipy pro volby se zobrazí při najetí myší na ikony nápovědy.</p>
+<p>Lokalizace se provádí v "Jazyk". Můžete přeložit řetězce znaků do vašeho
+jazyka <ins>(if there is no appropriate language file available)</ins>, nebo je
+upravit podle vašich potřeb. Zejména se podívejte na záznamy skupiny "feed" a
+"news".</p>
 <p>Vzhled Yanp_XH lze upravit ve volbě "Styl", nebo alternativně ve Vaší šabloně stylů.</p>
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 
-<h2><a name="usage">Použití</a></h2>
+<h2 id="usage">Použití</h2>
 <p>Novinky Yanp_XH jsou určeny pro stránky CMSimple. Každá stránka může mít záznam v novinkách. Chcete-li je přidat, stačí přepnout na záložku "News" nad editore. Pokud zadáte libovolný text jako popis, bude zpráva přidána do stránky. Pokud popis odstraníte, bude stránka odstraněna ze zpráv. Časové razítko novinek se používá pro řazení zpráv (novinky budou nahoře). Časové razítko bude aktualizováno při uložení na kartu, ale nebude novější než časové razítko poslední úpravy v souladu se stránkou. Takže, pokud jste provedli překlep na stránce a opravit ji později, bude časové razítko zprávy nedotčeno. Pokud změníte zprávu později, časové razítko nebude ovlivněno, pokud neuložíte stránku.</p>
 
 <h3>Zobrazení v newsboxu</h3>
@@ -86,7 +87,19 @@ Stejně by jste však měli <a href="http://www.rssboard.org/rss-validator/">zko
 aby jste byli informováni o případných problémech.
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 
-<h2><a name="license">Licence</a></h2>
+<ins>
+<h2 id="limitations">Limitations</h2>
+<p>Under CMSimple_XH 1.6 - 1.6.2 when saving the News tab there is the
+spurious error message "Could not save content file". This is caused by a bug in
+CMSimple_XH and will be fixed with CMSimple_XH 1.6.3.</p>
+<p>When the website can be requested with www and without it (e.g.
+www.example.com and example.com) without redirecting one to the other, the RSS
+feed may not link correctly back to itself. It is generally recommended that you
+establish a 301 redirect from www.example.com to example.com or vice versa.</p>
+<div class="toplink"><a href="#">back to top</a></div>
+</ins>
+
+<h2 id="license">Licence</h2>
 <p>Yanp_XH je licencován pod
 <a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a>.</p>
 <p>&copy; 2011-2014 Christoph M. Becker</p>
@@ -95,7 +108,7 @@ Slovenský překlad &copy; 2011-2012 Dr. Martin Sereday<br>
 Český překlad &copy; 2012 Josef Němec</p>
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 
-<h2><a name="credits">Vývojáři</a></h2>
+<h2 id="credits">Vývojáři</h2>
 <p>The plugin icon was designed by <a href="http://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a>.
 This plugin uses feed icons from
 <a href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>,

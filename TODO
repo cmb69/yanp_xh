@@ -1,6 +1,3 @@
-* fix German toplinks
-* revise Czech manual
-
 * don't write RSS feed to disk, but generate it dynamically
 * get rid of utf-8-markers
 * min/max timestamp?
