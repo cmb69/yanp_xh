@@ -1,5 +1,7 @@
-* convert changelog.txt
+* fix German toplinks
+* revise Czech manual
 
+* don't write RSS feed to disk, but generate it dynamically
 * get rid of utf-8-markers
 * min/max timestamp?
   (<http://cmsimpleforum.com/viewtopic.php?f=16&t=5066#p30191>)
