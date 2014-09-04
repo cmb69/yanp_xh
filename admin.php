@@ -49,7 +49,7 @@ function yanp_version() {
 function yanp_system_check() { // RELEASE-TODO
     global $pth, $tx, $plugin_tx, $plugin_cf;
 
-    define('YANP_PHP_VERSION', '4.0.7');
+    define('YANP_PHP_VERSION', '4.1.0');
     $ptx = $plugin_tx['yanp'];
     $imgdir = $pth['folder']['plugins'].'yanp/images/';
     $ok = tag('img src="'.$imgdir.'ok.png" alt="ok"');

@@ -1,4 +1,8 @@
 * convert changelog.txt
+* metaconfig.php
+* XH_registerStandardPluginMenuItems()
+* XH_wantsPluginAdministration()
+* SERVER_NAME -> HTTP_HOST
 
 * min/max timestamp?
   (<http://cmsimpleforum.com/viewtopic.php?f=16&t=5066#p30191>)

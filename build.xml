@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
+<project name="Yanp" default="default">
+
+    <!-- filesets -->
+
+    <fileset id="php-sources" dir=".">
+        <include name="admin.php"/>
+        <include name="index.php"/>
+        <include name="yanp_view.php"/>
+    </fileset>
+
+    <!--<fileset id="unit-tests" dir="tests/unit">
+        <include name="*Test.php"/>
+    </fileset>-->
+
+    <!-- static analysis -->
+
+    <!--<target name="sniff">
+        <phpcodesniffer standard="PEAR" format="full">
+            <fileset refid="php-sources"/>
+            <fileset refid="unit-tests"/>
+        </phpcodesniffer>
+    </target>-->
+
+    <target name="compat">
+        <exec command="phpcompatinfo --configuration phpcompatinfo.xml print
+                                     --exclude-pattern yanp ."
+              logoutput="true"/>
+    </target>
+
+    <!-- tests -->
+
+    <!--<target name="unit-tests">
+        <phpunit haltonerror="true" haltonfailure="true">
+            <formatter type="plain" usefile="false"/>
+            <batchtest>
+                <fileset refid="unit-tests"/>
+            </batchtest>
+        </phpunit>
+    </target>-->
+
+    <!--<target name="tests" depends="unit-tests"/>-->
+
+    <!--<target name="coverage">
+        <exec command="phpunit - -configuration coverage.xml" logoutput="true"/>
+    </target>-->
+
+    <!-- documentation -->
+
+    <target name="php-doc">
+        <phpdoc title="Yanp_XH Developer Documentation" destdir="doc/php"
+                output="HTML:Smarty:HandS" defaultpackagename="Yanp"
+                defaultcategoryname="CMSimple_XH" parseprivate="true">
+            <fileset refid="php-sources"/>
+            <projdocfileset dir=".">
+               <include name="README"/>
+               <include name="CHANGELOG"/>
+            </projdocfileset>
+        </phpdoc>
+    </target>
+
+    <!--<target name="js-doc">
+        <exec command="jsdoc - -destination doc/js *.js" checkreturn="true"/>
+    </target>-->
+
+    <target name="doc" depends="php-doc"/>
+
+    <!-- build -->
+
+    <target name="build">
+        <fail unless="version" message="version is not defined!"/>
+        <svnexport revision="" repositoryurl="." todir="export"/>
+        <move todir="dist">
+            <fileset dir="export">
+                <include name="index.php"/>
+                <include name="version.nfo"/>
+            </fileset>
+            <filterchain>
+                <replacetokens>
+                    <token key="YANP_VERSION" value="${version}"/>
+                </replacetokens>
+            </filterchain>
+        </move>
+        <jsMin targetDir="dist" suffix="" failOnError="true">
+            <fileset dir="export">
+                <include name="*.js"/>
+            </fileset>
+        </jsMin>
+        <move todir="dist">
+            <fileset dir="export">
+                <exclude name="build.xml"/>
+                <exclude name="phpcompatinfo.xml"/>
+                <exclude name="TODO"/>
+                <exclude name="yanp.komodoproject"/>
+            </fileset>
+        </move>
+        <delete dir="export"/>
+        <copy file="dist/config/config.php" tofile="dist/config/defaultconfig.php"/>
+        <copy file="dist/languages/en.php" tofile="dist/languages/default.php"/>
+        <zip destfile="Yanp_XH-${version}.zip" basedir="dist" prefix="yanp/"/>
+        <delete dir="dist"/>
+    </target>
+
+</project>
