@@ -113,7 +113,7 @@ function yanp_rss_item($id) {
  * @return string
  */
 function yanp_rss() {
-    global $pth, $sn, $cf, $sl, $txc, $plugin_cf, $plugin_tx;
+    global $pth, $sn, $tx, $cf, $sl, $txc, $plugin_cf, $plugin_tx;
 
     $pcf = $plugin_cf['yanp'];
     $ptx = $plugin_tx['yanp'];
@@ -121,9 +121,15 @@ function yanp_rss() {
     $title = $ptx['feed_title'] == ''
 	    ? (isset($txc['site']['title']) ? $txc['site']['title'] : $cf['site']['title'])
 	    : $ptx['feed_title'];
-    $desc = $ptx['feed_description'] == ''
-	    ? (isset($txc['meta']['description']) ? $txc['meta']['description'] : $cf['meta']['description'])
-	    : $ptx['feed_description'];
+    if ($ptx['feed_description'] != '') {
+	$desc = $ptx['feed_description'];
+    } elseif (isset($tx['meta']['description'])) {
+	$desc = $tx['meta']['description'];
+    } elseif (isset($txc['meta']['description'])) {
+	$desc = $txc['meta']['description'];
+    } else {
+	$desc = $cf['meta']['description'];
+    }
     $feed = '<?xml version="1.0" encoding="UTF-8"?>'."\n"
 	    .'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'."\n"
 	    .'<channel>'."\n"
