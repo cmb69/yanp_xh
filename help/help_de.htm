@@ -1,29 +1,29 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-<!-- utf-8-marker: äöüß -->
+<!DOCTYPE html>
 <html lang="de">
 
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Yanp_XH - Handbuch</title>
+<title>Yanp_XH &ndash; Handbuch</title>
 <link rel="stylesheet" type="text/css" href="./stylesheet.css">
 </head>
 
 <body>
 
-<h1>Yanp_XH - ein CMSimple_XH-Plugin</h1>
-<img src="../yanp.png" class="plugin_icon" alt="Plugin-Icon">
+<h1>Yanp_XH &ndash; ein CMSimple_XH-Plugin</h1>
+<img src="../yanp.png" class="plugin_icon" alt="Zeitung">
 <p>YANP ist die Abkürzung von <strong>y</strong>et <strong>a</strong>nother
 <strong>n</strong>ews <strong>p</strong>lugin (noch ein weiteres News-Plugin).
-Es ermöglicht halbautomatische Handhabung der Neuigkeiten einer CMSimple_XH Homepage,
-die in einer Newsbox angezeigt und als RSS-Feed verfügbar gemacht werden können.
-Betrachten Sie es als Alternative zur manuellen Erzeugung und Pflege von Newsboxen
-oder zur Verwendung einer vollautomatisierten Lösung, wie
-<a href="http://cmsimplewiki.com/doku.php/plugins/whatsnew">WhatsNew</a> oder
-<a href="http://cmsimplewiki.com/doku.php/plugins/rss_feed">RSS Feed</a>.
-Wenn Sie weiter gehende Ansprüche haben, sollten sie die Verwendung einer fortgeschrittenen Lösung, wie
-<a href="http://cmsimplewiki.com/doku.php/plugins/advanced_news">AdvancedNews</a> oder
-<a href="http://www.ge-webdesign.de/cmsimpleplugins/?Eigene_Plugins/realblog_XH">Realblog</a> in Erwägung ziehen.</p>
+Es ermöglicht halbautomatische Handhabung der Neuigkeiten einer CMSimple_XH
+Homepage, die in einer Newsbox angezeigt und als RSS-Feed verfügbar gemacht
+werden können. Betrachten Sie es als Alternative zur manuellen Erzeugung und
+Pflege von Newsboxen oder zur Verwendung einer vollautomatisierten Lösung, wie
+<a href="http://cmsimplewiki.com/doku.php/plugins/whatsnew">WhatsNew</a> oder <a
+href="http://cmsimplewiki.com/doku.php/plugins/rss_feed">RSS Feed</a>. Wenn Sie
+weiter gehende Ansprüche haben, sollten sie die Verwendung einer
+fortgeschrittenen Lösung, wie <a
+href="http://cmsimplewiki.com/doku.php/plugins/news">News</a> oder <a
+href="http://3-magi.net/de/?CMSimple_XH/Realblog_XH">Realblog_XH</a> in Erwägung
+ziehen.</p>
 
 <ul id="nav">
 <li><a href="#requirements">Vorraussetzungen</a></li>
@@ -36,108 +36,116 @@ Wenn Sie weiter gehende Ansprüche haben, sollten sie die Verwendung einer fortg
 
 <div id="body">
 
-<p><strong>Bitte lesen Sie diese Dokumentation!
-Es ist grundsätzlich eine gute Idee, die Dokumentation zu lesen,
-<em>bevor</em> Sie auf Probleme stoßen!</strong></p>
+<p><strong>Bitte lesen Sie dieses Handbuch <em>bevor</em> Sie auf Probleme
+stoßen!</strong></p>
 
-<h2><a name="requirements">Vorraussetzungen</a></h2>
-<p>Yanp_XH ist ein Plugin für CMSimple_XH.
-Es benötigt eine UTF-8 kodierte Version.</p>
+<h2 id="requirements">Vorraussetzungen</h2>
+<p>Yanp_XH ist ein Plugin für CMSimple_XH. Es benötigt eine UTF-8 kodierte
+Version.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
-<h2><a name="installation">Installation</a></h2>
+<h2 id="installation">Installation</h2>
 <p>Die Installation erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch.
 Im <a href="http://www.cmsimple-xh.org/wiki/doku.php/de:installation">
 CMSimple_XH Wiki</a> finden sie ausführliche Hinweise.</p>
 <ol>
-<li><strong>Sichern Sie die Daten auf Ihrem Server.</strong></li>
+<li>Sichern Sie die Daten auf Ihrem Server.</li>
 <li>Entpacken Sie die ZIP-Datei auf Ihrem Computer.</li>
-<li>Laden Sie das gesamte Verzeichnis yanp/ auf Ihren Server in das CMSimple_XH-Plugin-Verzeichnis hoch.</li>
-<li>Vergeben Sie falls nötig Schreibrechte für die Unterverzeichnisse config/, css/, languages/ und den Daten-Ordner des Plugins.</li>
-<li><strong>Gehen Sie zu "Yanp" im Administrationsbereich,
-und prüfen Sie, ob alle Vorraussetzungen erfüllt sind.</strong></li>
+<li>Laden Sie das gesamte Verzeichnis yanp/ auf Ihren Server in das
+CMSimple_XH-Plugin-Verzeichnis hoch.</li>
+<li>Vergeben Sie falls nötig Schreibrechte für die Unterverzeichnisse config/,
+css/, languages/ und den Daten-Ordner des Plugins.</li>
+<li>Gehen Sie zu "Yanp" im Administrationsbereich, und prüfen Sie, ob alle
+Vorraussetzungen erfüllt sind.</li>
 </ol>
 <div class="toplink"><a href="#">back to top</a></div>
 
-<h2><a name="settings">Einstellungen</a></h2>
-<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen CMSimple_XH-Plugins
-auch im Administrationsbereich der Homepage. Wählen Sie unter "Plugins"
-"Yanp" aus.</p>
-<p>Sie können die Voreinstellungen von Yanp_XH in der "Plugin-Konfiguration" ändern.
-Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den Einstellungen angezeigt.</p>
-<p>Die Lokalisierung wird unter "Plugin-Sprache" vorgenommen.
-Sie können die Texte in Ihre eigene Sprache übersetzen,
-oder sie entsprechend Ihren Anforderungen anpassen.
-Achten Sie besonders auf die Einträge in der "feed" und "news" Gruppe.</p>
-<p>Das Aussehen von Yanp_XH kann unter "Plugin Stylesheet" angepasst werden,
-oder alternativ im Stylesheet Ihres Templates,
-da die Newsbox und der Feed-Link dort direkt eingebunden werden.</p>
+<h2 id="settings">Einstellungen</h2>
+<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen
+CMSimple_XH-Plugins auch im Administrationsbereich der Homepage. Wählen Sie
+"Plugins" &rarr; "Yanp".</p>
+<p>Sie können die Voreinstellungen von Yanp_XH unter "Konfiguration" ändern.
+Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den
+Einstellungen angezeigt.</p>
+<p>Die Lokalisierung wird unter "Plugin-Sprache" vorgenommen. Sie können die
+Texte in Ihre eigene Sprache übersetzen (falls keine entsprechende Sprachdatei
+zur Verfügung steht), oder sie entsprechend Ihren Anforderungen anpassen. Achten
+Sie besonders auf die Einträge in den Abschnitten "Feed" und "News".</p>
+<p>Das Aussehen von Yanp_XH kann unter "Stylesheet" angepasst werden, oder
+alternativ im Stylesheet Ihres Templates, da die Newsbox und der Feed-Link dort
+direkt eingebunden werden.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
-<h2><a name="usage">Verwendung</a></h2>
-<p>Yanp_XHs Neuigkeiten beziehen sich auf CMSimple-Seiten.
-Jede Seite kann einen Eintrag in den Neuigkeiten haben.
-Um dies zu steuern, wechseln Sie einfach in den Reiter "News" oberhalb des Editors.
-Wenn Sie dort Text als Beschreibung eintragen, wird die Seite zu den Neuigkeiten hinzugefügt.
-Wenn Sie die Beschreibung löschen, wird die Seite aus den Neuigkeiten entfernt.
-Der Zeitstempel der Neuigkeiten wird verwendet, um diese zu sortieren (aktuelle Neuigkeiten sind oben).
-Der Zeitstempel wird aktualisiert, wenn Sie den Reiter sichern,
-aber er kann nie aktueller sein als der Zeitstempel der letzten Bearbeitung der entsprechenden Seite.
-Wenn Sie also einen Tippfehler auf der Seite gemacht haben, den Sie später korrigieren,
-ändert das nicht den Zeitstempel der Neuigkeit.
-Wenn Sie andererseits die Neuigkeit später ändern, wird der Zeitstempel nicht geändert,
-solange sie nicht auch die Seite selbst speichern.</p>
+<h2 id="usage">Verwendung</h2>
+<p>Yanp_XHs Neuigkeiten beziehen sich auf CMSimple-Seiten. Jede Seite kann einen
+Eintrag in den Neuigkeiten haben. Um dies zu steuern, wechseln Sie einfach in
+den Reiter "News" oberhalb des Editors. Wenn Sie dort Text als Beschreibung
+eintragen, wird die Seite zu den Neuigkeiten hinzugefügt. Wenn Sie die
+Beschreibung löschen, wird die Seite aus den Neuigkeiten entfernt. Der
+Zeitstempel der Neuigkeiten wird verwendet, um diese zu sortieren (aktuelle
+Neuigkeiten sind oben). Der Zeitstempel wird aktualisiert, wenn Sie den Reiter
+sichern, aber er kann nie aktueller sein als der Zeitstempel der letzten
+Bearbeitung der entsprechenden Seite. Wenn Sie also einen Tippfehler auf der
+Seite gemacht haben, den Sie später korrigieren, ändert das nicht den
+Zeitstempel der Neuigkeit. Wenn Sie andererseits die Neuigkeit später ändern,
+wird der Zeitstempel nicht geändert, solange sie nicht auch die Seite selbst
+speichern.</p>
 
 <h3>Anzeigen der Newsbox</h3>
-<p>Um die Newsbox anzuzeigen, müssen Sie Ihr Template bearbeiten;
-ersetzen Sie den bereits existierenden newsbox() Aufruf durch:</p>
+<p>Um die Newsbox anzuzeigen, müssen Sie Ihr Template bearbeiten; ersetzen Sie
+den bereits existierenden newsbox() Aufruf durch:</p>
 <pre>&lt;?php echo yanp_newsbox()?&gt;</pre>
-<p>oder fügen Sie dies ggf. zusätzlich zu bereits bestehenden newsbox() Aufrufen ein.</p>
+<p>oder fügen Sie dies ggf. zusätzlich zu bereits bestehenden newsbox() Aufrufen
+ein.</p>
 <p>Weiterhin ist es möglich die Newsbox auf einer CMSimple-Seite anzuzeigen,
 indem Sie folgenden Plugin-Aufruf einfügen:</p>
 <pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
 
 <h3>RSS-Feed verfügbar machen</h3>
-<p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung gestellt,
-da ein &lt;link rel="alternate"&gt; Tag im &lt;head&gt; der Seiten
-Ihrer Homepage von Yanp_XH eingefügt wird.
-Um zusätzlich das RSS-Icon mit einem Link zum RSS-Feed anzuzeigen, müssen Sie</p>
+<p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung
+gestellt, da ein &lt;link rel="alternate"&gt; Tag im &lt;head&gt; der Seiten
+Ihrer Homepage von Yanp_XH eingefügt wird. Um zusätzlich das RSS-Icon mit einem
+Link zum RSS-Feed anzuzeigen, müssen Sie</p>
 <pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
-<p>in Ihr Template einfügen. Das funktioniert analog zu mailformlink().
-Wenn Sie ein anderes Feed-Icon anzeigen möchten, legen Sie es im images/ Ordner Ihres Templates ab,
-und geben Sie dessen Dateinamen als Parameter an:</p>
+<p>in Ihr Template einfügen. Das funktioniert analog zu mailformlink(). Wenn Sie
+ein anderes Feed-Icon anzeigen möchten, legen Sie es im images/ Ordner Ihres
+Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
 <pre>&lt;?php echo yanp_feedlink('dateiname.png')?&gt;</pre>
 <p>Je nach Konfiguration Ihres Webservers wird der Feed als text/xml gesendet,
-was wegen der UTF-8-Kodierung problematisch ist.
-Daher sollte der Feed als application/rss+xml oder application/xml gesendet werden.
-Bei Apache-Servern erreichen Sie dies, indem Sie eine entsprechende .htaccess Datei im Datenordner des Plugins ablegen,
-was für den voreingestellten data/ Ordner bereits erfolgt ist.
-Alternativ können Sie "feed extension" auf "rss" stellen.
-Aber Sie sollten auf jeden Fall den RSS-Feed
-<a href="http://www.rssboard.org/rss-validator/">validieren</a>,
-um mögliche Probleme zu erkennen.
+was wegen der UTF-8-Kodierung problematisch ist. Daher sollte der Feed als
+application/rss+xml oder application/xml gesendet werden. Bei Apache-Servern
+erreichen Sie dies, indem Sie eine entsprechende .htaccess Datei im Datenordner
+des Plugins ablegen, was für den voreingestellten data/ Ordner bereits erfolgt
+ist. Alternativ können Sie "feed extension" auf "rss" stellen. Aber Sie sollten
+auf jeden Fall den RSS-Feed <a
+href="http://www.rssboard.org/rss-validator/">validieren</a>, um mögliche
+Probleme zu erkennen.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
-<h2><a name="license">Lizenz</a></h2>
-<p>Yanp_XH kann unter Einhaltung der
-<a href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> verwendet werden.</p>
+<h2 id="license">Lizenz</h2>
+<p>Yanp_XH kann unter Einhaltung der <a
+href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> verwendet werden.</p>
 <p>&copy; 2011-2014 Christoph M. Becker</p>
 <p>Dänische Übersetzung &copy; 2011-2012 Jens Maegard<br>
 Slovakische Übersetzung &copy; 2011-2012 Dr. Martin Sereday<br>
 Tschechische Übersetzung &copy; 2012 Josef Němec</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
-<h2><a name="credits">Danksagung</a></h2>
-<p>Das Plugin-Icon wurde von <a href="http://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen.
-Dieses Plugin verwendet Feed-Icons von
-<a href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>,
-und "free application icons" von <a href="http://www.aha-soft.com/">Aha-Soft</a>.
-Vielen Dank für die Veröffentlichung als Freeware.</p>
-<p>Vielen Dank an die Community im <a href="http://www.cmsimpleforum.com">CMSimple-Forum</a>
-für Tipps, Vorschläge und das Testen.</p>
-<p>Zu guter letzt vielen Dank an <a href="http://www.harteg.dk/">Peter Harteg</a>,
-den "Vater" von CMSimple, und alle Entwickler von <a href="http://www.cmsimple-xh.org/">
-CMSimple_XH</a>, ohne die dieses phantastische CMS nicht existieren würde.</p>
+<h2 id="credits">Danksagung</h2>
+<p>Das Plugin-Icon wurde von <a
+href="http://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen.
+Dieses Plugin verwendet Feed-Icons von <a
+href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable
+Press</a> und "free application icons" von <a
+href="http://www.aha-soft.com/">Aha-Soft</a>. Vielen Dank für die
+Veröffentlichung als Freeware.</p>
+<p>Vielen Dank an die Community im <a
+href="http://www.cmsimpleforum.com">CMSimple_XH Forum</a> für Tipps, Vorschläge
+und das Testen.</p>
+<p>Zu guter letzt vielen Dank an <a href="http://www.harteg.dk/">Peter
+Harteg</a>, den "Vater" von CMSimple, und alle Entwickler von <a
+href="http://www.cmsimple-xh.org/"> CMSimple_XH</a>, ohne die dieses
+phantastische CMS nicht existieren würde.</p>
 <div class="toplink"><a href="#">back to top</a></div>
 
 </div>
