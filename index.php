@@ -17,6 +17,24 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 
 define('YANP_VERSION', '@YANP_VERSION@');
 
+/**
+ * Returns the base URL of the installation.
+ *
+ * @return string
+ */
+function yanp_baseUrl()
+{
+    global $sn;
+
+    if (defined(CMSIMPLE_URL)) {
+	$baseUrl = CMSIMPLE_URL;
+    } else {
+	$baseUrl = 'http'
+	    . (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 's' : '')
+	    . '://' . $_SERVER['HTTP_HOST'] . $sn;
+    }
+    return preg_replace('/index\.php$/', '', $baseUrl);
+}
 
 /**
  * Returns the absolute URL.
@@ -27,7 +45,8 @@ define('YANP_VERSION', '@YANP_VERSION@');
 function yanp_absolute_url($url) {
     global $sn;
 
-    $parts = explode('/', $sn.$url);
+    list($scheme, $path) = explode('//', yanp_baseUrl() . $url);
+    $parts = explode('/', $path);
     $i = 0;
     while ($i < count($parts)) {
 	switch ($parts[$i]) {
@@ -42,7 +61,7 @@ function yanp_absolute_url($url) {
 		$i++;
 	}
     }
-    return $_SERVER['SERVER_NAME'].implode('/', $parts);
+    return $scheme . '//' . implode('/', $parts);
 }
 
 
@@ -112,7 +131,7 @@ function yanp_head_link() {
 	    && file_exists($fn)) {
 	$hjs .= tag('link rel="alternate" type="application/rss+xml"'
 		.' title="'.$plugin_tx['yanp']['feed_link_title'].'"'
-		.' href="http://'.yanp_absolute_url($fn).'"')."\n";
+		.' href="'.yanp_absolute_url($fn).'"')."\n";
     }
 }
 

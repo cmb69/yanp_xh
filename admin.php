@@ -90,7 +90,7 @@ function yanp_rss_item($id) {
 
     $pcf = $plugin_cf['yanp'];
     $pd = $pd_router->find_page($id);
-    $link = 'http://'.$_SERVER['SERVER_NAME'].$sn.'?'.$u[$id];
+    $link = yanp_baseUrl().'?'.$u[$id];
     $desc = htmlspecialchars($pd['yanp_description'], ENT_COMPAT, 'UTF-8');
     if (!$pcf['html_markup']) {
 	$desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
@@ -117,7 +117,7 @@ function yanp_rss() {
 
     $pcf = $plugin_cf['yanp'];
     $ptx = $plugin_tx['yanp'];
-    $link = 'http://'.$_SERVER['SERVER_NAME'].$sn;
+    $link = yanp_baseUrl();
     $title = $ptx['feed_title'] == ''
 	    ? (isset($txc['site']['title']) ? $txc['site']['title'] : $cf['site']['title'])
 	    : $ptx['feed_title'];
@@ -134,13 +134,13 @@ function yanp_rss() {
 	    .(!empty($ptx['feed_copyright']) ? '  <copyright>'.$ptx['feed_copyright'].'</copyright>'."\n" : '')
 	    .'  <pubDate>'.date('r', filemtime($pth['file']['content'])).'</pubDate>'."\n"
 	    .'  <generator>'.CMSIMPLE_XH_VERSION.' – Yanp_XH '.YANP_VERSION.'</generator>'."\n"
-	    .'  <atom:link href="http://'.yanp_absolute_url(yanp_feed_filename()).'" rel="self" type="application/rss+xml"/>'."\n";
+	    .'  <atom:link href="'.yanp_absolute_url(yanp_feed_filename()).'" rel="self" type="application/rss+xml"/>'."\n";
     if ($pcf['feed_image'] != '') {
 	if (!is_readable($pth['folder']['images'].$pcf['feed_image'])) {
 	    e('missing', 'file', $pth['folder']['images'].$pcf['feed_image']);
 	}
 	$feed .= '  <image>'."\n"
-	    .'    <url>http://'.yanp_absolute_url($pth['folder']['images'].$pcf['feed_image']).'</url>'."\n"
+	    .'    <url>'.yanp_absolute_url($pth['folder']['images'].$pcf['feed_image']).'</url>'."\n"
 	    .'    <title>'.$title.'</title>'."\n"
 	    .'    <link>'.$link.'</link>'."\n"
 	    .'  </image>'."\n";
