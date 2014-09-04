@@ -26,7 +26,7 @@ function yanp_view($page) {
 
     $ptx = $plugin_tx['yanp'];
     $help_icon = tag('image src="'.$pth['folder']['plugins'].'yanp/images/help.png" alt="help"');
-    $htm = '<form id="yanp" action="'.$sn.'?'.$su.'" method="post">'."\n"
+    $htm = '<form id="yanp" action="'.$sn.'?'.$su.'" method="post" onsubmit="return true">'."\n"
 	    .'<p><strong>'.$ptx['tab_form_label'].'</strong></p>'."\n";
     $htm .= tag('input type="hidden" name="yanp_timestamp" value="'.time().'"');
     $htm .= '<a class="pl_tooltip" href="javascript:return false">'.$help_icon.'<span>'.$ptx['tab_description_info'].'</span></a>&nbsp;'

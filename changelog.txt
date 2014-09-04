@@ -1,6 +1,8 @@
 Version 1pl5 - released 2014-09-04
 * fixed bug, where absolute URLs could have been faulty (reported by Termin)
 * fixed bug, where mkdir() was called without subsequent chmod()
+* fixed bug, where news feed was not regenerated when saving the News tab under
+  CMSimple_XH 1.6+
 * revised manuals
 * added version.nfo
 * added metaconfig.php and support for other CMSimple_XH 1.6 APIs
