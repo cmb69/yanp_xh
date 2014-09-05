@@ -131,7 +131,7 @@ function yanp_rss() {
 	$desc = $cf['meta']['description'];
     }
     $feed = '<?xml version="1.0" encoding="UTF-8"?>'."\n"
-	    .'<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">'."\n"
+	    .'<rss version="2.0">'."\n"
 	    .'<channel>'."\n"
 	    .'  <title>'.$title.'</title>'."\n"
 	    .'  <link>'.$link.'</link>'."\n"
@@ -139,8 +139,7 @@ function yanp_rss() {
 	    .'  <language>'.$sl.'</language>'."\n"
 	    .(!empty($ptx['feed_copyright']) ? '  <copyright>'.$ptx['feed_copyright'].'</copyright>'."\n" : '')
 	    .'  <pubDate>'.date('r', filemtime($pth['file']['content'])).'</pubDate>'."\n"
-	    .'  <generator>'.CMSIMPLE_XH_VERSION.' – Yanp_XH '.YANP_VERSION.'</generator>'."\n"
-	    .'  <atom:link href="'.yanp_absolute_url(yanp_feed_filename()).'" rel="self" type="application/rss+xml"/>'."\n";
+	    .'  <generator>'.CMSIMPLE_XH_VERSION.' – Yanp_XH '.YANP_VERSION.'</generator>'."\n";
     if ($pcf['feed_image'] != '') {
 	if (!is_readable($pth['folder']['images'].$pcf['feed_image'])) {
 	    e('missing', 'file', $pth['folder']['images'].$pcf['feed_image']);
