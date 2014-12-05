@@ -94,7 +94,6 @@
                 <exclude name="build.xml"/>
                 <exclude name="phpcompatinfo.xml"/>
                 <exclude name="TODO"/>
-                <exclude name="yanp.komodoproject"/>
             </fileset>
         </move>
         <delete dir="export"/>
