@@ -68,19 +68,19 @@ upravit podle vašich potřeb. Zejména se podívejte na záznamy skupiny "feed"
 
 <h3>Zobrazení v newsboxu</h3>
 <p>Chcete-li zobrazit newsbox musíte upravit šablonu, nahradit již existující newsbox() voláním:</p>
-<pre>&lt;?php echo yanp_newsbox()?&gt;</pre>
+<pre>&lt;?php echo Yanp_newsbox()?&gt;</pre>
 <p>nebo vložit, do již existujícího newsbox().</p>
 <p>Dále je možné zobrazit Newsbox ve stránce CMSimple vložením volání pluginu:</p>
-<pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
+<pre>{{{PLUGIN:Yanp_newsbox();}}}</pre>
 
 <h3>Zpřístupnění RSS zdroje</h3>
 <p>RSS feed je k dispozici v mnoha moderních prohlížečích automaticky, protože &lt;link rel="alternate"&gt;  tag se vloží
 do &lt;head&gt; vaší stránky s Yanp_XH.
 Chcete-li navíc zobrazit ikonu RSS s odkazem na RSS feed, musíte vložit</p>
-<pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink()?&gt;</pre>
 <p>do vašeho templatu. V podstatě funguje obdobně jako mailformlink().
 Pokud chcete zobrazit jinou ikonu RSS stačí ji dát do šablony do složky obrázky, a dát název souboru jako parametr:</p>
-<pre>&lt;?php echo yanp_feedlink('filename.png')?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink('filename.png')?&gt;</pre>
 <p>V závislosti na konfiguraci vašeho webového serveru, bude se zdroj generovat jako text/xml, co může způsobit problémy s kódováním UTF-8.
 Může to tedy sloužit jako aplikace/xml. Pro servery Apache je řesením přidání odpovídajícího souboru .htaccess do adresáře data pluginu, který je již obsažen v defaultní instalaci. Alternativou může též být nastaveni "feed extension" na "rss".
 Stejně by jste však měli <a href="http://www.rssboard.org/rss-validator/">zkontrolovat RSS</a>

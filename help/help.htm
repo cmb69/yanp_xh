@@ -86,22 +86,22 @@ as long as you don't save the page.</p>
 <h3>Displaying the newsbox</h3>
 <p>To display the newsbox you have to edit your template; replace an already
 existing newsbox() call with:</p>
-<pre>&lt;?php echo yanp_newsbox()?&gt;</pre>
+<pre>&lt;?php echo Yanp_newsbox()?&gt;</pre>
 <p>or insert it, perhaps in addition to already existing newsbox() calls.</p>
 <p>Furthermore it's possible to display the newsbox on a CMSimple page by
 inserting the plugin call:</p>
-<pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
+<pre>{{{PLUGIN:Yanp_newsbox();}}}</pre>
 
 <h3>Making the RSS feed available</h3>
 <p>The RSS feed is made available to many modern browsers automatically, because
 a &lt;link rel="alternate"&gt; tag is inserted to the &lt;head&gt; of your
 website's pages by Yanp_XH. To additionally display the RSS icon with a link to
 the RSS feed, you have to insert</p>
-<pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink()?&gt;</pre>
 <p>into your template. This basically works like mailformlink(). If you want to
 display another feed icon, just put it into your template's images/ folder, and
 give it's filename as parameter:</p>
-<pre>&lt;?php echo yanp_feedlink('filename.png')?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink('filename.png')?&gt;</pre>
 <p>Depending on your web server's configuration, the feed will be served as
 text/xml, what may cause problems with the UTF-8 encoding. So it should be
 served as application/rss+xml or application/xml. For Apache servers the

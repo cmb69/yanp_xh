@@ -95,23 +95,23 @@ speichern.</p>
 <h3>Anzeigen der Newsbox</h3>
 <p>Um die Newsbox anzuzeigen, müssen Sie Ihr Template bearbeiten; ersetzen Sie
 den bereits existierenden newsbox() Aufruf durch:</p>
-<pre>&lt;?php echo yanp_newsbox()?&gt;</pre>
+<pre>&lt;?php echo Yanp_newsbox()?&gt;</pre>
 <p>oder fügen Sie dies ggf. zusätzlich zu bereits bestehenden newsbox() Aufrufen
 ein.</p>
 <p>Weiterhin ist es möglich die Newsbox auf einer CMSimple-Seite anzuzeigen,
 indem Sie folgenden Plugin-Aufruf einfügen:</p>
-<pre>{{{PLUGIN:yanp_newsbox();}}}</pre>
+<pre>{{{PLUGIN:Yanp_newsbox();}}}</pre>
 
 <h3>RSS-Feed verfügbar machen</h3>
 <p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung
 gestellt, da ein &lt;link rel="alternate"&gt; Tag im &lt;head&gt; der Seiten
 Ihrer Homepage von Yanp_XH eingefügt wird. Um zusätzlich das RSS-Icon mit einem
 Link zum RSS-Feed anzuzeigen, müssen Sie</p>
-<pre>&lt;?php echo yanp_feedlink()?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink()?&gt;</pre>
 <p>in Ihr Template einfügen. Das funktioniert analog zu mailformlink(). Wenn Sie
 ein anderes Feed-Icon anzeigen möchten, legen Sie es im images/ Ordner Ihres
 Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
-<pre>&lt;?php echo yanp_feedlink('dateiname.png')?&gt;</pre>
+<pre>&lt;?php echo Yanp_feedlink('dateiname.png')?&gt;</pre>
 <p>Je nach Konfiguration Ihres Webservers wird der Feed als text/xml gesendet,
 was wegen der UTF-8-Kodierung problematisch ist. Daher sollte der Feed als
 application/rss+xml oder application/xml gesendet werden. Bei Apache-Servern
