@@ -2,7 +2,7 @@
 
 /**
  * Back-end of Yanp_XH.
- * Copyright (c) 2011-2014 Christoph M. Becker (see license.txt)
+ * Copyright (c) 2011-2015 Christoph M. Becker (see license.txt)
  */
 
 
@@ -26,7 +26,7 @@ function yanp_version() {
     return '<h1>Yanp</h1>'."\n"
 	    .tag('img src="'.$pth['folder']['plugins'].'yanp/yanp.png" class="yanp_plugin_icon" alt="'.$plugin_tx['yanp']['alt_logo'].'"')
 	    .'<p>Version: '.YANP_VERSION.'</p>'."\n"
-	    .'<p>Copyright &copy; 2011-2014 <a href="http://3-magi.net/" target="_blank">Christoph M. Becker</a></p>'."\n"
+	    .'<p>Copyright &copy; 2011-2015 <a href="http://3-magi.net/" target="_blank">Christoph M. Becker</a></p>'."\n"
 	    .'<p class="yanp_license">This program is free software: you can redistribute it and/or modify'
 	    .' it under the terms of the GNU General Public License as published by'
 	    .' the Free Software Foundation, either version 3 of the License, or'
