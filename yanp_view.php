@@ -34,7 +34,7 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
  * @global array  The paths of system files and folders.
  * @global array  The configuration of the plugins.
  */
-function YYanp_XHanp_view($page)
+function Yanp_view($page)
 {
     global $tx, $sn, $su, $pth, $plugin_tx;
 
