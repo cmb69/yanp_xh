@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- $Id$ -->
-
-<project name="Yanp" default="default">
-
-    <!-- filesets -->
+<project name="Yanp" default="help">
 
     <fileset id="php-sources" dir=".">
         <include name="admin.php"/>
@@ -12,45 +8,42 @@
         <include name="yanp_view.php"/>
     </fileset>
 
-    <!--<fileset id="unit-tests" dir="tests/unit">
+    <fileset id="unit-tests" dir="tests/unit">
         <include name="*Test.php"/>
-    </fileset>-->
+    </fileset>
 
-    <!-- static analysis -->
+    <target name="help" description="lists available targets">
+        <exec command="phing -l" outputProperty="help"/>
+        <echo>${help}</echo>
+    </target>
 
-    <!--<target name="sniff">
+    <target name="sniff" description="checks adherence to PEAR CS">
         <phpcodesniffer standard="PEAR" format="full">
             <fileset refid="php-sources"/>
             <fileset refid="unit-tests"/>
         </phpcodesniffer>
-    </target>-->
+    </target>
 
-    <target name="compat">
+    <target name="compat" description="checks PHP requirements">
         <exec command="phpcompatinfo --configuration phpcompatinfo.xml print
                                      --exclude-pattern yanp ."
               logoutput="true"/>
     </target>
 
-    <!-- tests -->
-
-    <!--<target name="unit-tests">
+    <target name="unit-tests" description="runs all unit tests">
         <phpunit haltonerror="true" haltonfailure="true">
             <formatter type="plain" usefile="false"/>
             <batchtest>
                 <fileset refid="unit-tests"/>
             </batchtest>
         </phpunit>
-    </target>-->
+    </target>
 
-    <!--<target name="tests" depends="unit-tests"/>-->
-
-    <!--<target name="coverage">
+    <target name="coverage" description="generates coverage report">
         <exec command="phpunit - -configuration coverage.xml" logoutput="true"/>
-    </target>-->
+    </target>
 
-    <!-- documentation -->
-
-    <target name="php-doc">
+    <target name="doc" description="generates the developer documentation">
         <phpdoc title="Yanp_XH Developer Documentation" destdir="doc/php"
                 output="HTML:Smarty:HandS" defaultpackagename="Yanp"
                 defaultcategoryname="CMSimple_XH" parseprivate="true">
@@ -62,17 +55,11 @@
         </phpdoc>
     </target>
 
-    <!--<target name="js-doc">
-        <exec command="jsdoc - -destination doc/js *.js" checkreturn="true"/>
-    </target>-->
-
-    <target name="doc" depends="php-doc"/>
-
-    <!-- build -->
-
-    <target name="build">
+    <target name="build" description="builds distributable ZIP archive">
         <fail unless="version" message="version is not defined!"/>
-        <svnexport revision="" repositoryurl="." todir="export"/>
+        <exec command="git archive -o export.tar HEAD" checkreturn="true"/>
+        <untar file="export.tar" todir="export"/>
+        <delete file="export.tar"/>
         <move todir="dist">
             <fileset dir="export">
                 <include name="index.php"/>
@@ -84,11 +71,6 @@
                 </replacetokens>
             </filterchain>
         </move>
-        <jsMin targetDir="dist" suffix="" failOnError="true">
-            <fileset dir="export">
-                <include name="*.js"/>
-            </fileset>
-        </jsMin>
         <move todir="dist">
             <fileset dir="export">
                 <exclude name="build.xml"/>
@@ -96,8 +78,10 @@
             </fileset>
         </move>
         <delete dir="export"/>
-        <copy file="dist/config/config.php" tofile="dist/config/defaultconfig.php"/>
-        <copy file="dist/languages/en.php" tofile="dist/languages/default.php"/>
+        <copy file="dist/config/config.php"
+              tofile="dist/config/defaultconfig.php"/>
+        <copy file="dist/languages/en.php"
+              tofile="dist/languages/default.php"/>
         <zip destfile="Yanp_XH-${version}.zip" basedir="dist" prefix="yanp/"/>
         <delete dir="dist"/>
     </target>
