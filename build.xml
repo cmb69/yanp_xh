@@ -42,7 +42,7 @@
     </target>
 
     <target name="doc" description="generates the developer documentation">
-        <phpdoc title="Yanp_XH Developer Documentation" destdir="doc/php"
+        <phpdoc title="Yanp_XH Developer Documentation" destdir="doc"
                 output="HTML:Smarty:HandS" defaultpackagename="Yanp"
                 defaultcategoryname="CMSimple_XH" parseprivate="true">
             <fileset refid="php-sources"/>
