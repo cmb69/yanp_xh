@@ -166,7 +166,6 @@ class Yanp_Controller
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'yanp/' . $folder;
         }
-        $folders[] = $this->getDataFolder();
         foreach ($folders as $folder) {
             $htm .= (is_writable($folder) ? $ok : $warn)
                 . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_writable'], $folder)
@@ -438,41 +437,6 @@ class Yanp_Controller
         global $sn;
 
         return $sn . '?&yanp_feed';
-    }
-
-    /**
-     * Returns the path of the data folder.
-     *
-     * @return string
-     *
-     * @global array The paths of system files and folders.
-     * @global array The configuration of the plugins.
-     */
-    protected function getDataFolder()
-    {
-
-        global $pth, $plugin_cf;
-
-        $pcf = $plugin_cf['yanp'];
-
-        $fn = $pcf['folder_data'] == ''
-                ? $pth['folder']['plugins'].'yanp/data/'
-                : $pth['folder']['base'] . $pcf['folder_data'];
-        if (substr($fn, -1) != '/') {
-            $fn .= '/';
-        }
-        if (file_exists($fn)) {
-            if (!is_dir($fn)) {
-                e('cntopen', 'folder', $fn);
-            }
-        } else {
-            if (mkdir($fn, 0777, true)) {
-                chmod($fn, 0777);
-            } else {
-                e('cntwriteto', 'folder', $fn);
-            }
-        }
-        return $fn;
     }
 
     /**
