@@ -7,7 +7,6 @@
     </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <file>admin.php</file>
             <file>index.php</file>
             <file>yanp_view.php</file>
         </whitelist>
