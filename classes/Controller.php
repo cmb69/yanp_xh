@@ -206,7 +206,8 @@ class Yanp_Controller
             . '    <link>' . $link . '</link>' . "\n"
             . '    <description>' . $desc . '</description>' . "\n"
             . '    <guid isPermaLink="false">' . $guid . '</guid>' . "\n"
-            . '    <pubDate>' . date('r', $this->timestamp($pd)) . '</pubDate>' . "\n"
+            . '    <pubDate>' . date('r', $this->timestamp($pd)) . '</pubDate>'
+            . "\n"
             . '  </item>' . "\n";
         return $xml;
     }
@@ -256,7 +257,8 @@ class Yanp_Controller
                : '')
             . '  <pubDate>' . date('r', filemtime($pth['file']['content']))
             . '</pubDate>' . "\n"
-            . '  <generator>' . CMSIMPLE_XH_VERSION . ' &#8211; Yanp_XH ' . YANP_VERSION
+            . '  <generator>' . CMSIMPLE_XH_VERSION . ' &#8211; Yanp_XH '
+            . YANP_VERSION
             . '</generator>' . "\n";
         if ($pcf['feed_image'] != '') {
             if (!is_readable($pth['folder']['images'] . $pcf['feed_image'])) {
@@ -264,7 +266,9 @@ class Yanp_Controller
             }
             $feed .= '  <image>' . "\n"
                 . '    <url>'
-                . $this->getAbsoluteUrl($pth['folder']['images'] . $pcf['feed_image'])
+                . $this->getAbsoluteUrl(
+                    $pth['folder']['images'] . $pcf['feed_image']
+                )
                 . '</url>' . "\n"
                 . '    <title>' . $title . '</title>' . "\n"
                 . '    <link>' . $link . '</link>' . "\n"
@@ -332,7 +336,12 @@ class Yanp_Controller
         $pd = $pd_router->find_all();
         $ids = array_keys($pd);
         $dates = array_map(
-            create_function('$elt', 'global $_Yanp_controller; return $_Yanp_controller->timestamp($elt);'), $pd
+            create_function(
+                '$elt',
+                'global $_Yanp_controller;'
+                . ' return $_Yanp_controller->timestamp($elt);'
+            ),
+            $pd
         );
         array_multisort($dates, SORT_DESC, $ids);
         $res = '';
@@ -513,7 +522,8 @@ class Yanp_Controller
             $baseUrl = CMSIMPLE_URL;
         } else {
             $baseUrl = 'http'
-                . (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 's' : '')
+                . (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'
+                   ? 's' : '')
                 . '://' . $_SERVER['HTTP_HOST'] . $sn;
         }
         return preg_replace('/index\.php$/', '', $baseUrl);
