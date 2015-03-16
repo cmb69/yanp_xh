@@ -22,11 +22,6 @@ if (!defined('CMSIMPLE_XH_VERSION')) {
 }
 
 /**
- * The plugin controller.
- */
-require_once $pth['folder']['plugin_classes'] . 'Controller.php';
-
-/**
  * The plugin version.
  */
 define('YANP_VERSION', '@YANP_VERSION@');
