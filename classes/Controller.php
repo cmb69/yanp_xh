@@ -150,7 +150,7 @@ class Yanp_Controller
     {
         global $pth, $tx, $plugin_tx, $plugin_cf;
 
-        define('YANP_PHP_VERSION', '4.1.0');
+        define('YANP_PHP_VERSION', '5.1.2');
         $ptx = $plugin_tx['yanp'];
         $imgdir = $pth['folder']['plugins'] . 'yanp/images/';
         $ok = tag('img src="' . $imgdir . 'ok.png" alt="ok"');
@@ -160,7 +160,7 @@ class Yanp_Controller
             . (version_compare(PHP_VERSION, YANP_PHP_VERSION) >= 0 ? $ok : $fail)
             . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_phpversion'], YANP_PHP_VERSION)
             . tag('br') . tag('br') . "\n";
-        foreach (array('date') as $ext) {
+        foreach (array('pcre', 'spl') as $ext) {
             $htm .= (extension_loaded($ext) ? $ok : $fail)
                 . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_extension'], $ext)
                 . tag('br') . "\n";
