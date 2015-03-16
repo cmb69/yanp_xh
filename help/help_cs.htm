@@ -56,7 +56,7 @@ CMSimple_XH wiki</a> pro více podrobností.</p>
 <li><strong>Zálohujte data na serveru.</strong></li>
 <li>Rozbalte distribuzi do vašeho počítače.</li>
 <li>Uploadujte adresář yanp/ na váš server do adresáře plugins v CMSimple_XH.</li>
-<li>Nastavte práva k zápisu do podadresářů config/, css/, languages/ a v adresáři pluginu data.</li>
+<li>Nastavte práva k zápisu do podadresářů config/, css/ a languages/.</li>
 <li><strong>Nyní přejděte do administrace a v menu Pluginy klikněte na "Yanp" a zkontrolujte, jestli jsou všechny požadavky splněny.</strong></li>
 </ol>
 <div class="toplink"><a href="#">zpět nahoru</a></div>
@@ -90,9 +90,7 @@ Chcete-li navíc zobrazit ikonu RSS s odkazem na RSS feed, musíte vložit</p>
 <p>do vašeho templatu. V podstatě funguje obdobně jako mailformlink().
 Pokud chcete zobrazit jinou ikonu RSS stačí ji dát do šablony do složky obrázky, a dát název souboru jako parametr:</p>
 <pre>&lt;?php echo Yanp_feedlink('filename.png')?&gt;</pre>
-<p>V závislosti na konfiguraci vašeho webového serveru, bude se zdroj generovat jako text/xml, co může způsobit problémy s kódováním UTF-8.
-Může to tedy sloužit jako aplikace/xml. Pro servery Apache je řesením přidání odpovídajícího souboru .htaccess do adresáře data pluginu, který je již obsažen v defaultní instalaci. Alternativou může též být nastaveni "feed extension" na "rss".
-Stejně by jste však měli <a href="http://www.rssboard.org/rss-validator/">zkontrolovat RSS</a>
+<p>Stejně by jste však měli <a href="http://www.rssboard.org/rss-validator/">zkontrolovat RSS</a>
 aby jste byli informováni o případných problémech.
 <div class="toplink"><a href="#">zpět nahoru</a></div>
 

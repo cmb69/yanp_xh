@@ -28,7 +28,6 @@ $plugin_tx['yanp']['cf_utf-8-marker']="Internt brug. <strong>Ændre ikke noget!<
 $plugin_tx['yanp']['cf_folder_data']="Sti til en mappe i forhold til CMSimple rodmappen, hvor du vil gemme plugin data. Fx. \"userfiles/yanp/\". Blank felt og den vil gemme i plugin's data/ folder.";
 $plugin_tx['yanp']['cf_feed_enabled']="Vejret RSS-feed vil blive oprettet: \"1\" (ja) eller \"0\" (nej)";
 $plugin_tx['yanp']['cf_feed_image']="Navnet på en JPEG, PNG eller GIF billede i din billedmappe, som er integreret på RSS-feed, da det logo (må ikk overstige 144x400 pixels)";
-$plugin_tx['yanp']['cf_feed_extension']="Udvidelsen af RSS Feed-filer. Typisk \"xml\" or \"rss\"";
 $plugin_tx['yanp']['cf_feed_copyright']="Copyright af RSS feed";
 $plugin_tx['yanp']['cf_feed_title']="Titlen på RSS feed. Hvis blank, side_title vil blive anvendt";
 $plugin_tx['yanp']['cf_feed_description']="Beskrivelse af RSS feed. Hvis blank, vil meta_beskrivelsen blive anvendt";

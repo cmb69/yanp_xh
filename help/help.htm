@@ -57,8 +57,7 @@ wiki</a> for further details.</p>
 <li>Unzip the distribution on your computer.</li>
 <li>Upload the whole directory yanp/ to your server into CMSimple_XH's plugins
 directory.</li>
-<li>Set write permissions to the subdirectories config/, css/, languages/ and to
-the plugin's data folder.</li>
+<li>Set write permissions for the subfolders config/, css/ and languages/.</li>
 <li>Switch to "Yanp" in the back-end to check if all requirements are
 fulfilled.</li>
 </ol>
@@ -109,12 +108,7 @@ the RSS feed, you have to insert</p>
 display another feed icon, just put it into your template's images/ folder, and
 give it's filename as parameter:</p>
 <pre>&lt;?php echo Yanp_feedlink('filename.png')?&gt;</pre>
-<p>Depending on your web server's configuration, the feed will be served as
-text/xml, what may cause problems with the UTF-8 encoding. So it should be
-served as application/rss+xml or application/xml. For Apache servers the
-solution is to put an according .htaccess file into the plugin's data folder,
-which is already done for the default data/ folder. An alternative might be
-setting the "feed extension" to "rss". But anyway, you should <a
+<p>Anyhow, you should <a
 href="http://www.rssboard.org/rss-validator/">validate</a> the RSS feed to be
 informed about possible problems.</p>
 <div class="toplink"><a href="#">back to top</a></div>

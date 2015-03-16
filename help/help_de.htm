@@ -61,8 +61,8 @@ CMSimple_XH Wiki</a> finden sie ausführliche Hinweise.</p>
 <li>Entpacken Sie die ZIP-Datei auf Ihrem Computer.</li>
 <li>Laden Sie das gesamte Verzeichnis yanp/ auf Ihren Server in das
 CMSimple_XH-Plugin-Verzeichnis hoch.</li>
-<li>Vergeben Sie falls nötig Schreibrechte für die Unterverzeichnisse config/,
-css/, languages/ und den Daten-Ordner des Plugins.</li>
+<li>Vergeben Sie falls nötig Schreibrechte für die Unterordner config/,
+css/ und languages/.</li>
 <li>Gehen Sie zu "Yanp" im Administrationsbereich, und prüfen Sie, ob alle
 Vorraussetzungen erfüllt sind.</li>
 </ol>
@@ -119,13 +119,7 @@ Link zum RSS-Feed anzuzeigen, müssen Sie</p>
 ein anderes Feed-Icon anzeigen möchten, legen Sie es im images/ Ordner Ihres
 Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
 <pre>&lt;?php echo Yanp_feedlink('dateiname.png')?&gt;</pre>
-<p>Je nach Konfiguration Ihres Webservers wird der Feed als text/xml gesendet,
-was wegen der UTF-8-Kodierung problematisch ist. Daher sollte der Feed als
-application/rss+xml oder application/xml gesendet werden. Bei Apache-Servern
-erreichen Sie dies, indem Sie eine entsprechende .htaccess Datei im Datenordner
-des Plugins ablegen, was für den voreingestellten data/ Ordner bereits erfolgt
-ist. Alternativ können Sie "feed extension" auf "rss" stellen. Aber Sie sollten
-auf jeden Fall den RSS-Feed <a
+<p>Auf jeden Fall sollten Sie den RSS-Feed <a
 href="http://www.rssboard.org/rss-validator/">validieren</a>, um mögliche
 Probleme zu erkennen.</p>
 <div class="toplink"><a href="#">Seitenanfang</a></div>

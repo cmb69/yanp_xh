@@ -28,7 +28,6 @@ $plugin_tx['yanp']['cf_utf-8-marker']="Vnútorné použitie. <strong>NEMENIŤ!</
 $plugin_tx['yanp']['cf_folder_data']="Cesta k adresáru relatívna ku koreňovému adresáru CMSimple, kam s amajú ukladať dáta pluginov, napr.: \"userfiles/yanp/\". Ak necháte prázdne, budú sa dáta ukladať do adresára pluginu data/ .";
 $plugin_tx['yanp']['cf_feed_enabled']="Má sa vytvoriť RSS feed: \"1\" (áno) or \"0\" (nie)";
 $plugin_tx['yanp']['cf_feed_image']="Názov JPEG, PNG alebo GIF súboru v adresári /images, ktorý sa integruje do RSS feedu ako logo (nesmie byť väčší ako 144x400 px)";
-$plugin_tx['yanp']['cf_feed_extension']="Prípona spbrov RSS feedu. Obyčajne \"xml\" alebo \"rss\"";
 $plugin_tx['yanp']['cf_feed_copyright']="copyright pre RSS feed.";
 $plugin_tx['yanp']['cf_feed_title']="Názov RSS feedu. Ak necháte prázdne, použije sa site_title";
 $plugin_tx['yanp']['cf_feed_description']="Popis RSS feedu. Ak necháte prázdne, použije sa meta_description";

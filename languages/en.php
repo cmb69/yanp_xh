@@ -23,7 +23,6 @@ $plugin_tx['yanp']['cf_folder_data']="Path to a folder relative to the CMSimple 
 $plugin_tx['yanp']['cf_html_markup']="Whether the description of the news may contain (X)HTML markup: \"1\" (yes) or \"0\" (no)";
 $plugin_tx['yanp']['cf_feed_enabled']="Whether the RSS feed will be created: \"1\" (yes) or \"0\" (no)";
 $plugin_tx['yanp']['cf_feed_image']="The name of a JPEG, PNG or GIF image in your images folder, that is integrated to the RSS feed as it's  logo (must not exceed 144x400 pixels)";
-$plugin_tx['yanp']['cf_feed_extension']="The extension of the RSS feed files. Typically \"xml\" or \"rss\"";
 $plugin_tx['yanp']['cf_feed_copyright']="The copyright of the RSS feed.";
 $plugin_tx['yanp']['cf_feed_title']="The title of the RSS feed. If blank, the site_title will be used instead";
 $plugin_tx['yanp']['cf_feed_description']="The description of the RSS feed. If blank, the meta_description will be used instead";

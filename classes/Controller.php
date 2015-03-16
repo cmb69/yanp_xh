@@ -30,24 +30,28 @@ class Yanp_Controller
      * @return void
      *
      * @global bool   Whether we're in admin mode.
-     * @global string The requested function.
-     * @global bool   Whether the menumanager administration is requested.
-     * @global bool   Whether the pagemanager administration is requested.
      * @global bool   Whether the yanp administration is requested.
      * @global string The value of the <var>admin</var> GP parameter.
      * @global string The value of the <var>action</var> GP parameter.
      * @global array  The paths of system files and folders.
-     * @global int    The index of the requested page.
      * @global object The page data router.
      * @global array  The configuration of the plugins.
      * @global array  The localization of the plugins.
+     * @global string The (X)HTML to insert before the page contents.
      */
     public function dispatch()
     {
-        global $adm, $function, $menumanager, $pagemanager, $yanp, $admin, $action,
-            $pth, $s, $pd_router, $plugin_cf, $plugin_tx, $o;
+        global $adm, $yanp, $admin, $action, $pth, $pd_router, $plugin_cf,
+            $plugin_tx, $o;
 
-        $this->writeHeadLink();
+        if ($plugin_cf['yanp']['feed_enabled']) {
+            if (isset($_GET['yanp_feed'])) {
+                header('Content-Type: application/xml');
+                echo $this->renderRss();
+                exit;
+            }
+            $this->writeHeadLink();
+        }
         if ($adm) {
             /*
              * Register plugin menu items.
@@ -65,18 +69,6 @@ class Yanp_Controller
                 $plugin_tx['yanp']['tab_label'],
                 $pth['folder']['plugins'] . 'yanp/yanp_view.php'
             );
-
-            /**
-             * Write the RSS file.
-             */
-            if ($plugin_cf['yanp']['feed_enabled']
-                && ($function == 'save'                               // changes from the editor
-                || isset($menumanager) && $action == 'saverearranged' // changes from menumanager
-                || isset($pagemanager) && $action == 'plugin_save'    // changes from pagemanager
-                || $s >= 0 && isset($_POST['save_page_data']))        // changes to pagedata
-            ) {
-                $this->writeRss();
-            }
 
             /*
              * Plugin administration
@@ -285,31 +277,6 @@ class Yanp_Controller
     }
 
     /**
-     * Writes the RSS feed to a file.
-     *
-     * @return void
-     *
-     * @global array  The paths of system files and folders.
-     * @global string The requested language.
-     * @global array  The configuration of the core.
-     */
-    protected function writeRss()
-    {
-        global $pth, $sl, $plugin_cf;
-
-        $pcf = $plugin_cf['yanp'];
-        $fn = $this->getDataFolder() . 'feed-' . $sl . '.' . $pcf['feed_extension'];
-        if (($fh = fopen($fn, 'w')) === false
-            || fwrite($fh, $this->renderRss()) === false
-        ) {
-            e('cntwriteto', 'file', $fn);
-        }
-        if ($fh !== false) {
-            fclose($fh);
-        }
-    }
-
-    /**
      * Returns the (X)HTML of the RSS link.
      *
      * @param string $icon An icon filename.
@@ -330,17 +297,13 @@ class Yanp_Controller
         $icon = isset($icon)
             ? $pth['folder']['templateimages'] . $icon
             : $pth['folder']['plugins'].'yanp/images/feed.png';
-        $fn = $this->getFeedFilename();
-        if (file_exists($fn)) {
-            return '<a href="' . $fn . '">'
-                . tag(
-                    'img src="' . $icon . '"'
-                    . ' alt="' . $ptx['feed_link_title'] . '" title="'
-                    . $ptx['feed_link_title'] . '"'
-                ) . '</a>';
-        } else {
-            return '';
-        }
+        $fn = $this->getFeedUrl();
+        return '<a href="' . $fn . '">'
+            . tag(
+                'img src="' . $icon . '"'
+                . ' alt="' . $ptx['feed_link_title'] . '" title="'
+                . $ptx['feed_link_title'] . '"'
+            ) . '</a>';
     }
 
     /**
@@ -426,23 +389,18 @@ class Yanp_Controller
      * @return void
      *
      * @global string The (X)HTML fragment to insert into the head element.
-     * @global array  The configuration of the plugins.
      * @global array  The localization of the plugins.
      */
     protected function writeHeadLink()
     {
-        global $hjs, $plugin_cf, $plugin_tx;
+        global $hjs, $plugin_tx;
 
-        $fn = $this->getFeedFilename();
-        if ($plugin_cf['yanp']['feed_enabled']
-            && file_exists($fn)
-        ) {
-            $hjs .= tag(
-                'link rel="alternate" type="application/rss+xml"'
-                . ' title="' . $plugin_tx['yanp']['feed_link_title'] . '"'
-                . ' href="' . $this->getAbsoluteUrl($fn) . '"'
-            ) . "\n";
-        }
+        $fn = $this->getFeedUrl();
+        $hjs .= tag(
+            'link rel="alternate" type="application/rss+xml"'
+            . ' title="' . $plugin_tx['yanp']['feed_link_title'] . '"'
+            . ' href="' . $this->getAbsoluteUrl($fn) . '"'
+        ) . "\n";
     }
 
     /**
@@ -464,15 +422,13 @@ class Yanp_Controller
      *
      * @return string
      *
-     * @global string The requested language.
-     * @global array  The configuration of the plugins.
+     * @global string The script name.
      */
-    protected function getFeedFilename()
+    protected function getFeedUrl()
     {
-        global $sl, $plugin_cf;
+        global $sn;
 
-        return $this->getDataFolder() . 'feed-' . $sl . '.'
-            . $plugin_cf['yanp']['feed_extension'];
+        return $sn . '?&yanp_feed';
     }
 
     /**
