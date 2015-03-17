@@ -29,7 +29,6 @@ class Yanp_Controller
      *
      * @return void
      *
-     * @global bool   Whether we're in admin mode.
      * @global array  The paths of system files and folders.
      * @global object The page data router.
      * @global array  The configuration of the plugins.
@@ -37,13 +36,13 @@ class Yanp_Controller
      */
     public function dispatch()
     {
-        global $adm, $pth, $pd_router, $plugin_cf, $plugin_tx;
+        global $pth, $pd_router, $plugin_cf, $plugin_tx;
 
         if ($plugin_cf['yanp']['feed_enabled']) {
             $command = new Yanp_RssCommand(new Yanp_Feed());
             $command->execute();
         }
-        if ($adm) {
+        if (defined('XH_ADM') && XH_ADM) {
             if (function_exists('XH_registerStandardPluginMenuItems')) {
                 XH_registerStandardPluginMenuItems(false);
             }
