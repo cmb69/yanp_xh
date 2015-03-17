@@ -25,21 +25,6 @@
 class Yanp_InfoCommand
 {
     /**
-     * The system check has passed.
-     */
-    const STATE_OK = 0;
-
-    /**
-     * The system check has failed, but the plugin should be usable.
-     */
-    const STATE_WARN = 1;
-
-    /**
-     * The system check has failed, and the plugin is not usable.
-     */
-    const STATE_FAIL = 2;
-
-    /**
      * The (X)HTML to insert before the page content.
      *
      * @var string
@@ -130,38 +115,32 @@ EOT;
         $phpVersion = '5.1.2';
         $xhVersion = '1.6';
         $ptx = $plugin_tx['yanp'];
-        $imgdir = $pth['folder']['plugins'] . 'yanp/images/';
-        $stateIcons = array(
-            self::STATE_OK => tag('img src="' . $imgdir . 'ok.png" alt="ok"'),
-            self::STATE_WARN => tag(
-                'img src="' . $imgdir . 'warn.png" alt="warning"'
-            ),
-            self::STATE_FAIL => tag(
-                'img src="' . $imgdir . 'fail.png" alt="failure"'
-            )
-        );
         $htm = '<h4>' . $ptx['syscheck_title'] . '</h4>'
-            . $stateIcons[$this->getPhpVersionState($phpVersion)]
-            . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_phpversion'], $phpVersion)
-            . tag('br') . tag('br') . "\n";
+            . XH_message(
+                $this->getPhpVersionState($phpVersion),
+                $ptx['syscheck_phpversion'], $phpVersion
+            );
         foreach (array('pcre', 'spl') as $ext) {
-            $htm .= $stateIcons[$this->getExtensionState($ext)]
-                . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_extension'], $ext)
-                . tag('br') . "\n";
+            $htm .= XH_message(
+                $this->getExtensionState($ext),
+                $ptx['syscheck_extension'], $ext
+            );
         }
-        $htm .= tag('br') . $stateIcons[$this->getMagicQuotesState()]
-            . '&nbsp;&nbsp;' . $ptx['syscheck_magic_quotes'] . tag('br') . tag('br')
-            . "\n";
-        $htm .= $stateIcons[$this->getXhVersionState($xhVersion)]
-            . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_xhversion'], $xhVersion)
-            . tag('br') . tag('br');
+        $htm .= XH_message(
+            $this->getMagicQuotesState(), $ptx['syscheck_magic_quotes']
+        );
+        $htm .= XH_message(
+            $this->getXhVersionState($xhVersion),
+            $ptx['syscheck_xhversion'], $xhVersion
+        );
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'yanp/' . $folder;
         }
         foreach ($folders as $folder) {
-            $htm .= $stateIcons[$this->getWritabilityState($folder)]
-                . '&nbsp;&nbsp;' . sprintf($ptx['syscheck_writable'], $folder)
-                . tag('br') . "\n";
+            $htm .= XH_message(
+                $this->getWritabilityState($folder),
+                $ptx['syscheck_writable'], $folder
+            );
         }
         return $htm;
     }
@@ -171,13 +150,13 @@ EOT;
      *
      * @param string $version A version.
      *
-     * @return int
+     * @return string
      */
     protected function getPhpVersionState($version)
     {
         return version_compare(PHP_VERSION, $version) >= 0
-            ? self::STATE_OK
-            : self::STATE_FAIL;
+            ? 'success'
+            : 'fail';
     }
 
     /**
@@ -185,25 +164,25 @@ EOT;
      *
      * @param string $extension An extension.
      *
-     * @return int
+     * @return string
      */
     protected function getExtensionState($extension)
     {
         return extension_loaded($extension)
-            ? self::STATE_OK
-            : self::STATE_FAIL;
+            ? 'success'
+            : 'fail';
     }
 
     /**
      * Returns the state of the magic quotes check.
      *
-     * @return int
+     * @return string
      */
     protected function getMagicQuotesState()
     {
         return get_magic_quotes_runtime()
-            ? self::STATE_WARN
-            : self::STATE_OK;
+            ? 'warning'
+            : 'success';
     }
 
     /**
@@ -211,15 +190,15 @@ EOT;
      *
      * @param string $version A version.
      *
-     * @return int
+     * @return string
      */
     protected function getXhVersionState($version)
     {
         return defined('CMSIMPLE_XH_VERSION')
             && strpos(CMSIMPLE_XH_VERSION, 'CMSimple_XH') === 0
             && version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt')
-            ? self::STATE_OK
-            : self::STATE_FAIL;
+            ? 'success'
+            : 'fail';
     }
 
     /**
@@ -227,13 +206,13 @@ EOT;
      *
      * @param string $filename A filename.
      *
-     * @return int
+     * @return string
      */
     protected function getWritabilityState($filename)
     {
         return is_writable($filename)
-            ? self::STATE_OK
-            : self::STATE_WARN;
+            ? 'success'
+            : 'warning';
     }
 }
 

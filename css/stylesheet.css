@@ -1,5 +1,3 @@
-/* utf-8-marker: äöüß */
-
 div.yanp-news span.read-more {}
 
 /*
@@ -19,13 +17,11 @@ div#newspage div.yanp-news {
 /*
  * Back-end
  */
-.yanp_plugin_icon {
-    display: block;
-    float: left;
-    margin-right: 20px;
-}
 
+.yanp_plugin_icon {
+    float: left;
+    margin: 0 1em 1em 0;
+}
 .yanp_license {
-    clear: both;
     text-align: justify
 }
