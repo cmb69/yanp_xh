@@ -40,7 +40,7 @@ class Yanp_Controller
         global $adm, $pth, $pd_router, $plugin_cf, $plugin_tx;
 
         if ($plugin_cf['yanp']['feed_enabled']) {
-            $command = new Yanp_RssCommand();
+            $command = new Yanp_RssCommand(new Yanp_Feed());
             $command->execute();
         }
         if ($adm) {

@@ -59,39 +59,33 @@ class Yanp_PageDataCommand extends Yanp_Command
      * @global array  The localization of the core.
      * @global string The script name.
      * @global string The requested page URL.
-     * @global array  The paths of system files and folders.
      * @global array  The configuration of the plugins.
      */
-    public function render()
+    protected function render()
     {
-        global $tx, $sn, $su, $pth, $plugin_tx;
+        global $tx, $sn, $su, $plugin_tx;
 
         $ptx = $plugin_tx['yanp'];
-        $help_icon = tag(
-            'image src="' . $pth['folder']['plugins'] . 'yanp/images/help.png"'
-            . ' alt="help"'
-        );
-        $htm = '<form id="yanp" action="' . $sn . '?' . $su
-            . '" method="post" onsubmit="return true">' . "\n"
-            . '<p><strong>' . $ptx['tab_form_label'] . '</strong></p>' . "\n";
-        $htm .= tag(
-            'input type="hidden" name="yanp_timestamp" value="' . time() . '"'
-        );
-        $htm .= '<a class="pl_tooltip" href="javascript:return false">' . $help_icon
-            . '<span>' . $ptx['tab_description_info'] . '</span></a>&nbsp;'
-            . '<label for="yanp_description"><span>' . $ptx['tab_description_label']
-            . '</span></label>' . tag('br') . "\n";
-        $htm .= '<textarea id="yanp_description" name="yanp_description" cols="40"'
-            . ' row="10">'
-            . $this->pageData['yanp_description'] . '</textarea>' . "\n";
-
-        $htm .= tag('input type="hidden" name="save_page_data"') . "\n"
-            . '<div style="text-align: right">' . "\n"
-            . tag(
-                'input type="submit" value="' . ucfirst($tx['action']['save']) . '"'
-            ) . "\n"
-            . '</div></form>' . "\n";
-        return $htm;
+        $actionUrl = $sn . '?' . $su;
+        $time = time();
+        $icon = XH_helpIcon($ptx['tab_description_info']);
+        $saveLabel = ucfirst($tx['action']['save']);
+        return <<<EOT
+<form id="yanp" action="$actionUrl" method="post" onsubmit="return true">
+    <p><strong>$ptx[tab_form_label]</strong></p>
+    <input type="hidden" name="yanp_timestamp" value="$time">
+    <p>
+        $icon
+        <label for="yanp_description">$ptx[tab_description_label]</label><br>
+        <textarea id="yanp_description" name="yanp_description" cols="40"
+            row="10">{$this->pageData['yanp_description']}</textarea>
+    </p>
+    <input type="hidden" name="save_page_data">
+    <p style="text-align: right">
+        <input type="submit" value="$saveLabel">
+    </p>
+</form>
+EOT;
     }
 }
 

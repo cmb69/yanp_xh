@@ -59,11 +59,11 @@ class Yanp_NewsboxCommand extends Yanp_Command
         $lvl = min($cf['menu']['levels'] + 1, 6);
         $desc = $pd['yanp_description'];
         if (!$pcf['html_markup']) {
-            $desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
+            $desc = XH_hsc($desc);
         }
         $htm = '<div class="yanp-news">' . "\n"
             . '<h' . $lvl . '>' . $h[$id] . '</h' . $lvl . '>' . "\n"
-            . '<p><em>' . date($ptx['news_date_format'], $this->timestamp($pd))
+            . '<p><em>' . date($ptx['news_date_format'], $this->getLastMod($pd))
             .'</em></p>' . "\n"
             . '<p>' . $desc
             . ' <span class="read-more"><a href="' . $sn . '?' . $u[$id]

@@ -25,6 +25,23 @@
 class Yanp_RssCommand extends Yanp_Command
 {
     /**
+     * The feed.
+     *
+     * @var Yanp_Feed
+     */
+    protected $feed;
+
+    /**
+     * Initializes a new instance.
+     *
+     * @param Yanp_Feed $feed A feed.
+     */
+    public function __construct(Yanp_Feed $feed)
+    {
+        $this->feed = $feed;
+    }
+
+    /**
      * Executes the command.
      *
      * @return void
@@ -43,67 +60,96 @@ class Yanp_RssCommand extends Yanp_Command
      * Returns the XML of the complete RSS feed.
      *
      * @return string XML
-     *
-     * @global array  The paths of system files and folders.
-     * @global array  The localization of the core.
-     * @global string The requested language.
-     * @global array  The language configuration of the core.
-     * @global array  The configuration of the core.
-     * @global array  The localization of the core.
      */
     protected function renderRss()
     {
-        global $pth, $tx, $cf, $sl, $txc, $plugin_cf, $plugin_tx;
+        $channel = $this->renderChannel();
+        return <<<EOT
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">$channel</rss>
+EOT;
+    }
 
-        $pcf = $plugin_cf['yanp'];
-        $ptx = $plugin_tx['yanp'];
+    /**
+     * Renders the channel.
+     *
+     * @return string XML
+     *
+     * @global string The requested language.
+     * @global array  The paths of system files and folders.
+     * @global array  The configuration of the plugins.
+     */
+    protected function renderChannel()
+    {
+        global $sl, $pth, $plugin_cf;
+
         $link = $this->getBaseUrl();
-        $title = $ptx['feed_title'] == ''
-                ? (isset($txc['site']['title'])
-                   ? $txc['site']['title'] : $cf['site']['title'])
-                : $ptx['feed_title'];
-        if ($ptx['feed_description'] != '') {
-            $desc = $ptx['feed_description'];
-        } elseif (isset($tx['meta']['description'])) {
-            $desc = $tx['meta']['description'];
-        } elseif (isset($txc['meta']['description'])) {
-            $desc = $txc['meta']['description'];
-        } else {
-            $desc = $cf['meta']['description'];
-        }
-        $feed = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
-            . '<rss version="2.0">' . "\n"
-            . '<channel>' . "\n"
-            . '  <title>' . $title . '</title>' . "\n"
-            . '  <link>' . $link . '</link>' . "\n"
-            . '  <description>' . $desc . '</description>' . "\n"
-            . '  <language>' . $sl . '</language>' . "\n"
-            . (!empty($ptx['feed_copyright'])
-               ? '  <copyright>' . $ptx['feed_copyright'] . '</copyright>' . "\n"
-               : '')
-            . '  <pubDate>' . date('r', filemtime($pth['file']['content']))
-            . '</pubDate>' . "\n"
-            . '  <generator>' . CMSIMPLE_XH_VERSION . ' &#8211; Yanp_XH '
+        $feed = '<channel>'
+            . '<title>' . $this->feed->getTitle() . '</title>'
+            . '<link>' . $link . '</link>'
+            . '<description>' . $this->feed->getDescription() . '</description>'
+            . '<language>' . $sl . '</language>'
+            . $this->renderCopyright()
+            . '<pubDate>' . date('r', filemtime($pth['file']['content']))
+            . '</pubDate>'
+            . '<generator>' . CMSIMPLE_XH_VERSION . ' &#8211; Yanp_XH '
             . YANP_VERSION
-            . '</generator>' . "\n";
-        if ($pcf['feed_image'] != '') {
-            if (!is_readable($pth['folder']['images'] . $pcf['feed_image'])) {
-                e('missing', 'file', $pth['folder']['images'] . $pcf['feed_image']);
-            }
-            $feed .= '  <image>' . "\n"
-                . '    <url>'
-                . $this->getAbsoluteUrl(
-                    $pth['folder']['images'] . $pcf['feed_image']
-                )
-                . '</url>' . "\n"
-                . '    <title>' . $title . '</title>' . "\n"
-                . '    <link>' . $link . '</link>' . "\n"
-                . '  </image>' . "\n";
+            . '</generator>';
+        if ($plugin_cf['yanp']['feed_image'] != '') {
+            $feed .= $this->renderFeedImage($link);
         }
         $feed .= $this->renderItems(array($this, 'renderRssItem'))
-            . '</channel>' . "\n"
-            . '</rss>' . "\n";
+            . '</channel>';
         return $feed;
+    }
+
+    /**
+     * Renders the copyright.
+     *
+     * @return string XML
+     *
+     * @global array The localization of the plugins.
+     */
+    protected function renderCopyright()
+    {
+        global $plugin_tx;
+
+        if ($plugin_tx['yanp']['feed_copyright'] != '') {
+            return '<copyright>' . $plugin_tx['yanp']['feed_copyright']
+                . '</copyright>';
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Renders the feed image.
+     *
+     * @return string XML
+     *
+     * @global array The paths of system files and folders.
+     * @global array The configuration of the plugins.
+     */
+    protected function renderFeedImage()
+    {
+        global $pth, $plugin_cf;
+
+        $pcf = $plugin_cf['yanp'];
+        if (!is_readable($pth['folder']['images'] . $pcf['feed_image'])) {
+            e('missing', 'file', $pth['folder']['images'] . $pcf['feed_image']);
+        }
+        $url = $this->getAbsoluteUrl(
+            $pth['folder']['images'] . $pcf['feed_image']
+        );
+        $title = $this->feed->getTitle();
+        $link = $this->getBaseUrl();
+        return <<<EOT
+<image>
+    <url>$url</url>
+    <title>$title</title>
+    <link>$link</link>
+</image>
+EOT;
     }
 
     /**
@@ -125,20 +171,21 @@ class Yanp_RssCommand extends Yanp_Command
         $pcf = $plugin_cf['yanp'];
         $pd = $pd_router->find_page($id);
         $link = $this->getBaseUrl() . '?' . $u[$id];
-        $desc = htmlspecialchars($pd['yanp_description'], ENT_COMPAT, 'UTF-8');
+        $desc = XH_hsc($pd['yanp_description']);
         if (!$pcf['html_markup']) {
-            $desc = htmlspecialchars($desc, ENT_COMPAT, 'UTF-8');
+            $desc = XH_hsc($desc);
         }
-        $guid = $link . ' ' . $this->timestamp($pd);
-        $xml = '  <item>' . "\n"
-            . '    <title>' . $h[$id] . '</title>' . "\n"
-            . '    <link>' . $link . '</link>' . "\n"
-            . '    <description>' . $desc . '</description>' . "\n"
-            . '    <guid isPermaLink="false">' . $guid . '</guid>' . "\n"
-            . '    <pubDate>' . date('r', $this->timestamp($pd)) . '</pubDate>'
-            . "\n"
-            . '  </item>' . "\n";
-        return $xml;
+        $guid = $link . ' ' . $this->getLastMod($pd);
+        $timestamp = date('r', $this->getLastMod($pd));
+        return <<<EOT
+<item>
+    <title>$h[$id]</title>
+    <link>$link</link>
+    <description>$desc</description>
+    <guid isPermaLink="false">$guid</guid>
+    <pubDate>$timestamp</pubDate>
+</item>
+EOT;
     }
 
     /**
@@ -212,17 +259,7 @@ class Yanp_RssCommand extends Yanp_Command
      */
     protected function getBaseUrl()
     {
-        global $sn;
-
-        if (defined(CMSIMPLE_URL)) {
-            $baseUrl = CMSIMPLE_URL;
-        } else {
-            $baseUrl = 'http'
-                . (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'
-                   ? 's' : '')
-                . '://' . $_SERVER['HTTP_HOST'] . $sn;
-        }
-        return preg_replace('/index\.php$/', '', $baseUrl);
+        return CMSIMPLE_URL;
     }
 }
 

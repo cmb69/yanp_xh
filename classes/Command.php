@@ -46,7 +46,7 @@ abstract class Yanp_Command
 
         $allPageData = $pd_router->find_all();
         $ids = array_keys($allPageData);
-        $dates = array_map(array($this, 'timestamp'), $allPageData);
+        $dates = array_map(array($this, 'getLastMod'), $allPageData);
         array_multisort($dates, SORT_DESC, $ids);
         $res = '';
         foreach ($ids as $id) {
@@ -58,19 +58,19 @@ abstract class Yanp_Command
     }
 
     /**
-     * Returns the timestamp of the news of a page.
+     * Returns the last modification date of a page wrt. Yanp.
      *
      * @param array $pageData An array of page data.
      *
      * @return int
      */
-    protected function timestamp(array $pageData)
+    protected function getLastMod(array $pageData)
     {
-        return empty($pageData['last_edit'])
-            ? (empty($pageData['yanp_timestamp']) ? 0 : $pageData['yanp_timestamp'])
-            : min($pageData['yanp_timestamp'], $pageData['last_edit']);
+        return min(
+            isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
+            isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
+        );
     }
-
 }
 
 ?>

@@ -21,7 +21,6 @@ $plugin_tx['yanp']['tab_description_info']="Popis, ktorý sa zobrazí v newsboxe
 $plugin_tx['yanp']['syscheck_title']="Systéová kontrola";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP verzia ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Nainštalované rozšírenia '%s'";
-$plugin_tx['yanp']['syscheck_encoding']="Kódovanie 'UTF-8' konfigurované";
 $plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Adresár '%s' povolený pre zápis";
 $plugin_tx['yanp']['cf_utf-8-marker']="Vnútorné použitie. <strong>NEMENIŤ!</strong>";

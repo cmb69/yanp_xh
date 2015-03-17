@@ -21,7 +21,6 @@ $plugin_tx['yanp']['tab_description_info']="Beskrivelsen, der vises i Nyhedsboks
 $plugin_tx['yanp']['syscheck_title']="System check";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
-$plugin_tx['yanp']['syscheck_encoding']="Tegnkoding'UTF-8' Konfigureret";
 $plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Mappen '%s' skrivebar";
 $plugin_tx['yanp']['cf_utf-8-marker']="Internt brug. <strong>Ændre ikke noget!</strong>";
