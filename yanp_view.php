@@ -22,11 +22,12 @@
  *
  * @global object The plugin controller.
  */
-function Yanp_view($page)
+function Yanp_view(array $page)
 {
-    global $_Yanp_controller;
-
-    return $_Yanp_controller->renderPageDataView($page);
+    $command = new Yanp_PageDataCommand($page);
+    ob_start();
+    $command->execute();
+    return ob_get_clean();
 }
 
 ?>

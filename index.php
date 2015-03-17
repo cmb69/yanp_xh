@@ -30,14 +30,13 @@ define('YANP_VERSION', '@YANP_VERSION@');
  * Returns the (X)HTML for the display of the complete newsbox.
  *
  * @return string
- *
- * @global object The plugin controller.
  */
 function Yanp_newsbox()
 {
-    global $_Yanp_controller;
-
-    return $_Yanp_controller->renderNewsbox();
+    $command = new Yanp_NewsboxCommand();
+    ob_start();
+    $command->execute();
+    return ob_get_clean();
 }
 
 /**
@@ -51,15 +50,16 @@ function Yanp_newsbox()
  */
 function Yanp_feedlink($icon = null)
 {
-    global $_Yanp_controller;
-
-    return $_Yanp_controller->renderFeedLink($icon);
+    $command = new Yanp_FeedlinkCommand($icon);
+    ob_start();
+    $command->execute();
+    return ob_get_clean();
 }
 
-/**
- * The plugin controller.
+/*
+ * Dispatch on plugin related requests.
  */
-$_Yanp_controller = new Yanp_Controller();
-$_Yanp_controller->dispatch();
+$temp = new Yanp_Controller();
+$temp->dispatch();
 
 ?>
