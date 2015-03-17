@@ -7,7 +7,6 @@
  * License.
  */
 
-$plugin_tx['yanp']['utf-8-marker']="äöüß";
 $plugin_tx['yanp']['news_date_format']="d.m.Y";
 $plugin_tx['yanp']['news_read_more']="Læs&nbsp;mere&nbsp;&raquo;";
 $plugin_tx['yanp']['feed_title']="";
@@ -23,7 +22,6 @@ $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
 $plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Mappen '%s' skrivebar";
-$plugin_tx['yanp']['cf_utf-8-marker']="Internt brug. <strong>Ændre ikke noget!</strong>";
 $plugin_tx['yanp']['cf_folder_data']="Sti til en mappe i forhold til CMSimple rodmappen, hvor du vil gemme plugin data. Fx. \"userfiles/yanp/\". Blank felt og den vil gemme i plugin's data/ folder.";
 $plugin_tx['yanp']['cf_feed_enabled']="Vejret RSS-feed vil blive oprettet: \"1\" (ja) eller \"0\" (nej)";
 $plugin_tx['yanp']['cf_feed_image']="Navnet på en JPEG, PNG eller GIF billede i din billedmappe, som er integreret på RSS-feed, da det logo (må ikk overstige 144x400 pixels)";

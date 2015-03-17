@@ -1,7 +1,5 @@
 <?php
 
-$plugin_tx['yanp']['utf-8-marker']="Feel free to change \"äöüß\" to non ASCII characters typically used in your language.";
-
 $plugin_tx['yanp']['news_date_format']="Change that to the date format typically used in your language area. For details see http://de.php.net/manual/en/function.date.php";
 $plugin_tx['yanp']['news_read_more']="Use &amp;nbsp; to avoid line wrapping within the link text.";
 

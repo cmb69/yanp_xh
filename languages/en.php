@@ -1,6 +1,5 @@
 <?php
 
-$plugin_tx['yanp']['utf-8-marker']="äöüß";
 $plugin_tx['yanp']['alt_logo']="Newspaper";
 $plugin_tx['yanp']['news_date_format']="F jS, Y";
 $plugin_tx['yanp']['news_read_more']="Read&nbsp;more&nbsp;&raquo;";
@@ -18,7 +17,6 @@ $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
 $plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
 $plugin_tx['yanp']['syscheck_writable']="Folder '%s' writable";
-$plugin_tx['yanp']['cf_utf-8-marker']="Internal usage. <strong>Do not change!</strong>";
 $plugin_tx['yanp']['cf_folder_data']="Path to a folder relative to the CMSimple root directory, where to store the plugin's data, e.g. \"userfiles/yanp/\". Leave empty to store into the plugin's data/ folder.";
 $plugin_tx['yanp']['cf_html_markup']="Whether the description of the news may contain (X)HTML markup: \"1\" (yes) or \"0\" (no)";
 $plugin_tx['yanp']['cf_feed_enabled']="Whether the RSS feed will be created: \"1\" (yes) or \"0\" (no)";
