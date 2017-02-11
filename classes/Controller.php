@@ -14,8 +14,7 @@ class Controller
         global $pth, $pd_router, $plugin_cf, $plugin_tx;
 
         if ($plugin_cf['yanp']['feed_enabled']) {
-            $command = new RssCommand(new Feed());
-            $command->execute();
+            (new RssCommand(new Feed()))->execute();
         }
         if (XH_ADM) {
             if (function_exists('XH_registerStandardPluginMenuItems')) {
@@ -55,8 +54,7 @@ class Controller
 
         switch ($admin) {
             case '':
-                $command = new InfoCommand();
-                $command->execute();
+                (new InfoCommand())->execute();
                 break;
             default:
                 $o .= plugin_admin_common($action, $admin, 'yanp');

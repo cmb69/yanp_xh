@@ -12,9 +12,8 @@ define('YANP_VERSION', '@YANP_VERSION@');
  */
 function Yanp_newsbox()
 {
-    $command = new Yanp\NewsboxCommand();
     ob_start();
-    $command->execute();
+    (new Yanp\NewsboxCommand())->execute();
     return ob_get_clean();
 }
 
@@ -24,11 +23,9 @@ function Yanp_newsbox()
  */
 function Yanp_feedlink($icon = null)
 {
-    $command = new Yanp\FeedlinkCommand($icon);
     ob_start();
-    $command->execute();
+    (new Yanp\FeedlinkCommand($icon))->execute();
     return ob_get_clean();
 }
 
-$temp = new Yanp\Controller();
-$temp->dispatch();
+(new Yanp\Controller())->dispatch();
