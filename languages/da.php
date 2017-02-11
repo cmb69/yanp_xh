@@ -22,13 +22,7 @@ $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
 $plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Mappen '%s' skrivebar";
-$plugin_tx['yanp']['cf_feed_enabled']="Vejret RSS-feed vil blive oprettet: \"1\" (ja) eller \"0\" (nej)";
+$plugin_tx['yanp']['cf_feed_enabled']="Vejret RSS-feed vil blive oprettet.";
 $plugin_tx['yanp']['cf_feed_image']="Navnet på en JPEG, PNG eller GIF billede i din billedmappe, som er integreret på RSS-feed, da det logo (må ikk overstige 144x400 pixels)";
-$plugin_tx['yanp']['cf_feed_copyright']="Copyright af RSS feed";
-$plugin_tx['yanp']['cf_feed_title']="Titlen på RSS feed. Hvis blank, side_title vil blive anvendt";
-$plugin_tx['yanp']['cf_feed_description']="Beskrivelse af RSS feed. Hvis blank, vil meta_beskrivelsen blive anvendt";
-$plugin_tx['yanp']['cf_feed_link_title']="Titlen på den synlige feed-linket og linket i webstedets head";
-$plugin_tx['yanp']['cf_news_date_format']="For flere details se http://de.php.net/manual/en/function.date.php";
-$plugin_tx['yanp']['cf_news_read_more']="Teksten til 'læs mere' linket. Kan være nogen (X) HTML inline element, så du kan indsætte et billede f.eks.";
 
 ?>
