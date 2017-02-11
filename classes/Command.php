@@ -20,7 +20,7 @@ abstract class Command
 
         $allPageData = $pd_router->find_all();
         $ids = array_keys($allPageData);
-        $dates = array_map(array($this, 'getLastMod'), $allPageData);
+        $dates = array_map(array($this, 'getLastMod'), $ids);
         array_multisort($dates, SORT_DESC, $ids);
         return array_filter($ids, function ($id) use ($allPageData) {
             return $allPageData[$id]['yanp_description'] != '';
@@ -28,13 +28,31 @@ abstract class Command
     }
 
     /**
+     * @param int $pageId
      * @return int
      */
-    protected function getLastMod(array $pageData)
+    protected function getLastMod($pageId)
     {
+        global $pd_router;
+
+        $pageData = $pd_router->find_page($pageId);
         return min(
             isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
             isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
         );
+    }
+
+    /**
+     * @param int $pageId
+     * @return string|HtmlString
+     */
+    protected function getDescription($pageId)
+    {
+        global $pd_router, $plugin_cf;
+
+        $pageData = $pd_router->find_page($pageId);
+        return $plugin_cf['yanp']['html_markup']
+            ? new HtmlString($pageData['yanp_description'])
+            : $pageData['yanp_description'];
     }
 }

@@ -22,7 +22,7 @@ class NewsboxCommand extends Command
      */
     protected function render()
     {
-        global $h, $u, $cf, $sn, $pd_router, $plugin_cf, $plugin_tx;
+        global $h, $u, $cf, $sn, $plugin_tx;
 
         $view = new View('newsbox');
         $view->pageIds = $this->getPageIds();
@@ -30,19 +30,11 @@ class NewsboxCommand extends Command
         $view->heading = function ($id) use ($h) {
             return new HtmlString($h[$id]);
         };
-        $view->date = function ($id) use ($pd_router, $plugin_tx) {
-            $pd = $pd_router->find_page($id);
-            $timestamp = min(
-                isset($pd['last_edit']) ? $pd['last_edit'] : 0,
-                isset($pd['yanp_timestamp']) ? $pd['yanp_timestamp'] : 0
-            );
-            return date($plugin_tx['yanp']['news_date_format'], $timestamp);
+        $view->date = function ($id) use ($plugin_tx) {
+            return date($plugin_tx['yanp']['news_date_format'], $this->getLastMod($id));
         };
-        $view->description = function ($id) use ($pd_router, $plugin_cf) {
-            $pd = $pd_router->find_page($id);
-            return $plugin_cf['yanp']['html_markup']
-                ? new HtmlString($pd['yanp_description'])
-                : $pd['yanp_description'];
+        $view->description = function ($id) {
+            return $this->getDescription($id);
         };
         $view->url = function ($id) use ($sn, $u) {
             return "$sn?{$u[$id]}";

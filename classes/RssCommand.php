@@ -53,26 +53,13 @@ class RssCommand extends Command
             return CMSIMPLE_URL . "?{$u[$id]}";
         };
         $view->itemDescription = function ($id) use ($pd_router) {
-            $pageData = $pd_router->find_page($id);
-            return $plugin_cf['yanp']['html_markup']
-                ? new HtmlString($pageData['yanp_description'])
-                : $pageData['yanp_description'];
+            return $this->getDescription($id);
         };
-        $view->itemGuid = function ($id) use ($u, $pd_router) {
-            $pageData = $pd_router->find_page($id);
-            $timestamp = min(
-                isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
-                isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
-            );
-            return CMSIMPLE_URL . "?{$u[$id]} $timestamp";
+        $view->itemGuid = function ($id) use ($u) {
+            return CMSIMPLE_URL . "?{$u[$id]} " . $this->getLastMod($id);
         };
-        $view->itemPubDate = function ($id) use ($pd_router) {
-            $pageData = $pd_router->find_page($id);
-            $timestamp = min(
-                isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
-                isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
-            );
-            return date('r', $timestamp);
+        $view->itemPubDate = function ($id) {
+            return date('r', $this->getLastMod($id));
         };
         return '<?xml version="1.0" encoding="UTF-8"?>' . $view->render();
     }
