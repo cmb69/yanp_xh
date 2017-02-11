@@ -33,7 +33,7 @@ define('YANP_VERSION', '@YANP_VERSION@');
  */
 function Yanp_newsbox()
 {
-    $command = new Yanp_NewsboxCommand();
+    $command = new Yanp\NewsboxCommand();
     ob_start();
     $command->execute();
     return ob_get_clean();
@@ -50,7 +50,7 @@ function Yanp_newsbox()
  */
 function Yanp_feedlink($icon = null)
 {
-    $command = new Yanp_FeedlinkCommand($icon);
+    $command = new Yanp\FeedlinkCommand($icon);
     ob_start();
     $command->execute();
     return ob_get_clean();
@@ -59,7 +59,7 @@ function Yanp_feedlink($icon = null)
 /*
  * Dispatch on plugin related requests.
  */
-$temp = new Yanp_Controller();
+$temp = new Yanp\Controller();
 $temp->dispatch();
 
 ?>

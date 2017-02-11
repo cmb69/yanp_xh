@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
 
+namespace Yanp;
+
 /**
  * The controllers.
  *
@@ -22,7 +24,7 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
-class Yanp_Controller
+class Controller
 {
     /**
      * Dispatches on plugin related requests.
@@ -39,7 +41,7 @@ class Yanp_Controller
         global $pth, $pd_router, $plugin_cf, $plugin_tx;
 
         if ($plugin_cf['yanp']['feed_enabled']) {
-            $command = new Yanp_RssCommand(new Yanp_Feed());
+            $command = new RssCommand(new Feed());
             $command->execute();
         }
         if (defined('XH_ADM') && XH_ADM) {
@@ -93,7 +95,7 @@ class Yanp_Controller
 
         switch ($admin) {
         case '':
-            $command = new Yanp_InfoCommand();
+            $command = new InfoCommand();
             $command->execute();
             break;
         default:

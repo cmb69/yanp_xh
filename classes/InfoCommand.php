@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
 
+namespace Yanp;
+
 /**
  * The info commands.
  *
@@ -22,7 +24,7 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
-class Yanp_InfoCommand
+class InfoCommand
 {
     /**
      * The (X)HTML to insert before the page content.
@@ -112,7 +114,7 @@ EOT;
     {
         global $pth, $plugin_tx;
 
-        $phpVersion = '5.1.2';
+        $phpVersion = '5.3.0';
         $xhVersion = '1.6';
         $ptx = $plugin_tx['yanp'];
         $htm = '<h4>' . $ptx['syscheck_title'] . '</h4>'

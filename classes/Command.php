@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
 
+namespace Yanp;
+
 /**
  * The commands.
  *
@@ -22,7 +24,7 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
-abstract class Yanp_Command
+abstract class Command
 {
     /**
      * Executes the command.

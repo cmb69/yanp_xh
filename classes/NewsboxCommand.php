@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
 
+namespace Yanp;
+
 /**
  * The newsbox commands.
  *
@@ -22,7 +24,7 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
-class Yanp_NewsboxCommand extends Yanp_Command
+class NewsboxCommand extends Command
 {
     /**
      * Executes the command.

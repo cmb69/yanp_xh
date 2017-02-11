@@ -24,7 +24,7 @@
  */
 function Yanp_view(array $page)
 {
-    $command = new Yanp_PageDataCommand($page);
+    $command = new Yanp\PageDataCommand($page);
     ob_start();
     $command->execute();
     return ob_get_clean();

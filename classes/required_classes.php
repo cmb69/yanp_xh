@@ -24,7 +24,7 @@ function Yanp_autoload($class)
 {
     global $pth;
 
-    $parts = explode('_', $class, 2);
+    $parts = explode('\\', $class, 2);
     if ($parts[0] == 'Yanp') {
         include_once $pth['folder']['plugins'] . 'yanp/classes/'
             . $parts[1] . '.php';

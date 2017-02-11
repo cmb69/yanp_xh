@@ -13,6 +13,8 @@
  * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
 
+namespace Yanp;
+
 /**
  * The RSS commands.
  *
@@ -22,21 +24,21 @@
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
  */
-class Yanp_RssCommand extends Yanp_Command
+class RssCommand extends Command
 {
     /**
      * The feed.
      *
-     * @var Yanp_Feed
+     * @var Feed
      */
     protected $feed;
 
     /**
      * Initializes a new instance.
      *
-     * @param Yanp_Feed $feed A feed.
+     * @param Feed $feed A feed.
      */
-    public function __construct(Yanp_Feed $feed)
+    public function __construct(Feed $feed)
     {
         $this->feed = $feed;
     }
