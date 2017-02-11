@@ -1,65 +1,34 @@
 <?php
 
 /**
- * The feedlink commands.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The feedlink commands.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class FeedlinkCommand extends Command
 {
     /**
-     * The icon filename.
-     *
      * @var string
      */
     protected $icon;
 
     /**
-     * Initializes a new instance.
-     *
-     * @param string $icon An icon filename.
+     * @param string $icon
      */
     public function __construct($icon)
     {
         $this->icon = $icon;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @return void
-     */
     public function execute()
     {
         echo $this->renderFeedLink();
     }
 
     /**
-     * Returns the (X)HTML of the RSS link.
-     *
      * @return string
-     *
-     * @global array  The paths of system files and folders.
-     * @global array  The localization of the plugins.
      */
     public function renderFeedLink()
     {
@@ -79,11 +48,7 @@ class FeedlinkCommand extends Command
     }
 
     /**
-     * Returns the relative file name of the feed file.
-     *
      * @return string
-     *
-     * @global string The script name.
      */
     protected function getFeedUrl()
     {
@@ -91,7 +56,4 @@ class FeedlinkCommand extends Command
 
         return $sn . '?&yanp_feed';
     }
-
 }
-
-?>

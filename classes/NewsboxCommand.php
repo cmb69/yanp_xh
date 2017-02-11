@@ -1,34 +1,15 @@
 <?php
 
 /**
- * The newsbox commands.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The newsbox commands.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class NewsboxCommand extends Command
 {
     /**
-     * Executes the command.
-     *
      * @return string
      */
     public function execute()
@@ -37,19 +18,8 @@ class NewsboxCommand extends Command
     }
 
     /**
-     * Returns the (X)HTML for the display of the page news.
-     *
-     * @param int $id The page number.
-     *
+     * @param int $id
      * @return string
-     *
-     * @global array  The headings of the pages.
-     * @global array  The URLs of the pages.
-     * @global array  The configuration of the core.
-     * @global string The script name.
-     * @global object The page data router.
-     * @global array  The configuration of the plugins.
-     * @global array  The localization of the plugins.
      */
     protected function renderNewsboxItem($id)
     {
@@ -74,7 +44,4 @@ class NewsboxCommand extends Command
             . '</div>' . "\n";
         return $htm;
     }
-
 }
-
-?>

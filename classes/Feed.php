@@ -1,38 +1,16 @@
 <?php
 
 /**
- * The feeds.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The feeds.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class Feed
 {
     /**
-     * Returns the feed title.
-     *
      * @return string
-     *
-     * @global array The localization of the core.
-     * @global array The localization of the plugins.
      */
     public function getTitle()
     {
@@ -46,12 +24,7 @@ class Feed
     }
 
     /**
-     * Returns the feed description.
-     *
      * @return string
-     *
-     * @global array The localization of the core.
-     * @global array The localization of the plugins.
      */
     public function getDescription()
     {
@@ -64,5 +37,3 @@ class Feed
         }
     }
 }
-
-?>

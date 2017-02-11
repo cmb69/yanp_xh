@@ -1,41 +1,14 @@
 <?php
 
 /**
- * The controllers.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The controllers.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class Controller
 {
-    /**
-     * Dispatches on plugin related requests.
-     *
-     * @return void
-     *
-     * @global array  The paths of system files and folders.
-     * @global object The page data router.
-     * @global array  The configuration of the plugins.
-     * @global array  The localization of the plugins.
-     */
     public function dispatch()
     {
         global $pth, $pd_router, $plugin_cf, $plugin_tx;
@@ -63,11 +36,7 @@ class Controller
     }
 
     /**
-     * Returns whether the plugin administration is requested.
-     *
      * @return bool
-     *
-     * @global bool Whether the yanp administration is requested.
      */
     protected function isAdministrationRequested()
     {
@@ -78,15 +47,6 @@ class Controller
             || isset($yanp) && $yanp == 'true';
     }
 
-    /**
-     * Handles the plugin administration.
-     *
-     * @return void
-     *
-     * @global string The value of the <var>admin</var> GP parameter.
-     * @global string The value of the <var>action</var> GP parameter.
-     * @global string The (X)HTML to insert before the page contents.
-     */
     protected function handleAdministration()
     {
         global $admin, $action, $o;
@@ -94,14 +54,12 @@ class Controller
         $o .= print_plugin_admin('off');
 
         switch ($admin) {
-        case '':
-            $command = new InfoCommand();
-            $command->execute();
-            break;
-        default:
-            $o .= plugin_admin_common($action, $admin, 'yanp');
+            case '':
+                $command = new InfoCommand();
+                $command->execute();
+                break;
+            default:
+                $o .= plugin_admin_common($action, $admin, 'yanp');
         }
     }
 }
-
-?>

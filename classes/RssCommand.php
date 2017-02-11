@@ -1,53 +1,24 @@
 <?php
 
 /**
- * The RSS commands.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The RSS commands.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class RssCommand extends Command
 {
     /**
-     * The feed.
-     *
      * @var Feed
      */
     protected $feed;
 
-    /**
-     * Initializes a new instance.
-     *
-     * @param Feed $feed A feed.
-     */
     public function __construct(Feed $feed)
     {
         $this->feed = $feed;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @return void
-     */
     public function execute()
     {
         if (isset($_GET['yanp_feed'])) {
@@ -59,9 +30,7 @@ class RssCommand extends Command
     }
 
     /**
-     * Returns the XML of the complete RSS feed.
-     *
-     * @return string XML
+     * @return string
      */
     protected function renderRss()
     {
@@ -73,13 +42,7 @@ EOT;
     }
 
     /**
-     * Renders the channel.
-     *
-     * @return string XML
-     *
-     * @global string The requested language.
-     * @global array  The paths of system files and folders.
-     * @global array  The configuration of the plugins.
+     * @return string
      */
     protected function renderChannel()
     {
@@ -106,11 +69,7 @@ EOT;
     }
 
     /**
-     * Renders the copyright.
-     *
-     * @return string XML
-     *
-     * @global array The localization of the plugins.
+     * @return string
      */
     protected function renderCopyright()
     {
@@ -125,12 +84,7 @@ EOT;
     }
 
     /**
-     * Renders the feed image.
-     *
-     * @return string XML
-     *
-     * @global array The paths of system files and folders.
-     * @global array The configuration of the plugins.
+     * @return string
      */
     protected function renderFeedImage()
     {
@@ -155,16 +109,8 @@ EOT;
     }
 
     /**
-     * Returns the XML for a single feed item.
-     *
-     * @param int $id The number of the page.
-     *
-     * @return string XML
-     *
-     * @global object The page data router.
-     * @global array  The URLs of the pages.
-     * @global array  The headings of the pages.
-     * @global array  The configuration of the plugins.
+     * @param int $id
+     * @return string
      */
     protected function renderRssItem($id)
     {
@@ -190,14 +136,6 @@ EOT;
 EOT;
     }
 
-    /**
-     * Inserts the alternate link for the RSS feed into the head.
-     *
-     * @return void
-     *
-     * @global string The (X)HTML fragment to insert into the head element.
-     * @global array  The localization of the plugins.
-     */
     protected function writeHeadLink()
     {
         global $hjs, $plugin_tx;
@@ -211,11 +149,7 @@ EOT;
     }
 
     /**
-     * Returns the relative file name of the feed file.
-     *
      * @return string
-     *
-     * @global string The script name.
      */
     protected function getFeedUrl()
     {
@@ -225,11 +159,7 @@ EOT;
     }
 
     /**
-     * Returns an absolute URL.
-     *
-     * @param string $url A relative URL.
-     *
-     * @return string
+     * @param string $url
      */
     protected function getAbsoluteUrl($url)
     {
@@ -238,31 +168,25 @@ EOT;
         $i = 0;
         while ($i < count($parts)) {
             switch ($parts[$i]) {
-            case '.':
-                array_splice($parts, $i, 1);
-                break;
-            case '..':
-                array_splice($parts, $i-1, 2);
-                $i--;
-                break;
-            default:
-                $i++;
+                case '.':
+                    array_splice($parts, $i, 1);
+                    break;
+                case '..':
+                    array_splice($parts, $i-1, 2);
+                    $i--;
+                    break;
+                default:
+                    $i++;
             }
         }
         return $scheme . '//' . implode('/', $parts);
     }
 
     /**
-     * Returns the base URL of the installation.
-     *
      * @return string
-     *
-     * @global string The script name.
      */
     protected function getBaseUrl()
     {
         return CMSIMPLE_URL;
     }
 }
-
-?>

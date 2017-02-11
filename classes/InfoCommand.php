@@ -1,43 +1,19 @@
 <?php
 
 /**
- * The info commands.
- *
- * PHP version 5
- *
- * @category  CMSimple_XH
- * @package   Yanp
- * @author    Christoph M. Becker <cmbecker69@gmx.de>
  * @copyright 2011-2017 Christoph M. Becker <http://3-magi.net/>
- * @license   http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link      http://3-magi.net/?CMSimple_XH/Yanp_XH
+ * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
 namespace Yanp;
 
-/**
- * The info commands.
- *
- * @category CMSimple_XH
- * @package  Yanp
- * @author   Christoph M. Becker <cmbecker69@gmx.de>
- * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
- * @link     http://3-magi.net/?CMSimple_XH/Yanp_XH
- */
 class InfoCommand
 {
     /**
-     * The (X)HTML to insert before the page content.
-     *
      * @var string
      */
     protected $output;
 
-    /**
-     * Initializes a new instance.
-     *
-     * @global string The (X)HTML fragment to insert before the page content.
-     */
     public function __construct()
     {
         global $o;
@@ -45,23 +21,13 @@ class InfoCommand
         $this->output =& $o;
     }
 
-    /**
-     * Executes the command.
-     *
-     * @return void
-     */
     public function execute()
     {
         $this->output .= $this->renderVersion() . $this->renderSystemCheck();
     }
 
     /**
-     * Returns the plugin version information.
-     *
-     * @return string (X)HTML
-     *
-     * @global array The paths of system files and folders.
-     * @global array The localization of the plugins.
+     * @return string
      */
     protected function renderVersion()
     {
@@ -78,9 +44,7 @@ class InfoCommand
     }
 
     /**
-     * Renders the license info.
-     *
-     * @return (X)HTML
+     * @return string
      */
     protected function renderLicense()
     {
@@ -103,12 +67,7 @@ EOT;
     }
 
     /**
-     * Returns the requirements information.
-     *
-     * @return string (X)HTML
-     *
-     * @global array The paths of system files and folders.
-     * @global array The localization of the plugins.
+     * @return string
      */
     protected function renderSystemCheck()
     {
@@ -118,40 +77,23 @@ EOT;
         $xhVersion = '1.6';
         $ptx = $plugin_tx['yanp'];
         $htm = '<h4>' . $ptx['syscheck_title'] . '</h4>'
-            . XH_message(
-                $this->getPhpVersionState($phpVersion),
-                $ptx['syscheck_phpversion'], $phpVersion
-            );
+            . XH_message($this->getPhpVersionState($phpVersion), $ptx['syscheck_phpversion'], $phpVersion);
         foreach (array('pcre', 'spl') as $ext) {
-            $htm .= XH_message(
-                $this->getExtensionState($ext),
-                $ptx['syscheck_extension'], $ext
-            );
+            $htm .= XH_message($this->getExtensionState($ext), $ptx['syscheck_extension'], $ext);
         }
-        $htm .= XH_message(
-            $this->getMagicQuotesState(), $ptx['syscheck_magic_quotes']
-        );
-        $htm .= XH_message(
-            $this->getXhVersionState($xhVersion),
-            $ptx['syscheck_xhversion'], $xhVersion
-        );
+        $htm .= XH_message($this->getMagicQuotesState(), $ptx['syscheck_magic_quotes']);
+        $htm .= XH_message($this->getXhVersionState($xhVersion), $ptx['syscheck_xhversion'], $xhVersion);
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = $pth['folder']['plugins'] . 'yanp/' . $folder;
         }
         foreach ($folders as $folder) {
-            $htm .= XH_message(
-                $this->getWritabilityState($folder),
-                $ptx['syscheck_writable'], $folder
-            );
+            $htm .= XH_message($this->getWritabilityState($folder), $ptx['syscheck_writable'], $folder);
         }
         return $htm;
     }
 
     /**
-     * Returns the state of the PHP version check.
-     *
-     * @param string $version A version.
-     *
+     * @param string $version
      * @return string
      */
     protected function getPhpVersionState($version)
@@ -162,10 +104,7 @@ EOT;
     }
 
     /**
-     * Returns the state of an extension check.
-     *
-     * @param string $extension An extension.
-     *
+     * @param string $extension
      * @return string
      */
     protected function getExtensionState($extension)
@@ -176,8 +115,6 @@ EOT;
     }
 
     /**
-     * Returns the state of the magic quotes check.
-     *
      * @return string
      */
     protected function getMagicQuotesState()
@@ -188,10 +125,7 @@ EOT;
     }
 
     /**
-     * Returns the state of the CMSimple_XH version check.
-     *
-     * @param string $version A version.
-     *
+     * @param string $version
      * @return string
      */
     protected function getXhVersionState($version)
@@ -204,10 +138,7 @@ EOT;
     }
 
     /**
-     * Returns the state of an writability state.
-     *
-     * @param string $filename A filename.
-     *
+     * @param string $filename
      * @return string
      */
     protected function getWritabilityState($filename)
@@ -217,5 +148,3 @@ EOT;
             : 'warning';
     }
 }
-
-?>
