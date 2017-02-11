@@ -14,34 +14,39 @@ class NewsboxCommand extends Command
      */
     public function execute()
     {
-        echo $this->renderItems(array($this, 'renderNewsboxItem'));
+        echo $this->render();
     }
 
     /**
-     * @param int $id
      * @return string
      */
-    protected function renderNewsboxItem($id)
+    protected function render()
     {
         global $h, $u, $cf, $sn, $pd_router, $plugin_cf, $plugin_tx;
 
-        $pcf = $plugin_cf['yanp'];
-        $ptx = $plugin_tx['yanp'];
-        $pd = $pd_router->find_page($id);
-        $lvl = min($cf['menu']['levels'] + 1, 6);
-        $desc = $pd['yanp_description'];
-        if (!$pcf['html_markup']) {
-            $desc = XH_hsc($desc);
-        }
-        $htm = '<div class="yanp-news">' . "\n"
-            . '<h' . $lvl . '>' . $h[$id] . '</h' . $lvl . '>' . "\n"
-            . '<p><em>' . date($ptx['news_date_format'], $this->getLastMod($pd))
-            .'</em></p>' . "\n"
-            . '<p>' . $desc
-            . ' <span class="read-more"><a href="' . $sn . '?' . $u[$id]
-            . '" title="' . $h[$id] . '">'
-            . $ptx['news_read_more'] . '</a></span></p>' . "\n"
-            . '</div>' . "\n";
-        return $htm;
+        $view = new View('newsbox');
+        $view->pageIds = $this->getPageIds();
+        $view->headingTag = 'h' . min($cf['menu']['levels'] + 1, 6);
+        $view->heading = function ($id) use ($h) {
+            return new HtmlString($h[$id]);
+        };
+        $view->date = function ($id) use ($pd_router, $plugin_tx) {
+            $pd = $pd_router->find_page($id);
+            $timestamp = min(
+                isset($pd['last_edit']) ? $pd['last_edit'] : 0,
+                isset($pd['yanp_timestamp']) ? $pd['yanp_timestamp'] : 0
+            );
+            return date($plugin_tx['yanp']['news_date_format'], $timestamp);
+        };
+        $view->description = function ($id) use ($pd_router, $plugin_cf) {
+            $pd = $pd_router->find_page($id);
+            return $plugin_cf['yanp']['html_markup']
+                ? new HtmlString($pd['yanp_description'])
+                : $pd['yanp_description'];
+        };
+        $view->url = function ($id) use ($sn, $u) {
+            return "$sn?{$u[$id]}";
+        };
+        return $view->render();
     }
 }

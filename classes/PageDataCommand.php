@@ -32,28 +32,13 @@ class PageDataCommand extends Command
      */
     protected function render()
     {
-        global $tx, $sn, $su, $plugin_tx;
+        global $sn, $su, $plugin_tx;
 
-        $ptx = $plugin_tx['yanp'];
-        $actionUrl = $sn . '?' . $su;
-        $time = time();
-        $icon = XH_helpIcon($ptx['tab_description_info']);
-        $saveLabel = ucfirst($tx['action']['save']);
-        return <<<EOT
-<form id="yanp" action="$actionUrl" method="post" onsubmit="return true">
-    <p><strong>$ptx[tab_form_label]</strong></p>
-    <input type="hidden" name="yanp_timestamp" value="$time">
-    <p>
-        $icon
-        <label for="yanp_description">$ptx[tab_description_label]</label><br>
-        <textarea id="yanp_description" name="yanp_description" cols="40"
-            row="10">{$this->pageData['yanp_description']}</textarea>
-    </p>
-    <input type="hidden" name="save_page_data">
-    <p style="text-align: right">
-        <input type="submit" value="$saveLabel">
-    </p>
-</form>
-EOT;
+        $view = new View('pdtab');
+        $view->actionUrl = "$sn?$su";
+        $view->timestamp = time();
+        $view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
+        $view->description = $this->pageData['yanp_description'];
+        return $view->render();
     }
 }

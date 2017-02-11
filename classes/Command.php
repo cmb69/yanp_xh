@@ -12,10 +12,9 @@ abstract class Command
     abstract public function execute();
 
     /**
-     * @param callable $func
-     * @return string
+     * @return int[]
      */
-    protected function renderItems($func)
+    protected function getPageIds()
     {
         global $pd_router;
 
@@ -23,13 +22,9 @@ abstract class Command
         $ids = array_keys($allPageData);
         $dates = array_map(array($this, 'getLastMod'), $allPageData);
         array_multisort($dates, SORT_DESC, $ids);
-        $res = '';
-        foreach ($ids as $id) {
-            if (!empty($allPageData[$id]['yanp_description'])) {
-                $res .= call_user_func($func, $id);
-            }
-        }
-        return $res;
+        return array_filter($ids, function ($id) use ($allPageData) {
+            return $allPageData[$id]['yanp_description'] != '';
+        });
     }
 
     /**

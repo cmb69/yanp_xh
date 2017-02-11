@@ -34,106 +34,47 @@ class RssCommand extends Command
      */
     protected function renderRss()
     {
-        $channel = $this->renderChannel();
-        return <<<EOT
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">$channel</rss>
-EOT;
-    }
+        global $sl, $pth, $h, $u, $pd_router, $plugin_cf;
 
-    /**
-     * @return string
-     */
-    protected function renderChannel()
-    {
-        global $sl, $pth, $plugin_cf;
-
-        $link = $this->getBaseUrl();
-        $feed = '<channel>'
-            . '<title>' . $this->feed->getTitle() . '</title>'
-            . '<link>' . $link . '</link>'
-            . '<description>' . $this->feed->getDescription() . '</description>'
-            . '<language>' . $sl . '</language>'
-            . $this->renderCopyright()
-            . '<pubDate>' . date('r', filemtime($pth['file']['content']))
-            . '</pubDate>'
-            . '<generator>' . CMSIMPLE_XH_VERSION . ' &#8211; Yanp_XH '
-            . YANP_VERSION
-            . '</generator>';
-        if ($plugin_cf['yanp']['feed_image'] != '') {
-            $feed .= $this->renderFeedImage($link);
-        }
-        $feed .= $this->renderItems(array($this, 'renderRssItem'))
-            . '</channel>';
-        return $feed;
-    }
-
-    /**
-     * @return string
-     */
-    protected function renderCopyright()
-    {
-        global $plugin_tx;
-
-        if ($plugin_tx['yanp']['feed_copyright'] != '') {
-            return '<copyright>' . $plugin_tx['yanp']['feed_copyright']
-                . '</copyright>';
-        } else {
-            return '';
-        }
-    }
-
-    /**
-     * @return string
-     */
-    protected function renderFeedImage()
-    {
-        global $pth, $plugin_cf;
-
-        $pcf = $plugin_cf['yanp'];
-        if (!is_readable($pth['folder']['images'] . $pcf['feed_image'])) {
-            e('missing', 'file', $pth['folder']['images'] . $pcf['feed_image']);
-        }
-        $url = $this->getAbsoluteUrl(
-            $pth['folder']['images'] . $pcf['feed_image']
-        );
-        $title = $this->feed->getTitle();
-        $link = $this->getBaseUrl();
-        return <<<EOT
-<image>
-    <url>$url</url>
-    <title>$title</title>
-    <link>$link</link>
-</image>
-EOT;
-    }
-
-    /**
-     * @param int $id
-     * @return string
-     */
-    protected function renderRssItem($id)
-    {
-        global $pd_router, $u, $h, $plugin_cf;
-
-        $pcf = $plugin_cf['yanp'];
-        $pd = $pd_router->find_page($id);
-        $link = $this->getBaseUrl() . '?' . $u[$id];
-        $desc = XH_hsc($pd['yanp_description']);
-        if (!$pcf['html_markup']) {
-            $desc = XH_hsc($desc);
-        }
-        $guid = $link . ' ' . $this->getLastMod($pd);
-        $timestamp = date('r', $this->getLastMod($pd));
-        return <<<EOT
-<item>
-    <title>$h[$id]</title>
-    <link>$link</link>
-    <description>$desc</description>
-    <guid isPermaLink="false">$guid</guid>
-    <pubDate>$timestamp</pubDate>
-</item>
-EOT;
+        $view = new View('feed');
+        $view->title = $this->feed->getTitle();
+        $view->link = CMSIMPLE_URL;
+        $view->description = $this->feed->getDescription();
+        $view->language = $sl;
+        $view->pubDate = date('r', filemtime($pth['file']['content']));
+        $view->generator = CMSIMPLE_XH_VERSION . ' – Yanp_XH ' . YANP_VERSION;
+        $view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
+        $view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
+        $view->pageIds = $this->getPageIds();
+        $view->itemHeading = function ($id) use ($h) {
+            return new HtmlString($h[$id]);
+        };
+        $view->itemLink = function ($id) use ($u) {
+            return CMSIMPLE_URL . "?{$u[$id]}";
+        };
+        $view->itemDescription = function ($id) use ($pd_router) {
+            $pageData = $pd_router->find_page($id);
+            return $plugin_cf['yanp']['html_markup']
+                ? new HtmlString($pageData['yanp_description'])
+                : $pageData['yanp_description'];
+        };
+        $view->itemGuid = function ($id) use ($u, $pd_router) {
+            $pageData = $pd_router->find_page($id);
+            $timestamp = min(
+                isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
+                isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
+            );
+            return CMSIMPLE_URL . "?{$u[$id]} $timestamp";
+        };
+        $view->itemPubDate = function ($id) use ($pd_router) {
+            $pageData = $pd_router->find_page($id);
+            $timestamp = min(
+                isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
+                isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
+            );
+            return date('r', $timestamp);
+        };
+        return '<?xml version="1.0" encoding="UTF-8"?>' . $view->render();
     }
 
     protected function writeHeadLink()
@@ -163,7 +104,7 @@ EOT;
      */
     protected function getAbsoluteUrl($url)
     {
-        list($scheme, $path) = explode('//', $this->getBaseUrl() . $url);
+        list($scheme, $path) = explode('//', CMSIMPLE_URL . $url);
         $parts = explode('/', $path);
         $i = 0;
         while ($i < count($parts)) {
@@ -180,13 +121,5 @@ EOT;
             }
         }
         return $scheme . '//' . implode('/', $parts);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getBaseUrl()
-    {
-        return CMSIMPLE_URL;
     }
 }

@@ -11,6 +11,7 @@ $plugin_tx['yanp']['tab_label']="News";
 $plugin_tx['yanp']['tab_form_label']="Page news";
 $plugin_tx['yanp']['tab_description_label']="Description";
 $plugin_tx['yanp']['tab_description_info']="The description that appears in the newsbox and the RSS feed. If the field is left blank, the page is not added to resp. removed from the news.";
+$plugin_tx['yanp']['tab_button']="Save";
 $plugin_tx['yanp']['syscheck_title']="System check";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";

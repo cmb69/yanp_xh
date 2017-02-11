@@ -11,6 +11,7 @@ $plugin_tx['yanp']['tab_label']="News";
 $plugin_tx['yanp']['tab_form_label']="Seiten-Neuigkeiten";
 $plugin_tx['yanp']['tab_description_label']="Beschreibung";
 $plugin_tx['yanp']['tab_description_info']="Die Beschreibung, die in der Newsbox und dem RSS-Feed erscheint. Wird dieser Eintrag leer gelassen, wird die Seite den News nicht hinzugefügt bzw. daraus entfernt.";
+$plugin_tx['yanp']['tab_button']="Speichern";
 $plugin_tx['yanp']['syscheck_title']="System-Prüfung";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP Version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Erweiterung '%s' geladen";

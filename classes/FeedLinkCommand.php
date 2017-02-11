@@ -32,19 +32,14 @@ class FeedlinkCommand extends Command
      */
     public function renderFeedLink()
     {
-        global $pth, $plugin_tx;
+        global $pth;
 
-        $ptx = $plugin_tx['yanp'];
-        $icon = isset($this->icon)
+        $view = new View('feed-link');
+        $view->feedUrl = $this->getFeedUrl();
+        $view->icon = isset($this->icon)
             ? $pth['folder']['templateimages'] . $this->icon
             : $pth['folder']['plugins'].'yanp/images/feed.png';
-        $fn = $this->getFeedUrl();
-        return '<a href="' . $fn . '">'
-            . tag(
-                'img src="' . $icon . '"'
-                . ' alt="' . $ptx['feed_link_title'] . '" title="'
-                . $ptx['feed_link_title'] . '"'
-            ) . '</a>';
+        return $view->render();
     }
 
     /**
