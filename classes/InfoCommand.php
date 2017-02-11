@@ -51,9 +51,6 @@ class InfoCommand
         $ptx = $plugin_tx['yanp'];
         $htm = '<h4>' . $ptx['syscheck_title'] . '</h4>'
             . XH_message($this->getPhpVersionState($phpVersion), $ptx['syscheck_phpversion'], $phpVersion);
-        foreach (array('pcre', 'spl') as $ext) {
-            $htm .= XH_message($this->getExtensionState($ext), $ptx['syscheck_extension'], $ext);
-        }
         $htm .= XH_message($this->getMagicQuotesState(), $ptx['syscheck_magic_quotes']);
         $htm .= XH_message($this->getXhVersionState($xhVersion), $ptx['syscheck_xhversion'], $xhVersion);
         foreach (array('config/', 'css/', 'languages/') as $folder) {
