@@ -22,3 +22,12 @@
     this program. If not, see <a href="http://www.gnu.org/licenses/"
     target="_blank"> http://www.gnu.org/licenses/</a>.
 </p>
+<h4><?=$this->text('syscheck_title')?></h4>
+<ul class="yanp_syscheck">
+<?php foreach ($this->checks as $check):?>
+    <li>
+        <img src="<?=$this->stateIcon($check->state)?>" alt="<?=$this->text("syscheck_{$check->state}")?>" title="<?=$this->text("syscheck_{$check->state}")?>">
+        <span><?=$this->text($check->key, $check->param)?></span>
+    </li>
+<?php endforeach?>
+</ul>

@@ -25,3 +25,10 @@ div#newspage div.yanp-news {
 .yanp_license {
     text-align: justify
 }
+.yanp_syscheck {
+    padding-left: 0;
+    list-style: none;
+}
+.yanp_syscheck img {
+    margin-right: 1em;
+}

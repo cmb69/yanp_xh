@@ -23,43 +23,63 @@ class InfoCommand
 
     public function execute()
     {
-        $this->output .= $this->renderVersion() . $this->renderSystemCheck();
+        $this->output .= $this->render();
     }
 
     /**
      * @return string
      */
-    protected function renderVersion()
+    protected function render()
     {
         global $pth;
 
         $view = new View('info');
         $view->logo = "{$pth['folder']['plugins']}yanp/yanp.png";
         $view->version = YANP_VERSION;
+        $view->checks = $this->getSystemChecks();
+        $view->stateIcon = function ($state) use ($pth) {
+            return "{$pth['folder']['plugins']}yanp/images/$state.png";
+        };
         return $view->render();
     }
 
     /**
      * @return string
      */
-    protected function renderSystemCheck()
+    protected function getSystemChecks()
     {
-        global $pth, $plugin_tx;
+        global $pth;
 
         $phpVersion = '5.3.0';
         $xhVersion = '1.6';
-        $ptx = $plugin_tx['yanp'];
-        $htm = '<h4>' . $ptx['syscheck_title'] . '</h4>'
-            . XH_message($this->getPhpVersionState($phpVersion), $ptx['syscheck_phpversion'], $phpVersion);
-        $htm .= XH_message($this->getMagicQuotesState(), $ptx['syscheck_magic_quotes']);
-        $htm .= XH_message($this->getXhVersionState($xhVersion), $ptx['syscheck_xhversion'], $xhVersion);
+        $checks = array(
+            (object) array(
+                'state' => $this->getPhpVersionState($phpVersion),
+                'key' => 'syscheck_phpversion',
+                'param' => $phpVersion
+            ),
+            (object) array(
+                'state' => $this->getMagicQuotesState(),
+                'key' => 'syscheck_magic_quotes',
+                'param' => null
+            ),
+            (object) array(
+                'state' => $this->getXhVersionState($xhVersion),
+                'key' => 'syscheck_xhversion',
+                'param' => $xhVersion
+            )
+        );
         foreach (array('config/', 'css/', 'languages/') as $folder) {
-            $folders[] = $pth['folder']['plugins'] . 'yanp/' . $folder;
+            $folders[] = "{$pth['folder']['plugins']}yanp/$folder";
         }
         foreach ($folders as $folder) {
-            $htm .= XH_message($this->getWritabilityState($folder), $ptx['syscheck_writable'], $folder);
+            $checks[] = (object) array(
+                'state' => $this->getWritabilityState($folder),
+                'key' => 'syscheck_writable',
+                'param' => $folder
+            );
         }
-        return $htm;
+        return $checks;
     }
 
     /**
@@ -68,20 +88,7 @@ class InfoCommand
      */
     protected function getPhpVersionState($version)
     {
-        return version_compare(PHP_VERSION, $version) >= 0
-            ? 'success'
-            : 'fail';
-    }
-
-    /**
-     * @param string $extension
-     * @return string
-     */
-    protected function getExtensionState($extension)
-    {
-        return extension_loaded($extension)
-            ? 'success'
-            : 'fail';
+        return version_compare(PHP_VERSION, $version) >= 0 ? 'okay' : 'fail';
     }
 
     /**
@@ -89,9 +96,7 @@ class InfoCommand
      */
     protected function getMagicQuotesState()
     {
-        return get_magic_quotes_runtime()
-            ? 'warning'
-            : 'success';
+        return get_magic_quotes_runtime() ? 'warn' : 'okay';
     }
 
     /**
@@ -100,9 +105,7 @@ class InfoCommand
      */
     protected function getXhVersionState($version)
     {
-        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt')
-            ? 'success'
-            : 'fail';
+        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt') ? 'okay' : 'fail';
     }
 
     /**
@@ -111,8 +114,6 @@ class InfoCommand
      */
     protected function getWritabilityState($filename)
     {
-        return is_writable($filename)
-            ? 'success'
-            : 'warning';
+        return is_writable($filename) ? 'okay' : 'warn';
     }
 }
