@@ -100,9 +100,7 @@ class InfoCommand
      */
     protected function getXhVersionState($version)
     {
-        return defined('CMSIMPLE_XH_VERSION')
-            && strpos(CMSIMPLE_XH_VERSION, 'CMSimple_XH') === 0
-            && version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt')
+        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt')
             ? 'success'
             : 'fail';
     }

@@ -17,7 +17,7 @@ class Controller
             $command = new RssCommand(new Feed());
             $command->execute();
         }
-        if (defined('XH_ADM') && XH_ADM) {
+        if (XH_ADM) {
             if (function_exists('XH_registerStandardPluginMenuItems')) {
                 XH_registerStandardPluginMenuItems(false);
             }
