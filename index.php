@@ -5,11 +5,6 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
-if (!defined('CMSIMPLE_XH_VERSION')) {
-    header('HTTP/1.0 403 Forbidden');
-    exit;
-}
-
 define('YANP_VERSION', '@YANP_VERSION@');
 
 /**
