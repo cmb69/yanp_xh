@@ -34,7 +34,7 @@ class RssCommand extends Command
      */
     protected function renderRss()
     {
-        global $sl, $pth, $h, $u, $pd_router, $plugin_cf;
+        global $sl, $pth, $h, $u, $plugin_cf;
 
         $view = new View('feed');
         $view->title = $this->feed->getTitle();
@@ -52,7 +52,7 @@ class RssCommand extends Command
         $view->itemLink = function ($id) use ($u) {
             return CMSIMPLE_URL . "?{$u[$id]}";
         };
-        $view->itemDescription = function ($id) use ($pd_router) {
+        $view->itemDescription = function ($id) {
             return $this->getDescription($id);
         };
         $view->itemGuid = function ($id) use ($u) {
