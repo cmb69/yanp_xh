@@ -61,7 +61,7 @@ class RssCommand extends Command
         $view->itemPubDate = function ($id) {
             return date('r', $this->getLastMod($id));
         };
-        return '<?xml version="1.0" encoding="UTF-8"?>' . $view->render();
+        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $view->render();
     }
 
     protected function writeHeadLink()
