@@ -5,7 +5,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.en.html GNU GPLv3
  */
 
-define('YANP_VERSION', '@YANP_VERSION@');
+define('YANP_VERSION', '1pl5');
 
 /**
  * @return string
