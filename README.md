@@ -4,7 +4,7 @@ Yanp_XH – a CMSimple_XH plugin
 [![stable: 1pl5](https://img.shields.io/badge/stable-1pl5-green.svg)](https://github.com/cmb69/yanp_xh/releases/tag/1pl5)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-Copyright (c) 2011-2017 Christoph M. Becker
+Copyright (c) 2011-2021 Christoph M. Becker
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

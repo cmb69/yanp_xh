@@ -2,7 +2,7 @@
 <img src="<?=$this->logo?>" class="yanp_plugin_icon" alt="<?=$this->text('alt_logo')?>">
 <p>Version: <?=$this->version?></p>
 <p>
-    Copyright &copy; 2011-2017 <a href="http://3-magi.net/"
+    Copyright &copy; 2011-2021 <a href="http://3-magi.net/"
     target="_blank">Christoph M. Becker</a>
 </p>
 <p class="yanp_license">
