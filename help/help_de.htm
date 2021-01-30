@@ -1,171 +1,96 @@
 <!DOCTYPE html>
-<html lang="de">
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
 <head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8">
-<title>Yanp_XH &ndash; Handbuch</title>
-<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Yanp_XH – Benutzerhandbuch</title>
+  <style type="text/css">
+    body {
+        font-family: Georgia, serif;
+        line-height: 1.5;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        background: #ffffe1;
+        max-width: 40em;
+    }
+    p {
+        text-align: justify;
+    }
+    pre {
+        color: black;
+        background: #ffe;
+        overflow: auto;
+        padding: 0.2em 0.5em;
+        border: 1px solid silver;
+    }
+  </style>
 </head>
-
 <body>
-
-<h1>Yanp_XH &ndash; ein CMSimple_XH-Plugin</h1>
-<img src="../yanp.png" class="plugin_icon" alt="Zeitung">
-<p>YANP ist die Abkürzung von <strong>y</strong>et <strong>a</strong>nother
-<strong>n</strong>ews <strong>p</strong>lugin (noch ein weiteres News-Plugin).
-Es ermöglicht halbautomatische Handhabung der Neuigkeiten einer CMSimple_XH
-Homepage, die in einer Newsbox angezeigt und als RSS-Feed verfügbar gemacht
-werden können. Betrachten Sie es als Alternative zur manuellen Erzeugung und
-Pflege von Newsboxen oder zur Verwendung einer vollautomatisierten Lösung, wie
-<a href="http://cmsimplewiki.com/doku.php/plugins/whatsnew">WhatsNew</a> oder <a
-href="http://cmsimplewiki.com/doku.php/plugins/rss_feed">RSS Feed</a>. Wenn Sie
-weiter gehende Ansprüche haben, sollten sie die Verwendung einer
-fortgeschrittenen Lösung, wie <a
-href="http://cmsimplewiki.com/doku.php/plugins/news">News</a> oder <a
-href="http://3-magi.net/de/?CMSimple_XH/Realblog_XH">Realblog_XH</a> in Erwägung
-ziehen.</p>
-
-<ul id="nav">
-<li><a href="#notice">Wichtiger Hinweis</a></li>
-<li><a href="#requirements">Vorraussetzungen</a></li>
+<h1 id="yanp_xh">Yanp_XH</h1>
+<p>YANP ist die Abkürzung von Yet Another News Plugin (noch ein weiteres News-Plugin). Es ermöglicht die halbautomatische Handhabung der Neuigkeiten einer CMSimple_XH Website, die in einer Newsbox angezeigt und als RSS-Feed verfügbar gemacht werden können. Betrachten Sie es als Alternative zur manuellen Erzeugung und Pflege von Newsboxen oder zur Verwendung einer vollautomatisierten Lösung, wie WhatsNew oder RSS Feed. Wenn Sie weiter gehende Ansprüche haben, sollten sie die Verwendung einer fortgeschrittenen Lösung, wie <a href="https://davidstutz.de/projects/cmsimple-plugins/?News#news">News</a> oder <a href="https://github.com/cmb69/realblog_xh">Realblog_XH</a> in Erwägung ziehen.</p>
+<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<ul>
+<li><a href="#voraussetzungen">Voraussetzungen</a></li>
+<li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#settings">Einstellungen</a></li>
-<li><a href="#usage">Verwendung</a></li>
-<li><a href="#limitations">Einschränkungen</a></li>
-<li><a href="#license">Lizenz</a></li>
-<li><a href="#credits">Danksagung</a></li>
+<li><a href="#einstellungen">Einstellungen</a></li>
+<li><a href="#verwendung">Verwendung</a></li>
+<li><a href="#einschränkungen">Einschränkungen</a></li>
+<li><a href="#fehlerbehebung">Fehlerbehebung</a></li>
+<li><a href="#lizenz">Lizenz</a></li>
+<li><a href="#danksagung">Danksagung</a></li>
 </ul>
-
-<div id="body">
-
-<p><strong>Bitte lesen Sie dieses Handbuch <em>bevor</em> Sie auf Probleme
-stoßen!</strong></p>
-
-<h2 id="notice">Wichtiger Hinweis</h2>
-<p><strong>Yanp_XH 2 wurde bisher noch nicht in diversen Umgebungen getestet
-werden. Es handelt sich um eine so genannte Beta Version. Vorsicht bei der
-Verwendung!</strong></p>
-<div class="toplink"><a href="#">zum Seitenanfang</a></div>
-
-<h2 id="requirements">Vorraussetzungen</h2>
-<p>Yanp_XH benötigt CMSimple_XH &ge; 1.6 und PHP &ge; 5.4.0.</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
+<h2 id="voraussetzungen">Voraussetzungen</h2>
+<p>Yanp_XH ist ein Plugin für CMSimple_XH ≥ 1.6. Es benötigt PHP ≥ 5.4.0.</p>
+<h2 id="download">Download</h2>
+<p>Das <a href="https://github.com/cmb69/yanp_xh/releases/latest">aktuelle Release</a> kann von Github herunter geladen werden.</p>
 <h2 id="installation">Installation</h2>
-<p>Die Installation erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch.
-Im <a href="http://www.cmsimple-xh.org/wiki/doku.php/de:installation">
-CMSimple_XH Wiki</a> finden sie ausführliche Hinweise.</p>
-<ol>
+<p>Die Installation erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch. Im <a href="https://wiki.cmsimple-xh.org/doku.php/de:installation">CMSimple_XH Wiki</a> finden sie ausführliche Hinweise.</p>
+<ol type="1">
 <li>Sichern Sie die Daten auf Ihrem Server.</li>
 <li>Entpacken Sie die ZIP-Datei auf Ihrem Computer.</li>
-<li>Laden Sie das gesamte Verzeichnis yanp/ auf Ihren Server in das
-CMSimple_XH-Plugin-Verzeichnis hoch.</li>
-<li>Vergeben Sie falls nötig Schreibrechte für die Unterordner config/,
-css/ und languages/.</li>
-<li>Gehen Sie zu "Yanp" im Administrationsbereich, und prüfen Sie, ob alle
-Vorraussetzungen erfüllt sind.</li>
+<li>Laden Sie das gesamte Verzeichnis <code>yanp/</code> auf Ihren Server in das <code>plugins/</code> Verzeichnis von CMSimple_XH hoch.</li>
+<li>Vergeben Sie Schreibrechte für die Unterverzeichnisse <code>config/</code>, <code>css/</code>, und <code>languages/</code>.</li>
+<li>Navigieren Sie zu <code>Plugins</code> → <code>Yanp</code> im Administrationsbereich, und prüfen Sie, ob alle Voraussetzungen für den Betrieb erfüllt sind.</li>
 </ol>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-<h2 id="settings">Einstellungen</h2>
-<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen
-CMSimple_XH-Plugins auch im Administrationsbereich der Homepage. Wählen Sie
-"Plugins" &rarr; "Yanp".</p>
-<p>Sie können die Voreinstellungen von Yanp_XH unter "Konfiguration" ändern.
-Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den
-Einstellungen angezeigt.</p>
-<p>Die Lokalisierung wird unter "Plugin-Sprache" vorgenommen. Sie können die
-Texte in Ihre eigene Sprache übersetzen (falls keine entsprechende Sprachdatei
-zur Verfügung steht), oder sie entsprechend Ihren Anforderungen anpassen. Achten
-Sie besonders auf die Einträge in den Abschnitten "Feed" und "News". Die
-möglichen Formatierungszeichen für "News→Date Format" sind im <a
-href="http://php.net/manual/de/function.date.php">PHP Handbuch</a>
-beschrieben.</p>
-<p>Das Aussehen von Yanp_XH kann unter "Stylesheet" angepasst werden, oder
-alternativ im Stylesheet Ihres Templates, da die Newsbox und der Feed-Link dort
-direkt eingebunden werden.</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-<h2 id="usage">Verwendung</h2>
-<p>Yanp_XHs Neuigkeiten beziehen sich auf CMSimple-Seiten. Jede Seite kann einen
-Eintrag in den Neuigkeiten haben. Um dies zu steuern, wechseln Sie einfach in
-den Reiter "News" oberhalb des Editors. Wenn Sie dort Text als Beschreibung
-eintragen, wird die Seite zu den Neuigkeiten hinzugefügt. Wenn Sie die
-Beschreibung löschen, wird die Seite aus den Neuigkeiten entfernt. Der
-Zeitstempel der Neuigkeiten wird verwendet, um diese zu sortieren (aktuelle
-Neuigkeiten sind oben). Der Zeitstempel wird aktualisiert, wenn Sie den Reiter
-sichern, aber er kann nie aktueller sein als der Zeitstempel der letzten
-Bearbeitung der entsprechenden Seite. Wenn Sie also einen Tippfehler auf der
-Seite gemacht haben, den Sie später korrigieren, ändert das nicht den
-Zeitstempel der Neuigkeit. Wenn Sie andererseits die Neuigkeit später ändern,
-wird der Zeitstempel nicht geändert, solange sie nicht auch die Seite selbst
-speichern.</p>
-
-<h3>Anzeigen der Newsbox</h3>
-<p>Um die Newsbox anzuzeigen, müssen Sie Ihr Template bearbeiten; ersetzen Sie
-den bereits existierenden newsbox() Aufruf durch:</p>
-<pre>&lt;?php echo Yanp_newsbox()?&gt;</pre>
-<p>oder fügen Sie dies ggf. zusätzlich zu bereits bestehenden newsbox() Aufrufen
-ein.</p>
-<p>Weiterhin ist es möglich die Newsbox auf einer CMSimple-Seite anzuzeigen,
-indem Sie folgenden Plugin-Aufruf einfügen:</p>
-<pre>{{{PLUGIN:Yanp_newsbox();}}}</pre>
-
-<h3>RSS-Feed verfügbar machen</h3>
-<p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung
-gestellt, da ein &lt;link rel="alternate"&gt; Tag im &lt;head&gt; der Seiten
-Ihrer Homepage von Yanp_XH eingefügt wird. Um zusätzlich das RSS-Icon mit einem
-Link zum RSS-Feed anzuzeigen, müssen Sie</p>
-<pre>&lt;?php echo Yanp_feedlink()?&gt;</pre>
-<p>in Ihr Template einfügen. Das funktioniert analog zu mailformlink(). Wenn Sie
-ein anderes Feed-Icon anzeigen möchten, legen Sie es im images/ Ordner Ihres
-Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
-<pre>&lt;?php echo Yanp_feedlink('dateiname.png')?&gt;</pre>
-<p>Auf jeden Fall sollten Sie den RSS-Feed <a
-href="http://www.rssboard.org/rss-validator/">validieren</a>, um mögliche
-Probleme zu erkennen.</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-<h2 id="limitations">Einschränkungen</h2>
-<p>Unter CMSimple_XH 1.6 - 1.6.2 wird beim Speichern eines News
-Reiters die falsche Fehlermeldung "Nicht abspeicherbar: Content-Datei"
-angezeigt. Dies wird durch einen Fehler in CMSimple_XH ausgelöst, und wird mit
-CMSimple_XH 1.6.3 behoben werden.</p>
-<p>Wenn die Website mit und ohne www aufgerufen werden kann (z.B.
-www.example.com und example.com) ohne die eine Variante auf die andere weiter zu
-leiten, kann es passieren, dass der RSS Feed nicht korrekt zu sich selbst zurück
-verlinkt. Es wird grundsätzlich empfohlen, dass Sie einen 301 Redirect von
-www.example.com zu example.com oder umgekehrt einrichten.</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-<h2 id="license">Lizenz</h2>
-<p>Yanp_XH kann unter Einhaltung der <a
-href="http://www.gnu.org/licenses/gpl.html">GPLv3</a> verwendet werden.</p>
-<p>&copy; 2011-2021 Christoph M. Becker</p>
-<p>Dänische Übersetzung &copy; 2011-2012 Jens Maegard<br>
-Slovakische Übersetzung &copy; 2011-2012 Dr. Martin Sereday<br>
-Tschechische Übersetzung &copy; 2012 Josef Němec</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-<h2 id="credits">Danksagung</h2>
-<p>Das Plugin-Logo wurde von <a
-href="http://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen.
-Dieses Plugin verwendet Feed-Icons von <a
-href="http://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable
-Press</a> und Free Application Icons von <a
-href="http://www.aha-soft.com/">Aha-Soft</a>. Vielen Dank für die
-Veröffentlichung als Freeware.</p>
-<p>Vielen Dank an die Community im <a
-href="http://www.cmsimpleforum.com">CMSimple_XH Forum</a> für Tipps, Vorschläge
-und das Testen.</p>
-<p>Zu guter letzt vielen Dank an <a href="http://www.harteg.dk/">Peter
-Harteg</a>, den "Vater" von CMSimple, und alle Entwickler von <a
-href="http://www.cmsimple-xh.org/"> CMSimple_XH</a>, ohne die dieses
-phantastische CMS nicht existieren würde.</p>
-<div class="toplink"><a href="#">Seitenanfang</a></div>
-
-</div>
-
+<h2 id="einstellungen">Einstellungen</h2>
+<p>Die Konfiguration des Plugins erfolgt wie bei vielen anderen CMSimple_XH-Plugins auch im Administrationsbereich der Website. Wählen Sie <code>Plugins</code> → <code>Yanp</code>.</p>
+<p>Sie können die Original-Einstellungen von Yanp_XH unter <code>Konfiguration</code> ändern. Beim Überfahren der Hilfe-Icons mit der Maus werden Hinweise zu den Einstellungen angezeigt.</p>
+<p>Die Lokalisierung wird unter <code>Sprache</code> vorgenommen. Sie können die Zeichenketten in Ihre eigene Sprache übersetzen, falls keine entsprechende Sprachdatei zur Verfügung steht, oder sie entsprechend Ihren Anforderungen anpassen. Achten Sie besonders auf die Einträge in den Abschnitten <code>Feed</code> und <code>News</code>. Die möglichen Formatierungszeichen für <code>News</code> → <code>Date Format</code> sind im <a href="https://www.php.net/manual/de/datetime.format.php">PHP Handbuch</a> beschrieben.</p>
+<p>Das Aussehen von Yanp_XH kann unter <code>Stylesheet</code> angepasst werden, oder alternativ im Stylesheet Ihres Templates, da die Newsbox und der Feed-Link dort direkt eingebunden werden.</p>
+<h2 id="verwendung">Verwendung</h2>
+<p>Die Neuigkeiten von Yanp_XH beziehen sich auf CMSimple_XH-Seiten. Jede Seite kann einen Eintrag in den Neuigkeiten haben. Um dies zu steuern, wechseln Sie einfach in den Reiter <code>News</code> oberhalb des Editors. Wenn Sie dort Text als Beschreibung eintragen, wird die Seite zu den Neuigkeiten hinzugefügt. Wenn Sie die Beschreibung löschen, wird die Seite aus den Neuigkeiten entfernt. Der Zeitstempel der Neuigkeiten wird verwendet, um diese zu sortieren (aktuelle Neuigkeiten sind oben). Der Zeitstempel wird aktualisiert, wenn Sie den Reiter sichern, aber er kann nie aktueller sein als der Zeitstempel der letzten Bearbeitung der entsprechenden Seite. Wenn Sie also einen Tippfehler auf der Seite gemacht haben, den Sie später korrigieren, ändert das nicht den Zeitstempel der Neuigkeit. Wenn Sie andererseits die Neuigkeit später ändern, wird der Zeitstempel nicht geändert, solange sie nicht auch die Seite selbst speichern.</p>
+<h3 id="anzeigen-der-newsbox">Anzeigen der Newsbox</h3>
+<p>Um die Newsbox anzuzeigen, müssen Sie Ihr Template bearbeiten; ersetzen Sie den bereits existierenden <code>newsbox()</code> Aufruf durch:</p>
+<pre><code>&lt;?=Yanp_newsbox()?&gt;</code></pre>
+<p>oder fügen Sie dies ggf. zusätzlich zu bereits bestehenden <code>newsbox()</code> Aufrufen ein.</p>
+<p>Weiterhin ist es möglich die Newsbox auf einer CMSimple_XH-Seite anzuzeigen, indem Sie folgenden Plugin-Aufruf einfügen:</p>
+<pre><code>{{{PLUGIN:Yanp_newsbox();}}}</code></pre>
+<h3 id="rss-feed-verfügbar-machen">RSS-Feed verfügbar machen</h3>
+<p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung gestellt, da ein <code>&lt;link rel="alternate"&gt;</code> Tag im <code>&lt;head&gt;</code> der Seiten Ihrer Homepage von Yanp_XH eingefügt wird. Um zusätzlich das RSS-Icon mit einem Link zum RSS-Feed anzuzeigen, müssen Sie folgendes in Ihr Template einfügen:</p>
+<pre><code>&lt;?=Yanp_feedlink()?&gt;</code></pre>
+<p>Das funktioniert analog zu <code>mailformlink()</code>. Wenn Sie ein anderes Feed-Icon anzeigen möchten, legen Sie es im <code>images/</code> Ordner Ihres Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
+<pre><code>&lt;?=Yanp_feedlink(&#39;dateiname.png&#39;)?&gt;</code></pre>
+<p>Auf jeden Fall sollten Sie den RSS-Feed <a href="https://www.rssboard.org/rss-validator/">validieren</a>, um mögliche Probleme zu erkennen.</p>
+<h2 id="einschränkungen">Einschränkungen</h2>
+<p>Unter CMSimple_XH 1.6 - 1.6.2 wird beim Speichern eines News Reiters die falsche Fehlermeldung „Nicht abspeicherbar: Content-Datei“ angezeigt. Dies wird durch einen Fehler in CMSimple_XH ausgelöst, und ist ab CMSimple_XH 1.6.3 behoben.</p>
+<p>Wenn die Website mit und ohne www aufgerufen werden kann (z.B. <code>www.example.com</code> und <code>example.com</code>) ohne die eine Variante auf die andere weiter zu leiten, kann es passieren, dass der RSS Feed nicht korrekt zu sich selbst zurück verlinkt. Es wird grundsätzlich empfohlen, dass Sie einen 301 Redirect von <code>www.example.com</code> zu <code>example.com</code> oder umgekehrt einrichten.</p>
+<h2 id="fehlerbehebung">Fehlerbehebung</h2>
+<p>Melden Sie Programmfehler und stellen Sie Supportanfragen entweder auf <a href="https://github.com/cmb69/yanp_xh/issues">Github</a> oder im <a href="https://cmsimpleforum.com/">CMSimple_XH Forum</a>.</p>
+<h2 id="lizenz">Lizenz</h2>
+<p>Yanp_XH ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.</p>
+<p>Die Veröffentlichung von Yanp_XH erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber <em>ohne irgendeine Garantie</em>, sogar ohne die implizite Garantie der <em>Marktreife</em> oder der <em>Verwendbarkeit für einen bestimmten Zweck</em>. Details finden Sie in der GNU General Public License.</p>
+<p>Sie sollten ein Exemplar der GNU General Public License zusammen mit Yanp_XH erhalten haben. Falls nicht, siehe <a href="https://www.gnu.org/licenses/" class="uri">https://www.gnu.org/licenses/</a>.</p>
+<p>© 2011-2021 Christoph M. Becker</p>
+<p>Dänische Übersetzung © 2011-2012 Jens Maegard<br />
+Slovakische Übersetzung © 2011-2012 Dr. Martin Sereday<br />
+Tschechische Übersetzung © 2012 Josef Němec</p>
+<h2 id="danksagung">Danksagung</h2>
+<p>Das Plugin-Logo wurde von <a href="https://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen. Dieses Plugin verwendet Feed-Icons von <a href="https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a> und Free Application Icons von <a href="https://www.aha-soft.com/">Aha-Soft</a>. Vielen Dank für die Veröffentlichung als Freeware.</p>
+<p>Vielen Dank an die Community im <a href="https://www.cmsimpleforum.com/">CMSimple_XH Forum</a> für Tipps, Vorschläge und das Testen.</p>
+<p>Zu guter letzt vielen Dank an <a href="https://www.harteg.dk/">Peter Harteg</a>, den „Vater“ von CMSimple, und alle Entwickler von <a href="https://www.cmsimple-xh.org/">CMSimple_XH</a>, ohne die dieses phantastische CMS nicht existieren würde.</p>
 </body>
-
 </html>
