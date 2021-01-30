@@ -7,7 +7,6 @@ $plugin_tx['yanp']['tab_label']="Use a short text here (perhaps an abbreviation)
 
 $plugin_tx['yanp']['syscheck_phpversion']="Do not translate \"%s\"; this will be replaced by the required PHP version automatically.";
 $plugin_tx['yanp']['syscheck_extension']="Do not translate \"%s\"; this will be replaced by the name of the PHP extension automatically.";
-$plugin_tx['yanp']['syscheck_magic_quotes']="Do not translate";
 $plugin_tx['yanp']['syscheck_writable']="Do not translate \"%s\"; this will be replaced by the name of a folder automatically.";
 
 $plugin_tx['yanp']['cf_feed_copyright']="Do not translate \"&amp;lt;copyright&amp;gt;\". Consider adding a translation in parentheses instead.";

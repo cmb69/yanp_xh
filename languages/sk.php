@@ -20,7 +20,6 @@ $plugin_tx['yanp']['tab_description_info']="Popis, ktorý sa zobrazí v newsboxe
 $plugin_tx['yanp']['syscheck_title']="Systéová kontrola";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP verzia ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Nainštalované rozšírenia '%s'";
-$plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Adresár '%s' povolený pre zápis";
 $plugin_tx['yanp']['cf_feed_enabled']="Má sa vytvoriť RSS feed.";
 $plugin_tx['yanp']['cf_feed_image']="Názov JPEG, PNG alebo GIF súboru v adresári /images, ktorý sa integruje do RSS feedu ako logo (nesmie byť väčší ako 144x400 px)";

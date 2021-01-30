@@ -15,7 +15,6 @@ $plugin_tx['yanp']['tab_button']="Speichern";
 $plugin_tx['yanp']['syscheck_title']="System-Prüfung";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP Version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Erweiterung '%s' geladen";
-$plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Ordner '%s' beschreibbar";
 $plugin_tx['yanp']['syscheck_okay']="OK";
 $plugin_tx['yanp']['syscheck_warn']="Warnung";

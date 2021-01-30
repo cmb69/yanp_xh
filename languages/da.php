@@ -20,7 +20,6 @@ $plugin_tx['yanp']['tab_description_info']="Beskrivelsen, der vises i Nyhedsboks
 $plugin_tx['yanp']['syscheck_title']="System check";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
-$plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_writable']="Mappen '%s' skrivebar";
 $plugin_tx['yanp']['cf_feed_enabled']="Vejret RSS-feed vil blive oprettet.";
 $plugin_tx['yanp']['cf_feed_image']="Navnet på en JPEG, PNG eller GIF billede i din billedmappe, som er integreret på RSS-feed, da det logo (må ikk overstige 144x400 pixels)";

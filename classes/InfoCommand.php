@@ -50,18 +50,13 @@ class InfoCommand
     {
         global $pth;
 
-        $phpVersion = '5.3.0';
+        $phpVersion = '5.4.0';
         $xhVersion = '1.6';
         $checks = array(
             (object) array(
                 'state' => $this->getPhpVersionState($phpVersion),
                 'key' => 'syscheck_phpversion',
                 'param' => $phpVersion
-            ),
-            (object) array(
-                'state' => $this->getMagicQuotesState(),
-                'key' => 'syscheck_magic_quotes',
-                'param' => null
             ),
             (object) array(
                 'state' => $this->getXhVersionState($xhVersion),
@@ -89,14 +84,6 @@ class InfoCommand
     protected function getPhpVersionState($version)
     {
         return version_compare(PHP_VERSION, $version) >= 0 ? 'okay' : 'fail';
-    }
-
-    /**
-     * @return string
-     */
-    protected function getMagicQuotesState()
-    {
-        return get_magic_quotes_runtime() ? 'warn' : 'okay';
     }
 
     /**

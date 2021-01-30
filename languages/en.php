@@ -15,7 +15,6 @@ $plugin_tx['yanp']['tab_button']="Save";
 $plugin_tx['yanp']['syscheck_title']="System check";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
-$plugin_tx['yanp']['syscheck_magic_quotes']="magic_quotes_runtime Off";
 $plugin_tx['yanp']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
 $plugin_tx['yanp']['syscheck_writable']="Folder '%s' writable";
 $plugin_tx['yanp']['syscheck_okay']="Okay";
