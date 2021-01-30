@@ -65,7 +65,7 @@ class InfoCommand
         global $pth;
 
         $phpVersion = '5.4.0';
-        $xhVersion = '1.6';
+        $xhVersion = '1.7.0';
         $checks = array(
             (object) array(
                 'state' => $this->getPhpVersionState($phpVersion),

@@ -23,7 +23,7 @@ or [Realblog\_XH](https://github.com/cmb69/realblog_xh).
 
 ## Requirements
 
-Yanp\_XH is a plugin for CMSimple\_XH ≥ 1.6.
+Yanp\_XH is a plugin for CMSimple\_XH ≥ 1.7.0.
 It requires PHP ≥ 5.4.0.
 
 ## Download
@@ -129,11 +129,6 @@ In any case, you should [validate](https://www.rssboard.org/rss-validator/)
 the RSS feed to be informed about possible problems.
 
 ## Limitations
-
-Under CMSimple\_XH 1.6 - 1.6.2 when saving the News tab there is the
-spurious error message “Could not save content file”.
-This is caused by a bug in CMSimple\_XH
-which is fixed as of CMSimple\_XH 1.6.3.
 
 When the website can be requested with www and without it
 (e.g. `www.example.com` and `example.com`)

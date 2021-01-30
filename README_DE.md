@@ -28,7 +28,7 @@ in Erwägung ziehen.
 
 ## Voraussetzungen
 
-Yanp\_XH ist ein Plugin für CMSimple_XH ≥ 1.6.
+Yanp\_XH ist ein Plugin für CMSimple_XH ≥ 1.7.0.
 Es benötigt PHP ≥ 5.4.0.
 
 ## Download
@@ -140,11 +140,6 @@ Auf jeden Fall sollten Sie den RSS-Feed
 um mögliche Probleme zu erkennen.
 
 ## Einschränkungen
-
-Unter CMSimple\_XH 1.6 - 1.6.2 wird beim Speichern eines News Reiters
-die falsche Fehlermeldung „Nicht abspeicherbar: Content-Datei“ angezeigt.
-Dies wird durch einen Fehler in CMSimple\_XH ausgelöst,
-und ist ab CMSimple\_XH 1.6.3 behoben.
 
 Wenn die Website mit und ohne www aufgerufen werden kann
 (z.B. `www.example.com` und `example.com`)

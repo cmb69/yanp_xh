@@ -31,9 +31,7 @@ class Controller
             (new RssCommand(new Feed()))->execute();
         }
         if (XH_ADM) {
-            if (function_exists('XH_registerStandardPluginMenuItems')) {
-                XH_registerStandardPluginMenuItems(false);
-            }
+            XH_registerStandardPluginMenuItems(false);
 
             $pd_router->add_interest('yanp_timestamp');
             $pd_router->add_interest('yanp_description');
@@ -53,11 +51,7 @@ class Controller
      */
     protected function isAdministrationRequested()
     {
-        global $yanp;
-
-        return function_exists('XH_wantsPluginAdministration')
-            && XH_wantsPluginAdministration('yanp')
-            || isset($yanp) && $yanp == 'true';
+        return XH_wantsPluginAdministration('yanp');
     }
 
     protected function handleAdministration()
