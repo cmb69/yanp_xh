@@ -86,11 +86,10 @@ class RssCommand extends Command
         global $hjs, $plugin_tx;
 
         $fn = $this->getFeedUrl();
-        $hjs .= tag(
-            'link rel="alternate" type="application/rss+xml"'
+        $hjs .= '<link rel="alternate" type="application/rss+xml"'
             . ' title="' . $plugin_tx['yanp']['feed_link_title'] . '"'
-            . ' href="' . $fn . '"'
-        ) . "\n";
+            . ' href="' . $fn . '">'
+            . "\n";
     }
 
     /**
