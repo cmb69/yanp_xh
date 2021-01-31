@@ -21,6 +21,7 @@ $plugin_tx['yanp']['syscheck_okay']="Okay";
 $plugin_tx['yanp']['syscheck_warn']="Warning";
 $plugin_tx['yanp']['syscheck_fail']="Failure";
 $plugin_tx['yanp']['cf_html_markup']="Whether the description of the news may contain (X)HTML markup.";
+$plugin_tx['yanp']['cf_entries_max']="The maximum number of news entries to be shown in the newsbox and the RSS feed. If the number is negative, all available entries are shown.";
 $plugin_tx['yanp']['cf_feed_enabled']="Whether the RSS feed will be created.";
 $plugin_tx['yanp']['cf_feed_image']="The name of a JPEG, PNG or GIF image in your images folder, that is integrated to the RSS feed as it's  logo (must not exceed 144x400 pixels)";
 

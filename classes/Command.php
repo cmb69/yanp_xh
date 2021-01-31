@@ -30,16 +30,20 @@ abstract class Command
      */
     protected function getPageIds()
     {
-        global $pd_router;
+        global $pd_router, $plugin_cf;
 
         $allPageData = $pd_router->find_all();
         $ids = array_keys($allPageData);
         $dates = array_map(array($this, 'getLastMod'), $ids);
         array_multisort($dates, SORT_DESC, $ids);
-        return array_filter($ids, function ($id) use ($allPageData) {
+        $ids = array_filter($ids, function ($id) use ($allPageData) {
             return $allPageData[$id]['published'] !== '0'
                 && $allPageData[$id]['yanp_description'] != '';
         });
+        if ((int) $plugin_cf['yanp']['entries_max'] >= 0) {
+            $ids = array_slice($ids, 0, (int) $plugin_cf['yanp']['entries_max']);
+        }
+        return $ids;
     }
 
     /**
