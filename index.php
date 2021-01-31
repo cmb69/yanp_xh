@@ -24,7 +24,7 @@ use Yanp\FeedlinkCommand;
 use Yanp\NewsboxCommand;
 use Yanp\View;
 
-define('YANP_VERSION', '1pl5');
+const YANP_VERSION = '1pl5';
 
 /**
  * @return string
