@@ -24,7 +24,7 @@ or [Realblog\_XH](https://github.com/cmb69/realblog_xh).
 ## Requirements
 
 Yanp\_XH is a plugin for CMSimple\_XH ≥ 1.7.0.
-It requires PHP ≥ 5.4.0.
+It requires PHP ≥ 5.6.0.
 
 ## Download
 
