@@ -56,7 +56,7 @@ class RssCommand extends Command
         $view->description = $this->feed->getDescription();
         $view->language = $sl;
         $view->pubDate = date('r', filemtime($pth['file']['content']));
-        $view->generator = CMSIMPLE_XH_VERSION . ' – Yanp_XH ' . YANP_VERSION;
+        $view->generator = 'Yanp_XH';
         $view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
         $view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
         $view->pageIds = $this->getPageIds();
