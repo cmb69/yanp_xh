@@ -20,17 +20,32 @@
             <arg file="index.php"/>
             <arg file="yanp_view.php"/>
             <arg file="classes"/>
+            <arg file="tests/unit"/>
         </exec>
     </target>
 
     <target name="mess" description="detects code flaws">
         <exec executable="phpmd" passthru="true" checkreturn="true">
-            <arg line="index.php,yanp_view.php,classes ansi codesize,unusedcode"/>
+            <arg line="index.php,yanp_view.php,classes,tests/unit ansi codesize,unusedcode"/>
         </exec>
     </target>
 
     <target name="compat" description="checks PHP requirements">
         <exec command="phpcompatinfo analyser:run --alias current" logoutput="true"/>
+    </target>
+
+    <target name="unit-tests" description="runs all unit tests">
+        <exec executable="phpunit" passthru="true" checkreturn="true">
+            <arg value="--bootstrap"/>
+            <arg file="tests/unit/bootstrap.php"/>
+            <arg file="tests/unit"/>
+        </exec>
+    </target>
+
+    <target name="coverage" description="generates coverage report">
+        <exec executable="phpunit" passthru="true" checkreturn="true">
+            <arg line="--configuration coverage.xml"/>
+        </exec>
     </target>
 
     <target name="gen-help" description="builds help.htm from README.md">
