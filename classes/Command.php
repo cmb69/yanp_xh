@@ -37,7 +37,8 @@ abstract class Command
         $dates = array_map(array($this, 'getLastMod'), $ids);
         array_multisort($dates, SORT_DESC, $ids);
         return array_filter($ids, function ($id) use ($allPageData) {
-            return $allPageData[$id]['yanp_description'] != '';
+            return $allPageData[$id]['published'] !== '0'
+                && $allPageData[$id]['yanp_description'] != '';
         });
     }
 
