@@ -38,7 +38,7 @@ class NewsboxCommand extends Command
     {
         global $h, $u, $cf, $sn, $plugin_tx;
 
-        $view = new View('newsbox');
+        $view = new View();
         $view->pageIds = $this->getPageIds();
         $view->headingTag = 'h' . min($cf['menu']['levels'] + 1, 6);
         $view->heading = function ($id) use ($h) {
@@ -53,6 +53,6 @@ class NewsboxCommand extends Command
         $view->url = function ($id) use ($sn, $u) {
             return "$sn?{$u[$id]}";
         };
-        return $view->render();
+        return $view->render('newsbox');
     }
 }

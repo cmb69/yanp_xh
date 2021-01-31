@@ -48,11 +48,11 @@ class PageDataCommand extends Command
     {
         global $sn, $su, $plugin_tx;
 
-        $view = new View('pdtab');
+        $view = new View();
         $view->actionUrl = "$sn?$su";
         $view->timestamp = time();
         $view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
         $view->description = $this->pageData['yanp_description'];
-        return $view->render();
+        return $view->render('pdtab');
     }
 }

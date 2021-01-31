@@ -47,13 +47,13 @@ class InfoCommand
     {
         global $pth;
 
-        $view = new View('info');
+        $view = new View();
         $view->version = YANP_VERSION;
         $view->checks = $this->getSystemChecks();
         $view->stateIcon = function ($state) use ($pth) {
             return "{$pth['folder']['plugins']}yanp/images/$state.png";
         };
-        return $view->render();
+        return $view->render('info');
     }
 
     /**

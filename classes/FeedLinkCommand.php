@@ -48,12 +48,12 @@ class FeedlinkCommand extends Command
     {
         global $pth;
 
-        $view = new View('feed-link');
+        $view = new View();
         $view->feedUrl = $this->getFeedUrl();
         $view->icon = isset($this->icon)
             ? $pth['folder']['templateimages'] . $this->icon
             : $pth['folder']['plugins'].'yanp/images/feed.png';
-        return $view->render();
+        return $view->render('feed-link');
     }
 
     /**

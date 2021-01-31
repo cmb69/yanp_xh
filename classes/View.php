@@ -23,14 +23,7 @@ namespace Yanp;
 
 class View
 {
-    private $template;
-
     private $data = array();
-
-    public function __construct($template)
-    {
-        $this->template = $template;
-    }
 
     public function __set($name, $value)
     {
@@ -75,12 +68,12 @@ class View
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
-    public function render()
+    public function render($_template)
     {
         global $pth;
 
         ob_start();
-        include "{$pth['folder']['plugins']}yanp/views/{$this->template}.php";
+        include "{$pth['folder']['plugins']}yanp/views/{$_template}.php";
         return ob_get_clean();
     }
 

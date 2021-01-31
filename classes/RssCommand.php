@@ -50,7 +50,7 @@ class RssCommand extends Command
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
-        $view = new View('feed');
+        $view = new View();
         $view->title = $this->feed->getTitle();
         $view->link = CMSIMPLE_URL;
         $view->description = $this->feed->getDescription();
@@ -75,7 +75,7 @@ class RssCommand extends Command
         $view->itemPubDate = function ($id) {
             return date('r', $this->getLastMod($id));
         };
-        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $view->render();
+        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $view->render('feed');
     }
 
     protected function writeHeadLink()
