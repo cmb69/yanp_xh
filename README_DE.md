@@ -111,7 +111,7 @@ Weiterhin ist es möglich die Newsbox auf einer CMSimple\_XH-Seite anzuzeigen,
 indem Sie folgenden Plugin-Aufruf einfügen:
 
 ````
-{{{PLUGIN:Yanp_newsbox();}}}
+{{{Yanp_newsbox()}}}
 ````
 
 ### RSS-Feed verfügbar machen
