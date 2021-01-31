@@ -18,13 +18,6 @@ div#newspage div.yanp-news {
  * Back-end
  */
 
-.yanp_plugin_icon {
-    float: left;
-    margin: 0 1em 1em 0;
-}
-.yanp_license {
-    text-align: justify
-}
 .yanp_syscheck {
     padding-left: 0;
     list-style: none;

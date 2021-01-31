@@ -1,6 +1,6 @@
 <?php
 
-$plugin_tx['yanp']['alt_logo']="Zeitung";
+$plugin_tx['yanp']['label_version']="Version";
 $plugin_tx['yanp']['news_date_format']="d.m.Y";
 $plugin_tx['yanp']['news_read_more']="Mehr&nbsp;&raquo;";
 $plugin_tx['yanp']['feed_title']="";

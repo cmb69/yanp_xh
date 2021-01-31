@@ -48,7 +48,6 @@ class InfoCommand
         global $pth;
 
         $view = new View('info');
-        $view->logo = "{$pth['folder']['plugins']}yanp/yanp.png";
         $view->version = YANP_VERSION;
         $view->checks = $this->getSystemChecks();
         $view->stateIcon = function ($state) use ($pth) {
