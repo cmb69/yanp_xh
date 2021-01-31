@@ -1,3 +1,11 @@
+<?php
+if (!isset($this)) {
+    header('HTTP/1.0 404 Not Found');
+    exit;
+}
+?>
+
+<!-- Yanp_XH info -->
 <h1>Yanp</h1>
 <p><?=$this->text('label_version')?>: <?=$this->version?></p>
 <h2><?=$this->text('syscheck_title')?></h2>

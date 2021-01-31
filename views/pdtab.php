@@ -1,3 +1,11 @@
+<?php
+if (!isset($this)) {
+    header('HTTP/1.0 404 Not Found');
+    exit;
+}
+?>
+
+<!-- Yanp_XH pdtab -->
 <form id="yanp" action="<?=$this->actionUrl?>" method="post" onsubmit="return true">
     <p><strong><?=$this->text('tab_form_label')?></strong></p>
     <input type="hidden" name="yanp_timestamp" value="<?=$this->timestamp?>">

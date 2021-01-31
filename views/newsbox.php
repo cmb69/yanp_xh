@@ -1,3 +1,11 @@
+<?php
+if (!isset($this)) {
+    header('HTTP/1.0 404 Not Found');
+    exit;
+}
+?>
+
+<!-- Yanp_XH newsbox -->
 <?php foreach ($this->pageIds as $pageId):?>
 <div class="yanp-news">
     <<?=$this->headingTag?>><?=$this->heading($pageId)?></<?=$this->headingTag?>>

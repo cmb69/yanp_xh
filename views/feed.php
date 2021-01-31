@@ -1,3 +1,11 @@
+<?php
+if (!isset($this)) {
+    header('HTTP/1.0 404 Not Found');
+    exit;
+}
+?>
+
+<!-- Yanp_XH feed -->
 <rss version="2.0">
     <channel>
         <title><?=$this->title?></title>
