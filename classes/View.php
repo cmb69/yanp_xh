@@ -42,19 +42,18 @@ class View
 
     public function __call($name, array $args)
     {
-        return $this->escape(call_user_func_array($this->data[$name], $args));
+        $callable = $this->data[$name];
+        return $this->escape($callable(...$args));
     }
 
-    protected function text($key)
+    protected function text($key, ...$args)
     {
         global $plugin_tx;
 
-        $args = func_get_args();
-        array_shift($args);
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
-    protected function plural($key, $count)
+    protected function plural($key, $count, ...$args)
     {
         global $plugin_tx;
 
@@ -63,8 +62,6 @@ class View
         } else {
             $key .= XH_numberSuffix($count);
         }
-        $args = func_get_args();
-        array_shift($args);
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
