@@ -116,9 +116,9 @@ indem Sie folgenden Plugin-Aufruf einfügen:
 
 ### RSS-Feed verfügbar machen
 
-Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung gestellt,
+Browser *können* melden, dass ein RSS-Feed verfügbar ist,
 da ein `<link rel="alternate">` Tag im `<head>` der Seiten
-Ihrer Homepage von Yanp\_XH eingefügt wird.
+Ihrer Website von Yanp\_XH eingefügt wird.
 Um zusätzlich das RSS-Icon mit einem Link zum RSS-Feed anzuzeigen,
 müssen Sie folgendes in Ihr Template einfügen:
 

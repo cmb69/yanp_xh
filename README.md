@@ -106,9 +106,9 @@ by inserting the plugin call:
 
 ### Making the RSS feed available
 
-The RSS feed is made available to many modern browsers automatically,
+Browsers *may* report that an RSS feed is available,
 because a `<link rel="alternate">` tag is inserted
-into the `<head>` of the pages of your website by Yanp\_XH.
+into the `<head>` of the pages of your Website by Yanp\_XH.
 To additionally display the RSS icon with a link to the RSS feed,
 you have to insert the following into your template:
 
