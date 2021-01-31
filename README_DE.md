@@ -183,8 +183,7 @@ Tschechische Übersetzung © 2012 Josef Němec
 Das Plugin-Logo wurde von
 [cemagraphics](https://cemagraphics.deviantart.com/#/d28bkte) entworfen.
 Dieses Plugin verwendet Feed-Icons von
-[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/)
-und Free Application Icons von [Aha-Soft](https://www.aha-soft.com/).
+[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/).
 Vielen Dank für die Veröffentlichung als Freeware.
 
 Vielen Dank an die Community im [CMSimple\_XH Forum](https://www.cmsimpleforum.com/)

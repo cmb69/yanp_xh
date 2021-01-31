@@ -168,8 +168,7 @@ Czech translation © 2012 Josef Němec
 The plugin logo was designed by
 [cemagraphics](http://cemagraphics.deviantart.com/#/d28bkte).
 This plugin uses feed icons from
-[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/)
-and Free Application icons from [Aha-Soft](https://www.aha-soft.com/).
+[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/).
 Many thanks for publishing these icons as freeware.
 
 Many thanks to the community at the [CMSimple\_XH forum](https://www.cmsimpleforum.com/)

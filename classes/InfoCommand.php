@@ -99,7 +99,7 @@ class InfoCommand
      */
     private function getPhpVersionState($version)
     {
-        return version_compare(PHP_VERSION, $version) >= 0 ? 'okay' : 'fail';
+        return version_compare(PHP_VERSION, $version) >= 0 ? 'success' : 'fail';
     }
 
     /**
@@ -108,7 +108,7 @@ class InfoCommand
      */
     private function getXhVersionState($version)
     {
-        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt') ? 'okay' : 'fail';
+        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version") >= 0 ? 'success' : 'fail';
     }
 
     /**
@@ -117,6 +117,6 @@ class InfoCommand
      */
     private function getWritabilityState($filename)
     {
-        return is_writable($filename) ? 'okay' : 'warn';
+        return is_writable($filename) ? 'success' : 'warning';
     }
 }

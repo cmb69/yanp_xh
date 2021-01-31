@@ -13,15 +13,3 @@ div#newspage div.yanp-news {
     border: 1px solid #ccc;
     margin: 0 10px 10px 0;
 }
-
-/*
- * Back-end
- */
-
-.yanp_syscheck {
-    padding-left: 0;
-    list-style: none;
-}
-.yanp_syscheck img {
-    margin-right: 1em;
-}
