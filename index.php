@@ -19,6 +19,11 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Yanp\Controller;
+use Yanp\FeedlinkCommand;
+use Yanp\NewsboxCommand;
+use Yanp\View;
+
 define('YANP_VERSION', '1pl5');
 
 /**
@@ -27,7 +32,7 @@ define('YANP_VERSION', '1pl5');
 function Yanp_newsbox()
 {
     ob_start();
-    (new Yanp\NewsboxCommand(new Yanp\View))->execute();
+    (new NewsboxCommand(new View))->execute();
     return ob_get_clean();
 }
 
@@ -38,8 +43,8 @@ function Yanp_newsbox()
 function Yanp_feedlink($icon = null)
 {
     ob_start();
-    (new Yanp\FeedlinkCommand($icon, new Yanp\View))->execute();
+    (new FeedlinkCommand($icon, new View))->execute();
     return ob_get_clean();
 }
 
-(new Yanp\Controller())->dispatch();
+(new Controller)->dispatch();

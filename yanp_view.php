@@ -19,12 +19,15 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Yanp\PageDataCommand;
+use Yanp\View;
+
 /**
  * @return string
  */
 function Yanp_view(array $page)
 {
     ob_start();
-    (new Yanp\PageDataCommand($page, new Yanp\View))->execute();
+    (new PageDataCommand($page, new View))->execute();
     return ob_get_clean();
 }
