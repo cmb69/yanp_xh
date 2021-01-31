@@ -49,12 +49,12 @@ class Controller
     /**
      * @return bool
      */
-    protected function isAdministrationRequested()
+    private function isAdministrationRequested()
     {
         return XH_wantsPluginAdministration('yanp');
     }
 
-    protected function handleAdministration()
+    private function handleAdministration()
     {
         global $admin, $action, $o;
 

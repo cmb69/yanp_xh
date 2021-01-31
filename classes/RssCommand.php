@@ -26,7 +26,7 @@ class RssCommand extends Command
     /**
      * @var Feed
      */
-    protected $feed;
+    private $feed;
 
     /** @var View */
     private $view;
@@ -50,7 +50,7 @@ class RssCommand extends Command
     /**
      * @return string
      */
-    protected function renderRss()
+    private function renderRss()
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
@@ -81,7 +81,7 @@ class RssCommand extends Command
         return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $this->view->render('feed');
     }
 
-    protected function writeHeadLink()
+    private function writeHeadLink()
     {
         global $hjs, $plugin_tx;
 
@@ -95,7 +95,7 @@ class RssCommand extends Command
     /**
      * @return string
      */
-    protected function getFeedUrl()
+    private function getFeedUrl()
     {
         global $sn;
 
@@ -105,7 +105,7 @@ class RssCommand extends Command
     /**
      * @param string $url
      */
-    protected function getAbsoluteUrl($url)
+    private function getAbsoluteUrl($url)
     {
         list($scheme, $path) = explode('//', CMSIMPLE_URL . $url);
         $parts = explode('/', $path);

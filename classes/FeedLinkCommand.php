@@ -26,7 +26,7 @@ class FeedlinkCommand extends Command
     /**
      * @var string
      */
-    protected $icon;
+    private $icon;
 
     /** @var View */
     private $view;
@@ -62,7 +62,7 @@ class FeedlinkCommand extends Command
     /**
      * @return string
      */
-    protected function getFeedUrl()
+    private function getFeedUrl()
     {
         global $sn;
 

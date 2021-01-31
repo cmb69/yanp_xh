@@ -29,7 +29,7 @@ class InfoCommand
     /**
      * @var string
      */
-    protected $output;
+    private $output;
 
     public function __construct(View $view)
     {
@@ -47,7 +47,7 @@ class InfoCommand
     /**
      * @return string
      */
-    protected function render()
+    private function render()
     {
         global $pth;
 
@@ -62,7 +62,7 @@ class InfoCommand
     /**
      * @return string
      */
-    protected function getSystemChecks()
+    private function getSystemChecks()
     {
         global $pth;
 
@@ -97,7 +97,7 @@ class InfoCommand
      * @param string $version
      * @return string
      */
-    protected function getPhpVersionState($version)
+    private function getPhpVersionState($version)
     {
         return version_compare(PHP_VERSION, $version) >= 0 ? 'okay' : 'fail';
     }
@@ -106,7 +106,7 @@ class InfoCommand
      * @param string $version
      * @return string
      */
-    protected function getXhVersionState($version)
+    private function getXhVersionState($version)
     {
         return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version", 'gt') ? 'okay' : 'fail';
     }
@@ -115,7 +115,7 @@ class InfoCommand
      * @param string $filename
      * @return string
      */
-    protected function getWritabilityState($filename)
+    private function getWritabilityState($filename)
     {
         return is_writable($filename) ? 'okay' : 'warn';
     }

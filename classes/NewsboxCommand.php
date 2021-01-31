@@ -42,7 +42,7 @@ class NewsboxCommand extends Command
     /**
      * @return string
      */
-    protected function render()
+    private function render()
     {
         global $h, $u, $cf, $sn, $plugin_tx;
 

@@ -26,7 +26,7 @@ class PageDataCommand extends Command
     /**
      * @var array
      */
-    protected $pageData;
+    private $pageData;
 
     /** @var View */
     private $view;
@@ -48,7 +48,7 @@ class PageDataCommand extends Command
     /**
      * @return string
      */
-    protected function render()
+    private function render()
     {
         global $sn, $su, $plugin_tx;
 

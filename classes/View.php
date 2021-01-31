@@ -77,7 +77,7 @@ class View
         return ob_get_clean();
     }
 
-    protected function escape($value)
+    private function escape($value)
     {
         if (is_scalar($value)) {
             return XH_hsc($value);
