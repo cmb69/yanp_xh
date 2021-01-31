@@ -23,6 +23,14 @@ namespace Yanp;
 
 class NewsboxCommand extends Command
 {
+    /** @var View */
+    private $view;
+
+    public function __construct(View $view)
+    {
+        $this->view = $view;
+    }
+
     /**
      * @return string
      */
@@ -38,21 +46,20 @@ class NewsboxCommand extends Command
     {
         global $h, $u, $cf, $sn, $plugin_tx;
 
-        $view = new View();
-        $view->pageIds = $this->getPageIds();
-        $view->headingTag = 'h' . min($cf['menu']['levels'] + 1, 6);
-        $view->heading = function ($id) use ($h) {
+        $this->view->pageIds = $this->getPageIds();
+        $this->view->headingTag = 'h' . min($cf['menu']['levels'] + 1, 6);
+        $this->view->heading = function ($id) use ($h) {
             return new HtmlString($h[$id]);
         };
-        $view->date = function ($id) use ($plugin_tx) {
+        $this->view->date = function ($id) use ($plugin_tx) {
             return date($plugin_tx['yanp']['news_date_format'], $this->getLastMod($id));
         };
-        $view->description = function ($id) {
+        $this->view->description = function ($id) {
             return $this->getDescription($id);
         };
-        $view->url = function ($id) use ($sn, $u) {
+        $this->view->url = function ($id) use ($sn, $u) {
             return "$sn?{$u[$id]}";
         };
-        return $view->render('newsbox');
+        return $this->view->render('newsbox');
     }
 }

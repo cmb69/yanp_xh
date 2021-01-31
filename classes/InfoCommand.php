@@ -23,15 +23,19 @@ namespace Yanp;
 
 class InfoCommand
 {
+    /** @var View */
+    private $view;
+
     /**
      * @var string
      */
     protected $output;
 
-    public function __construct()
+    public function __construct(View $view)
     {
         global $o;
 
+        $this->view = $view;
         $this->output =& $o;
     }
 
@@ -47,13 +51,12 @@ class InfoCommand
     {
         global $pth;
 
-        $view = new View();
-        $view->version = YANP_VERSION;
-        $view->checks = $this->getSystemChecks();
-        $view->stateIcon = function ($state) use ($pth) {
+        $this->view->version = YANP_VERSION;
+        $this->view->checks = $this->getSystemChecks();
+        $this->view->stateIcon = function ($state) use ($pth) {
             return "{$pth['folder']['plugins']}yanp/images/$state.png";
         };
-        return $view->render('info');
+        return $this->view->render('info');
     }
 
     /**

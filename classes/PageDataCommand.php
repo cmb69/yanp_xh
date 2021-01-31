@@ -28,12 +28,16 @@ class PageDataCommand extends Command
      */
     protected $pageData;
 
+    /** @var View */
+    private $view;
+
     /**
      * @param array $pageData
      */
-    public function __construct(array $pageData)
+    public function __construct(array $pageData, View $view)
     {
         $this->pageData = $pageData;
+        $this->view = $view;
     }
 
     public function execute()
@@ -48,11 +52,10 @@ class PageDataCommand extends Command
     {
         global $sn, $su, $plugin_tx;
 
-        $view = new View();
-        $view->actionUrl = "$sn?$su";
-        $view->timestamp = time();
-        $view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
-        $view->description = $this->pageData['yanp_description'];
-        return $view->render('pdtab');
+        $this->view->actionUrl = "$sn?$su";
+        $this->view->timestamp = time();
+        $this->view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
+        $this->view->description = $this->pageData['yanp_description'];
+        return $this->view->render('pdtab');
     }
 }

@@ -28,9 +28,13 @@ class RssCommand extends Command
      */
     protected $feed;
 
-    public function __construct(Feed $feed)
+    /** @var View */
+    private $view;
+
+    public function __construct(Feed $feed, View $view)
     {
         $this->feed = $feed;
+        $this->view = $view;
     }
 
     public function execute()
@@ -50,32 +54,31 @@ class RssCommand extends Command
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
-        $view = new View();
-        $view->title = $this->feed->getTitle();
-        $view->link = CMSIMPLE_URL;
-        $view->description = $this->feed->getDescription();
-        $view->language = $sl;
-        $view->pubDate = date('r', filemtime($pth['file']['content']));
-        $view->generator = 'Yanp_XH';
-        $view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
-        $view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
-        $view->pageIds = $this->getPageIds();
-        $view->itemHeading = function ($id) use ($h) {
+        $this->view->title = $this->feed->getTitle();
+        $this->view->link = CMSIMPLE_URL;
+        $this->view->description = $this->feed->getDescription();
+        $this->view->language = $sl;
+        $this->view->pubDate = date('r', filemtime($pth['file']['content']));
+        $this->view->generator = 'Yanp_XH';
+        $this->view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
+        $this->view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
+        $this->view->pageIds = $this->getPageIds();
+        $this->view->itemHeading = function ($id) use ($h) {
             return new HtmlString($h[$id]);
         };
-        $view->itemLink = function ($id) use ($u) {
+        $this->view->itemLink = function ($id) use ($u) {
             return CMSIMPLE_URL . "?{$u[$id]}";
         };
-        $view->itemDescription = function ($id) {
+        $this->view->itemDescription = function ($id) {
             return $this->getDescription($id);
         };
-        $view->itemGuid = function ($id) use ($u) {
+        $this->view->itemGuid = function ($id) use ($u) {
             return CMSIMPLE_URL . "?{$u[$id]} " . $this->getLastMod($id);
         };
-        $view->itemPubDate = function ($id) {
+        $this->view->itemPubDate = function ($id) {
             return date('r', $this->getLastMod($id));
         };
-        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $view->render('feed');
+        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $this->view->render('feed');
     }
 
     protected function writeHeadLink()

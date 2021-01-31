@@ -28,12 +28,16 @@ class FeedlinkCommand extends Command
      */
     protected $icon;
 
+    /** @var View */
+    private $view;
+
     /**
      * @param string $icon
      */
-    public function __construct($icon)
+    public function __construct($icon, View $view)
     {
         $this->icon = $icon;
+        $this->view = $view;
     }
 
     public function execute()
@@ -48,12 +52,11 @@ class FeedlinkCommand extends Command
     {
         global $pth;
 
-        $view = new View();
-        $view->feedUrl = $this->getFeedUrl();
-        $view->icon = isset($this->icon)
+        $this->view->feedUrl = $this->getFeedUrl();
+        $this->view->icon = isset($this->icon)
             ? $pth['folder']['templateimages'] . $this->icon
             : $pth['folder']['plugins'].'yanp/images/feed.png';
-        return $view->render('feed-link');
+        return $this->view->render('feed-link');
     }
 
     /**

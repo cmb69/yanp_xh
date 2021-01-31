@@ -27,7 +27,7 @@ define('YANP_VERSION', '1pl5');
 function Yanp_newsbox()
 {
     ob_start();
-    (new Yanp\NewsboxCommand())->execute();
+    (new Yanp\NewsboxCommand(new Yanp\View))->execute();
     return ob_get_clean();
 }
 
@@ -38,7 +38,7 @@ function Yanp_newsbox()
 function Yanp_feedlink($icon = null)
 {
     ob_start();
-    (new Yanp\FeedlinkCommand($icon))->execute();
+    (new Yanp\FeedlinkCommand($icon, new Yanp\View))->execute();
     return ob_get_clean();
 }
 
