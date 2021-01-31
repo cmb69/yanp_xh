@@ -73,7 +73,7 @@
 <p>Der RSS-Feed wird vielen modernen Browsern automatisch zur Verfügung gestellt, da ein <code>&lt;link rel="alternate"&gt;</code> Tag im <code>&lt;head&gt;</code> der Seiten Ihrer Homepage von Yanp_XH eingefügt wird. Um zusätzlich das RSS-Icon mit einem Link zum RSS-Feed anzuzeigen, müssen Sie folgendes in Ihr Template einfügen:</p>
 <pre><code>&lt;?=Yanp_feedlink()?&gt;</code></pre>
 <p>Das funktioniert analog zu <code>mailformlink()</code>. Wenn Sie ein anderes Feed-Icon anzeigen möchten, legen Sie es im <code>images/</code> Ordner Ihres Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
-<pre><code>&lt;?=Yanp_feedlink(&#39;dateiname.png&#39;)?&gt;</code></pre>
+<pre><code>&lt;?=Yanp_feedlink(&#39;dateiname.svg&#39;)?&gt;</code></pre>
 <p>Auf jeden Fall sollten Sie den RSS-Feed <a href="https://www.rssboard.org/rss-validator/">validieren</a>, um mögliche Probleme zu erkennen.</p>
 <h2 id="einschränkungen">Einschränkungen</h2>
 <p>Wenn die Website mit und ohne www aufgerufen werden kann (z.B. <code>www.example.com</code> und <code>example.com</code>) ohne die eine Variante auf die andere weiter zu leiten, kann es passieren, dass der RSS Feed nicht korrekt zu sich selbst zurück verlinkt. Es wird grundsätzlich empfohlen, dass Sie einen 301 Redirect von <code>www.example.com</code> zu <code>example.com</code> oder umgekehrt einrichten.</p>
@@ -88,7 +88,8 @@
 Slovakische Übersetzung © 2011-2012 Dr. Martin Sereday<br />
 Tschechische Übersetzung © 2012 Josef Němec</p>
 <h2 id="danksagung">Danksagung</h2>
-<p>Das Plugin-Logo wurde von <a href="https://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen. Dieses Plugin verwendet Feed-Icons von <a href="https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/">Perishable Press</a>. Vielen Dank für die Veröffentlichung als Freeware.</p>
+<p>Das Plugin-Logo wurde von <a href="https://cemagraphics.deviantart.com/#/d28bkte">cemagraphics</a> entworfen. Vielen Dank für die Veröffentlichung als Freeware.</p>
+<p>Das Feed-Icon wurde von <a href="https://commons.wikimedia.org/wiki/User:Jahoe">Jahoe</a> entworfen. Vielen Dank für die Veröffentlichung unter GPL.</p>
 <p>Vielen Dank an die Community im <a href="https://www.cmsimpleforum.com/">CMSimple_XH Forum</a> für Tipps, Vorschläge und das Testen.</p>
 <p>Zu guter letzt vielen Dank an <a href="https://www.harteg.dk/">Peter Harteg</a>, den „Vater“ von CMSimple, und alle Entwickler von <a href="https://www.cmsimple-xh.org/">CMSimple_XH</a>, ohne die dieses phantastische CMS nicht existieren würde.</p>
 </body>

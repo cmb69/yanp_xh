@@ -132,7 +132,7 @@ legen Sie es im `images/` Ordner Ihres Templates ab,
 und geben Sie dessen Dateinamen als Parameter an:
 
 ````
-<?=Yanp_feedlink('dateiname.png')?>
+<?=Yanp_feedlink('dateiname.svg')?>
 ````
 
 Auf jeden Fall sollten Sie den RSS-Feed
@@ -182,9 +182,11 @@ Tschechische Übersetzung © 2012 Josef Němec
 
 Das Plugin-Logo wurde von
 [cemagraphics](https://cemagraphics.deviantart.com/#/d28bkte) entworfen.
-Dieses Plugin verwendet Feed-Icons von
-[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/).
 Vielen Dank für die Veröffentlichung als Freeware.
+
+Das Feed-Icon wurde von
+[Jahoe](https://commons.wikimedia.org/wiki/User:Jahoe) entworfen.
+Vielen Dank für die Veröffentlichung unter GPL.
 
 Vielen Dank an die Community im [CMSimple\_XH Forum](https://www.cmsimpleforum.com/)
 für Tipps, Vorschläge und das Testen.

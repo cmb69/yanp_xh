@@ -122,7 +122,7 @@ just put it into the `images/` folder of your template,
 and give its filename as parameter:
 
 ````
-<?=Yanp_feedlink('filename.png')?>
+<?=Yanp_feedlink('filename.svg')?>
 ````
 
 In any case, you should [validate](https://www.rssboard.org/rss-validator/)
@@ -138,6 +138,7 @@ It is generally recommended that you establish a 301 redirect
 from `www.example.com` to `example.com` or vice versa.
 
 ## Troubleshooting
+
 Report bugs and ask for support either on
 [Github](https://github.com/cmb69/yanp_xh/issues)
 or in the [CMSimple\_XH Forum](https://cmsimpleforum.com/).
@@ -167,9 +168,11 @@ Czech translation © 2012 Josef Němec
 
 The plugin logo was designed by
 [cemagraphics](http://cemagraphics.deviantart.com/#/d28bkte).
-This plugin uses feed icons from
-[Perishable Press](https://perishablepress.com/press/2006/08/20/a-nice-collection-of-feed-icons/).
-Many thanks for publishing these icons as freeware.
+Thanks for publishing this icon as freeware.
+
+The feed icon was designed by
+[Jahoe](https://commons.wikimedia.org/wiki/User:Jahoe).
+Many thanks for publishing this icon under GPL.
 
 Many thanks to the community at the [CMSimple\_XH forum](https://www.cmsimpleforum.com/)
 for tips, suggestions and testing.

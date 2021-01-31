@@ -13,3 +13,8 @@ div#newspage div.yanp-news {
     border: 1px solid #ccc;
     margin: 0 10px 10px 0;
 }
+
+.yanp_feedlink img {
+    width: 48px;
+    height: 48px;
+}

@@ -55,7 +55,7 @@ class FeedlinkCommand extends Command
         $this->view->feedUrl = $this->getFeedUrl();
         $this->view->icon = isset($this->icon)
             ? $pth['folder']['templateimages'] . $this->icon
-            : $pth['folder']['plugins'].'yanp/images/feed.png';
+            : $pth['folder']['plugins'].'yanp/images/feed.svg';
         return $this->view->render('feed-link');
     }
 
