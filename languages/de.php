@@ -20,6 +20,7 @@ $plugin_tx['yanp']['syscheck_okay']="OK";
 $plugin_tx['yanp']['syscheck_warn']="Warnung";
 $plugin_tx['yanp']['syscheck_fail']="Fehlschlag";
 $plugin_tx['yanp']['cf_html_markup']="Ob die News-Beschreibung (X)HTML-Markup enthalten darf.";
+$plugin_tx['yanp']['cf_heading_level']="HTML-Element, mit dem Überschriften ausgezeichnet werden.";
 $plugin_tx['yanp']['cf_entries_max']="Die Höchstanzahl von New-Einträgen, die in der Newsbox und dem RSS-Feed angezeigt werden. Ist die Nummer negativ, werden alle verfügbaren Einträge angezeigt.";
 $plugin_tx['yanp']['cf_feed_enabled']="Ob der RSS-Feed erzeugt werden soll.";
 $plugin_tx['yanp']['cf_feed_image']="Der Name eines JPEG, PNG oder GIF-Bildes in Ihrem Bilderordner, das als Logo in den RSS-Feed eingebunden wird (darf 144x400 Pixel nicht überschreiten).";

@@ -40,11 +40,11 @@ class NewsboxCommand
      */
     public function execute()
     {
-        global $h, $u, $cf, $sn, $plugin_tx;
+        global $h, $u, $sn, $plugin_cf, $plugin_tx;
 
         $this->view->render('newsbox', [
             'pageIds' => $this->newsService->getPageIds(),
-            'headingTag' => 'h' . min($cf['menu']['levels'] + 1, 6),
+            'headingTag' => $plugin_cf['yanp']['heading_level'],
             'heading' => function (int $id) use ($h): HtmlString {
                 return new HtmlString($h[$id]);
             },
