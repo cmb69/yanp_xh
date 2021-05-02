@@ -36,8 +36,13 @@
         </exec>
     </target>
 
-    <target name="compat" description="checks PHP requirements">
-        <exec command="phpcompatinfo analyser:run --alias current" logoutput="true"/>
+    <target name="compat"
+            description="checks compatibility with PHP_CompatInfo">
+        <exec executable="phpcompatinfo" passthru="true" checkreturn="true">
+            <arg value="--ansi"/>
+            <arg value="analyser:run"/>
+            <arg file="classes"/>
+        </exec>
     </target>
 
     <target name="unit-tests" description="runs all unit tests">
