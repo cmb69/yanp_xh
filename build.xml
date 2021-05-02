@@ -91,6 +91,7 @@
         <move todir="dist">
             <fileset dir="export">
                 <exclude name=".phive/**"/>
+                <exclude name="tests/**"/>
                 <exclude name="help/template.htm"/>
                 <exclude name="build.xml"/>
                 <exclude name="composer.*"/>
@@ -107,7 +108,7 @@
               tofile="dist/config/defaultconfig.php"/>
         <copy file="dist/languages/en.php"
               tofile="dist/languages/default.php"/>
-        <zip destfile="Yanp_XH-1pl5.zip" basedir="dist" prefix="yanp/"/>
+        <zip destfile="Yanp_XH-2.0.zip" basedir="dist" prefix="yanp/"/>
         <delete dir="dist"/>
     </target>
 
