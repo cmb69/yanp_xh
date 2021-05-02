@@ -19,25 +19,6 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Yanp\Controller;
-use Yanp\FeedlinkCommand;
-use Yanp\NewsboxCommand;
-use Yanp\View;
+use Yanp\Plugin;
 
-const YANP_VERSION = '1pl5';
-
-function Yanp_newsbox(): string
-{
-    ob_start();
-    (new NewsboxCommand(new View))->execute();
-    return ob_get_clean();
-}
-
-function Yanp_feedlink(string $icon = null): string
-{
-    ob_start();
-    (new FeedlinkCommand($icon, new View))->execute();
-    return ob_get_clean();
-}
-
-(new Controller)->dispatch();
+Plugin::dispatch();
