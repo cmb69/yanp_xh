@@ -23,8 +23,10 @@ namespace Yanp;
 
 class HtmlString
 {
+    /** @var string */
     private $value;
 
+    /** @param string $string */
     public function __construct($string)
     {
         $this->value = $string;

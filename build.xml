@@ -24,6 +24,12 @@
         </exec>
     </target>
 
+    <target name="psalm" description="run static analysis">
+        <exec executable="psalm" passthru="true" checkreturn="true">
+            <arg value="--no-cache"/>
+        </exec>
+    </target>
+
     <target name="mess" description="detects code flaws">
         <exec executable="phpmd" passthru="true" checkreturn="true">
             <arg line="index.php,yanp_view.php,classes,tests/unit ansi codesize,unusedcode"/>
@@ -85,7 +91,9 @@
                 <exclude name="composer.*"/>
                 <exclude name="coverage.xml"/>
                 <exclude name="phpcompatinfo.json"/>
+                <exclude name="psalm.xml"/>
                 <exclude name="README*.md"/>
+                <exclude name="stubs.php"/>
                 <exclude name="teplad.xml"/>
             </fileset>
         </move>

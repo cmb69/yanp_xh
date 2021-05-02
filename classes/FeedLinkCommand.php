@@ -24,7 +24,7 @@ namespace Yanp;
 class FeedlinkCommand extends Command
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $icon;
 
@@ -32,7 +32,7 @@ class FeedlinkCommand extends Command
     private $view;
 
     /**
-     * @param string $icon
+     * @param string|null $icon
      */
     public function __construct($icon, View $view)
     {

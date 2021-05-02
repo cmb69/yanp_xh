@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<psalm errorLevel="2">
+  <projectFiles>
+    <directory name="classes"/>
+    <file name="index.php"/>
+    <file name="yanp_view.php"/>
+  </projectFiles>
+  <stubs>
+    <file name="stubs.php"/>
+  </stubs>
+</psalm>

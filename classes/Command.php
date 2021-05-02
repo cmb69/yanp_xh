@@ -23,16 +23,19 @@ namespace Yanp;
 
 abstract class Command
 {
+    /** @return void */
     abstract public function execute();
 
     /**
-     * @return int[]
+     * @return (int|string)[]
      */
     protected function getPageIds()
     {
         global $pd_router, $plugin_cf;
 
+        /** @var array<int,array> */
         $allPageData = $pd_router->find_all();
+        /** @var array<int> */
         $ids = array_keys($allPageData);
         $dates = array_map(array($this, 'getLastMod'), $ids);
         array_multisort($dates, SORT_DESC, $ids);

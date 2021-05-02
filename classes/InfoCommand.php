@@ -21,6 +21,8 @@
 
 namespace Yanp;
 
+use stdClass;
+
 class InfoCommand
 {
     /** @var View */
@@ -39,6 +41,7 @@ class InfoCommand
         $this->output =& $o;
     }
 
+    /** @return void */
     public function execute()
     {
         $this->output .= $this->render();
@@ -53,14 +56,19 @@ class InfoCommand
 
         $this->view->version = YANP_VERSION;
         $this->view->checks = $this->getSystemChecks();
-        $this->view->stateIcon = function ($state) use ($pth) {
-            return "{$pth['folder']['plugins']}yanp/images/$state.png";
-        };
+        $this->view->stateIcon = 
+            /**
+             * @param string $state
+             * @return string
+             */
+            function ($state) use ($pth) {
+                return "{$pth['folder']['plugins']}yanp/images/$state.png";
+            };
         return $this->view->render('info');
     }
 
     /**
-     * @return string
+     * @return array<int,stdClass>
      */
     private function getSystemChecks()
     {
@@ -80,6 +88,7 @@ class InfoCommand
                 'param' => $xhVersion
             )
         );
+        $folders = [];
         foreach (array('config/', 'css/', 'languages/') as $folder) {
             $folders[] = "{$pth['folder']['plugins']}yanp/$folder";
         }

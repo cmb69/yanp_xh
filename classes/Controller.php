@@ -23,6 +23,7 @@ namespace Yanp;
 
 class Controller
 {
+    /** @return void */
     public function dispatch()
     {
         global $pth, $pd_router, $plugin_cf, $plugin_tx;
@@ -30,6 +31,7 @@ class Controller
         if ($plugin_cf['yanp']['feed_enabled']) {
             (new RssCommand(new Feed, new View))->execute();
         }
+        /** @psalm-suppress UndefinedConstant */
         if (XH_ADM) {
             XH_registerStandardPluginMenuItems(false);
 
@@ -54,9 +56,10 @@ class Controller
         return XH_wantsPluginAdministration('yanp');
     }
 
+    /** @return void */
     private function handleAdministration()
     {
-        global $admin, $action, $o;
+        global $admin, $o;
 
         $o .= print_plugin_admin('off');
 
@@ -65,7 +68,7 @@ class Controller
                 (new InfoCommand(new View))->execute();
                 break;
             default:
-                $o .= plugin_admin_common($action, $admin, 'yanp');
+                $o .= plugin_admin_common();
         }
     }
 }
