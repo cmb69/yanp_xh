@@ -40,11 +40,6 @@ class NewsboxCommand
      */
     public function execute()
     {
-        echo $this->render();
-    }
-
-    private function render(): string
-    {
         global $h, $u, $cf, $sn, $plugin_tx;
 
         $this->view->pageIds = $this->newsService->getPageIds();
@@ -61,6 +56,6 @@ class NewsboxCommand
         $this->view->url = function (int $id) use ($sn, $u): string {
             return "$sn?{$u[$id]}";
         };
-        return $this->view->render('newsbox');
+        $this->view->render('newsbox');
     }
 }

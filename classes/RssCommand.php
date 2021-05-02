@@ -46,13 +46,14 @@ class RssCommand
     {
         if (isset($_GET['yanp_feed'])) {
             header('Content-Type: application/xml');
-            echo $this->renderRss();
+            $this->renderRss();
             exit;
         }
         $this->writeHeadLink();
     }
 
-    private function renderRss(): string
+    /** @return void */
+    private function renderRss()
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
@@ -80,7 +81,8 @@ class RssCommand
         $this->view->itemPubDate = function (int $id): string {
             return date('r', $this->newsService->getLastMod($id));
         };
-        return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $this->view->render('feed');
+        echo '<?xml version="1.0" encoding="UTF-8"?>', PHP_EOL;
+        $this->view->render('feed');
     }
 
     /**

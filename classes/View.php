@@ -77,14 +77,13 @@ class View
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
-    public function render(string $_template): string
+    /** @return void */
+    public function render(string $_template)
     {
         global $pth;
 
-        ob_start();
         /** @psalm-suppress UnresolvableInclude */
         include "{$pth['folder']['plugins']}yanp/views/{$_template}.php";
-        return ob_get_clean();
     }
 
     /**

@@ -40,17 +40,12 @@ class PageDataCommand
     /** @return void */
     public function execute()
     {
-        echo $this->render();
-    }
-
-    private function render(): string
-    {
         global $sn, $su, $plugin_tx;
 
         $this->view->actionUrl = "$sn?$su";
         $this->view->timestamp = time();
         $this->view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
         $this->view->description = $this->pageData['yanp_description'];
-        return $this->view->render('pdtab');
+        $this->view->render('pdtab');
     }
 }

@@ -63,7 +63,9 @@ class Plugin
 
         switch ($admin) {
             case '':
+                ob_start();
                 (new InfoCommand(new View))->execute();
+                $o .= ob_get_clean();
                 break;
             default:
                 $o .= plugin_admin_common();

@@ -28,24 +28,13 @@ class InfoCommand
     /** @var View */
     private $view;
 
-    /** @var string */
-    private $output;
-
     public function __construct(View $view)
     {
-        global $o;
-
         $this->view = $view;
-        $this->output =& $o;
     }
 
     /** @return void */
     public function execute()
-    {
-        $this->output .= $this->render();
-    }
-
-    private function render(): string
     {
         global $pth;
 
@@ -54,7 +43,7 @@ class InfoCommand
         $this->view->stateIcon =  function (string $state) use ($pth): string {
             return "{$pth['folder']['plugins']}yanp/images/$state.png";
         };
-        return $this->view->render('info');
+        $this->view->render('info');
     }
 
     /**
