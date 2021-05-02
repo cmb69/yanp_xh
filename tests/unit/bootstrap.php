@@ -31,5 +31,5 @@ const YANP_VERSION = '1pl5';
 
 function XH_helpIcon()
 {
-    return null;
+    return "";
 }

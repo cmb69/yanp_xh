@@ -29,7 +29,7 @@ abstract class Command
     /**
      * @return (int|string)[]
      */
-    protected function getPageIds()
+    protected function getPageIds(): array
     {
         global $pd_router, $plugin_cf;
 
@@ -49,26 +49,21 @@ abstract class Command
         return $ids;
     }
 
-    /**
-     * @param int $pageId
-     * @return int
-     */
-    protected function getLastMod($pageId)
+    protected function getLastMod(int $pageId): int
     {
         global $pd_router;
 
         $pageData = $pd_router->find_page($pageId);
         return min(
-            isset($pageData['last_edit']) ? $pageData['last_edit'] : 0,
-            isset($pageData['yanp_timestamp']) ? $pageData['yanp_timestamp'] : 0
+            isset($pageData['last_edit']) ? (int) $pageData['last_edit'] : 0,
+            isset($pageData['yanp_timestamp']) ? (int) $pageData['yanp_timestamp'] : 0
         );
     }
 
     /**
-     * @param int $pageId
      * @return string|HtmlString
      */
-    protected function getDescription($pageId)
+    protected function getDescription(int $pageId)
     {
         global $pd_router, $plugin_cf;
 

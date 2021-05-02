@@ -8,20 +8,20 @@ if (!isset($this)) {
 <!-- Yanp_XH feed -->
 <rss version="2.0">
     <channel>
-        <title><?=$this->title?></title>
-        <link><?=$this->link?></link>
-        <description><?=$this->description?></description>
-        <language><?=$this->language?></language>
+        <title><?=$this->title()?></title>
+        <link><?=$this->link()?></link>
+        <description><?=$this->description()?></description>
+        <language><?=$this->language()?></language>
 <?php if ($this->text('feed_copyright')):?>
         <copyright><?$this->text('feed_copyright')?></copyright>
 <?php endif?>
-        <pubDate><?=$this->pubDate?></pubDate>
-        <generator><?=$this->generator?></generator>
+        <pubDate><?=$this->pubDate()?></pubDate>
+        <generator><?=$this->generator()?></generator>
 <?php if ($this->hasImage):?>
         <image>
-            <url><?=$this->imageUrl?></url>
-            <title><?=$this->title?></title>
-            <link><?=$this->link?></link>
+            <url><?=$this->imageUrl()?></url>
+            <title><?=$this->title()?></title>
+            <link><?=$this->link()?></link>
         </image>
 <?php endif?>
 <?php foreach ($this->pageIds as $pageId):?>

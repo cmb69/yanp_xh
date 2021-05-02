@@ -29,7 +29,7 @@ in Erwägung ziehen.
 ## Voraussetzungen
 
 Yanp\_XH ist ein Plugin für CMSimple_XH ≥ 1.7.0.
-Es benötigt PHP ≥ 5.6.0.
+Es benötigt PHP ≥ 7.0.0.
 
 ## Download
 

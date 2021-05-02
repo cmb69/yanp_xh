@@ -23,10 +23,7 @@ namespace Yanp;
 
 class Feed
 {
-    /**
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         global $tx, $plugin_tx;
 
@@ -37,10 +34,7 @@ class Feed
         }
     }
 
-    /**
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): string
     {
         global $tx, $plugin_tx;
 

@@ -26,21 +26,14 @@ use Yanp\View;
 
 const YANP_VERSION = '1pl5';
 
-/**
- * @return string
- */
-function Yanp_newsbox()
+function Yanp_newsbox(): string
 {
     ob_start();
     (new NewsboxCommand(new View))->execute();
     return ob_get_clean();
 }
 
-/**
- * @param string $icon
- * @return string
- */
-function Yanp_feedlink($icon = null)
+function Yanp_feedlink(string $icon = null): string
 {
     ob_start();
     (new FeedlinkCommand($icon, new View))->execute();

@@ -39,47 +39,24 @@ class NewsboxCommand extends Command
         echo $this->render();
     }
 
-    /**
-     * @return string
-     */
-    private function render()
+    private function render(): string
     {
         global $h, $u, $cf, $sn, $plugin_tx;
 
         $this->view->pageIds = $this->getPageIds();
         $this->view->headingTag = 'h' . min($cf['menu']['levels'] + 1, 6);
-        $this->view->heading =
-            /**
-             * @param int $id
-             * @return HtmlString
-             */
-            function ($id) use ($h) {
-                return new HtmlString($h[$id]);
-            };
-        $this->view->date =
-            /**
-             * @param int $id
-             * @return string
-             */
-            function ($id) use ($plugin_tx) {
-                return date($plugin_tx['yanp']['news_date_format'], $this->getLastMod($id));
-            };
-        $this->view->description =
-            /**
-             * @param int $id
-             * @return string|HtmlString
-             */
-            function ($id) {
-                return $this->getDescription($id);
-            };
-        $this->view->url =
-            /**
-             * @param int $id
-             * @return string
-             */
-            function ($id) use ($sn, $u) {
-                return "$sn?{$u[$id]}";
-            };
+        $this->view->heading = function (int $id) use ($h): HtmlString {
+            return new HtmlString($h[$id]);
+        };
+        $this->view->date = function (int $id) use ($plugin_tx): string {
+            return date($plugin_tx['yanp']['news_date_format'], $this->getLastMod($id));
+        };
+        $this->view->description = /** @return string|HtmlString */ function (int $id) {
+            return $this->getDescription($id);
+        };
+        $this->view->url = function (int $id) use ($sn, $u): string {
+            return "$sn?{$u[$id]}";
+        };
         return $this->view->render('newsbox');
     }
 }

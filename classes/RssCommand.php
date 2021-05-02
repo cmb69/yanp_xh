@@ -47,10 +47,7 @@ class RssCommand extends Command
         $this->writeHeadLink();
     }
 
-    /**
-     * @return string
-     */
-    private function renderRss()
+    private function renderRss(): string
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
@@ -63,46 +60,21 @@ class RssCommand extends Command
         $this->view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
         $this->view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
         $this->view->pageIds = $this->getPageIds();
-        $this->view->itemHeading =
-            /**
-             * @param int $id
-             * @return HtmlString
-             */
-            function ($id) use ($h) {
-                return new HtmlString($h[$id]);
-            };
-        $this->view->itemLink =
-            /**
-             * @param int $id
-             * @return string
-             */
-            function ($id) use ($u) {
-                return CMSIMPLE_URL . "?{$u[$id]}";
-            };
-        $this->view->itemDescription =
-            /**
-             * @param int $id
-             * @return string|HtmlString
-             */
-            function ($id) {
-                return $this->getDescription($id);
-            };
-        $this->view->itemGuid =
-            /**
-             * @param int $id
-             * @return string
-             */
-            function ($id) use ($u) {
-                return CMSIMPLE_URL . "?{$u[$id]} " . $this->getLastMod($id);
-            };
-        $this->view->itemPubDate =
-            /**
-             * @param int $id
-             * @return string
-             */
-            function ($id) {
-                return date('r', $this->getLastMod($id));
-            };
+        $this->view->itemHeading = function (int $id) use ($h): HtmlString {
+            return new HtmlString($h[$id]);
+        };
+        $this->view->itemLink = function (int $id) use ($u): string {
+            return CMSIMPLE_URL . "?{$u[$id]}";
+        };
+        $this->view->itemDescription = /** @return string|HtmlString */ function (int $id) {
+            return $this->getDescription($id);
+        };
+        $this->view->itemGuid = function (int $id) use ($u): string {
+            return CMSIMPLE_URL . "?{$u[$id]} " . $this->getLastMod($id);
+        };
+        $this->view->itemPubDate = function (int $id): string {
+            return date('r', $this->getLastMod($id));
+        };
         return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $this->view->render('feed');
     }
 
@@ -120,21 +92,14 @@ class RssCommand extends Command
             . "\n";
     }
 
-    /**
-     * @return string
-     */
-    private function getFeedUrl()
+    private function getFeedUrl(): string
     {
         global $sn;
 
         return $sn . '?&yanp_feed';
     }
 
-    /**
-     * @param string $url
-     * @return string
-     */
-    private function getAbsoluteUrl($url)
+    private function getAbsoluteUrl(string $url): string
     {
         list($scheme, $path) = explode('//', CMSIMPLE_URL . $url);
         $parts = explode('/', $path);

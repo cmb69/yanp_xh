@@ -48,10 +48,7 @@ class Controller
         }
     }
 
-    /**
-     * @return bool
-     */
-    private function isAdministrationRequested()
+    private function isAdministrationRequested(): bool
     {
         return XH_wantsPluginAdministration('yanp');
     }

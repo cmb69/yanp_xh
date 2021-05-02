@@ -45,10 +45,7 @@ class FeedlinkCommand extends Command
         echo $this->renderFeedLink();
     }
 
-    /**
-     * @return string
-     */
-    public function renderFeedLink()
+    public function renderFeedLink(): string
     {
         global $pth;
 
@@ -59,10 +56,7 @@ class FeedlinkCommand extends Command
         return $this->view->render('feed-link');
     }
 
-    /**
-     * @return string
-     */
-    private function getFeedUrl()
+    private function getFeedUrl(): string
     {
         global $sn;
 

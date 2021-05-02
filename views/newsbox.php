@@ -8,7 +8,7 @@ if (!isset($this)) {
 <!-- Yanp_XH newsbox -->
 <?php foreach ($this->pageIds as $pageId):?>
 <div class="yanp-news">
-    <<?=$this->headingTag?>><?=$this->heading($pageId)?></<?=$this->headingTag?>>
+    <<?=$this->headingTag()?>><?=$this->heading($pageId)?></<?=$this->headingTag()?>>
     <p><em><?=$this->date($pageId)?></em></p>
     <p>
         <?=$this->description($pageId)?>

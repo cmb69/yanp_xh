@@ -31,9 +31,6 @@ class PageDataCommand extends Command
     /** @var View */
     private $view;
 
-    /**
-     * @param array $pageData
-     */
     public function __construct(array $pageData, View $view)
     {
         $this->pageData = $pageData;
@@ -45,10 +42,7 @@ class PageDataCommand extends Command
         echo $this->render();
     }
 
-    /**
-     * @return string
-     */
-    private function render()
+    private function render(): string
     {
         global $sn, $su, $plugin_tx;
 

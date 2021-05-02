@@ -28,9 +28,7 @@ class InfoCommand
     /** @var View */
     private $view;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $output;
 
     public function __construct(View $view)
@@ -47,34 +45,26 @@ class InfoCommand
         $this->output .= $this->render();
     }
 
-    /**
-     * @return string
-     */
-    private function render()
+    private function render(): string
     {
         global $pth;
 
         $this->view->version = YANP_VERSION;
         $this->view->checks = $this->getSystemChecks();
-        $this->view->stateIcon = 
-            /**
-             * @param string $state
-             * @return string
-             */
-            function ($state) use ($pth) {
-                return "{$pth['folder']['plugins']}yanp/images/$state.png";
-            };
+        $this->view->stateIcon =  function (string $state) use ($pth): string {
+            return "{$pth['folder']['plugins']}yanp/images/$state.png";
+        };
         return $this->view->render('info');
     }
 
     /**
      * @return array<int,stdClass>
      */
-    private function getSystemChecks()
+    private function getSystemChecks(): array
     {
         global $pth;
 
-        $phpVersion = '5.6.0';
+        $phpVersion = '7.0.0';
         $xhVersion = '1.7.0';
         $checks = array(
             (object) array(
@@ -102,29 +92,17 @@ class InfoCommand
         return $checks;
     }
 
-    /**
-     * @param string $version
-     * @return string
-     */
-    private function getPhpVersionState($version)
+    private function getPhpVersionState(string $version): string
     {
         return version_compare(PHP_VERSION, $version) >= 0 ? 'success' : 'fail';
     }
 
-    /**
-     * @param string $version
-     * @return string
-     */
-    private function getXhVersionState($version)
+    private function getXhVersionState(string $version): string
     {
         return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version") >= 0 ? 'success' : 'fail';
     }
 
-    /**
-     * @param string $filename
-     * @return string
-     */
-    private function getWritabilityState($filename)
+    private function getWritabilityState(string $filename): string
     {
         return is_writable($filename) ? 'success' : 'warning';
     }

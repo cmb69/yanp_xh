@@ -22,10 +22,7 @@
 use Yanp\PageDataCommand;
 use Yanp\View;
 
-/**
- * @return string
- */
-function Yanp_view(array $page)
+function Yanp_view(array $page): string
 {
     ob_start();
     (new PageDataCommand($page, new View))->execute();

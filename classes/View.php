@@ -27,45 +27,35 @@ class View
     private $data = array();
 
     /**
-     * @param string $name
      * @param mixed $value
      */
-    public function __set($name, $value)
+    public function __set(string $name, $value)
     {
         $this->data[$name] = $value;
     }
 
-    /**
-     * @param string $name
-     */
-    public function __get($name)
+    public function __get(string $name)
     {
-        return $this->escape($this->data[$name]);
+        return $this->data[$name];
     }
 
-    /**
-     * @param string $name
-     */
-    public function __isset($name)
+    public function __isset(string $name)
     {
         return isset($this->data[$name]);
     }
 
-    /**
-     * @param string $name
-     */
-    public function __call($name, array $args)
+    public function __call(string $name, array $args)
     {
-        $callable = $this->data[$name];
-        return $this->escape($callable(...$args));
+        if (is_callable($this->data[$name])) {
+            return $this->escape($this->data[$name](...$args));
+        }
+        return $this->escape($this->data[$name]);
     }
 
     /**
-     * @param string $key
      * @param mixed $args
-     * @return string
      */
-    protected function text($key, ...$args)
+    protected function text(string $key, ...$args): string
     {
         global $plugin_tx;
 
@@ -73,12 +63,9 @@ class View
     }
 
     /**
-     * @param string $key
-     * @param int $count
      * @param mixed $args
-     * @return string
      */
-    protected function plural($key, $count, ...$args)
+    protected function plural(string $key, int $count, ...$args): string
     {
         global $plugin_tx;
 
@@ -90,11 +77,7 @@ class View
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
-    /**
-     * @param string $_template
-     * @return string
-     */
-    public function render($_template)
+    public function render(string $_template): string
     {
         global $pth;
 
@@ -106,9 +89,8 @@ class View
 
     /**
      * @param mixed $value
-     * @return string
      */
-    private function escape($value)
+    private function escape($value): string
     {
         if (is_scalar($value)) {
             return XH_hsc((string) $value);
