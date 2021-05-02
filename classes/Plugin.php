@@ -35,7 +35,7 @@ class Plugin
 
         self::registerUserFunctions();
         if ($plugin_cf['yanp']['feed_enabled']) {
-            (new RssCommand(new Feed, new View))->execute();
+            (new RssCommand(self::getNewsService(), new Feed, new View))->execute();
         }
         /** @psalm-suppress UndefinedConstant */
         if (XH_ADM) {
@@ -101,7 +101,7 @@ class Plugin
     public static function newsboxCommand(): string
     {
         ob_start();
-        (new NewsboxCommand(new View))->execute();
+        (new NewsboxCommand(self::getNewsService(), new View))->execute();
         return ob_get_clean();
     }
 
@@ -117,5 +117,12 @@ class Plugin
         ob_start();
         (new PageDataCommand($page, new View))->execute();
         return ob_get_clean();
+    }
+
+    private static function getNewsService(): NewsService
+    {
+        global $pd_router, $plugin_cf;
+
+        return new NewsService($pd_router, $plugin_cf['yanp']['entries_max'], $plugin_cf['yanp']['html_markup']);
     }
 }

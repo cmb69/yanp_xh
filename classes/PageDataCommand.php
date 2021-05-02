@@ -21,7 +21,7 @@
 
 namespace Yanp;
 
-class PageDataCommand extends Command
+class PageDataCommand
 {
     /**
      * @var array
@@ -37,6 +37,7 @@ class PageDataCommand extends Command
         $this->view = $view;
     }
 
+    /** @return void */
     public function execute()
     {
         echo $this->render();

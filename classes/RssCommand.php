@@ -21,8 +21,11 @@
 
 namespace Yanp;
 
-class RssCommand extends Command
+class RssCommand
 {
+    /** @var NewsService */
+    private $newsService;
+
     /**
      * @var Feed
      */
@@ -31,12 +34,14 @@ class RssCommand extends Command
     /** @var View */
     private $view;
 
-    public function __construct(Feed $feed, View $view)
+    public function __construct(NewsService $newsService, Feed $feed, View $view)
     {
+        $this->newsService = $newsService;
         $this->feed = $feed;
         $this->view = $view;
     }
 
+    /** @return void */
     public function execute()
     {
         if (isset($_GET['yanp_feed'])) {
@@ -59,7 +64,7 @@ class RssCommand extends Command
         $this->view->generator = 'Yanp_XH';
         $this->view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
         $this->view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
-        $this->view->pageIds = $this->getPageIds();
+        $this->view->pageIds = $this->newsService->getPageIds();
         $this->view->itemHeading = function (int $id) use ($h): HtmlString {
             return new HtmlString($h[$id]);
         };
@@ -67,13 +72,13 @@ class RssCommand extends Command
             return CMSIMPLE_URL . "?{$u[$id]}";
         };
         $this->view->itemDescription = /** @return string|HtmlString */ function (int $id) {
-            return $this->getDescription($id);
+            return $this->newsService->getDescription($id);
         };
         $this->view->itemGuid = function (int $id) use ($u): string {
-            return CMSIMPLE_URL . "?{$u[$id]} " . $this->getLastMod($id);
+            return CMSIMPLE_URL . "?{$u[$id]} " . $this->newsService->getLastMod($id);
         };
         $this->view->itemPubDate = function (int $id): string {
-            return date('r', $this->getLastMod($id));
+            return date('r', $this->newsService->getLastMod($id));
         };
         return '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL . $this->view->render('feed');
     }

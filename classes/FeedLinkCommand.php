@@ -21,7 +21,7 @@
 
 namespace Yanp;
 
-class FeedlinkCommand extends Command
+class FeedlinkCommand
 {
     /**
      * @var string|null
@@ -40,6 +40,7 @@ class FeedlinkCommand extends Command
         $this->view = $view;
     }
 
+    /** @return void */
     public function execute()
     {
         echo $this->renderFeedLink();

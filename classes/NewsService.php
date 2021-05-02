@@ -21,20 +21,32 @@
 
 namespace Yanp;
 
-abstract class Command
+use XH\PageDataRouter as PageDataService;
+
+class NewsService
 {
-    /** @return void */
-    abstract public function execute();
+    /** @var PageDataService */
+    private $pageDataService;
+
+    /** @var int */
+    private $maxEntries;
+
+    /** @var bool */
+    private $isHtml;
+
+    public function __construct(PageDataService $pageDataService, int $maxEntries, bool $isHtml)
+    {
+        $this->pageDataService = $pageDataService;
+        $this->maxEntries = $maxEntries;
+        $this->isHtml = $isHtml;
+    }
 
     /**
      * @return (int|string)[]
      */
-    protected function getPageIds(): array
+    public function getPageIds(): array
     {
-        global $pd_router, $plugin_cf;
-
-        /** @var array<int,array> */
-        $allPageData = $pd_router->find_all();
+        $allPageData = $this->pageDataService->find_all();
         /** @var array<int> */
         $ids = array_keys($allPageData);
         $dates = array_map(array($this, 'getLastMod'), $ids);
@@ -43,17 +55,15 @@ abstract class Command
             return $allPageData[$id]['published'] !== '0'
                 && $allPageData[$id]['yanp_description'] != '';
         });
-        if ((int) $plugin_cf['yanp']['entries_max'] >= 0) {
-            $ids = array_slice($ids, 0, (int) $plugin_cf['yanp']['entries_max']);
+        if ($this->maxEntries >= 0) {
+            $ids = array_slice($ids, 0, $this->maxEntries);
         }
         return $ids;
     }
 
-    protected function getLastMod(int $pageId): int
+    public function getLastMod(int $pageId): int
     {
-        global $pd_router;
-
-        $pageData = $pd_router->find_page($pageId);
+        $pageData = $this->pageDataService->find_page($pageId);
         return min(
             isset($pageData['last_edit']) ? (int) $pageData['last_edit'] : 0,
             isset($pageData['yanp_timestamp']) ? (int) $pageData['yanp_timestamp'] : 0
@@ -63,12 +73,10 @@ abstract class Command
     /**
      * @return string|HtmlString
      */
-    protected function getDescription(int $pageId)
+    public function getDescription(int $pageId)
     {
-        global $pd_router, $plugin_cf;
-
-        $pageData = $pd_router->find_page($pageId);
-        return $plugin_cf['yanp']['html_markup']
+        $pageData = $this->pageDataService->find_page($pageId);
+        return $this->isHtml
             ? new HtmlString($pageData['yanp_description'])
             : $pageData['yanp_description'];
     }

@@ -44,3 +44,13 @@ function XH_registerStandardPluginMenuItems($showMain) {}
  * @return bool
  */
 function XH_wantsPluginAdministration($pluginName) {}
+
+namespace XH {
+    class PageDataRouter {
+        /** @return array<int,array> */
+        public function find_all(): array {}
+        public function find_page(int $id): array {}
+        public function add_interest(string $field) {}
+        public function add_tab(string $tab_name, string $tab_view, string $cssClass = null) {}
+    }
+}
