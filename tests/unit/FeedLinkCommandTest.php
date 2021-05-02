@@ -27,6 +27,9 @@ class FeedlinkCommandTest extends TestCase
 {
     public function testExecutionRendersTemplate(): void
     {
+        global $pth;
+
+        $pth = ['folder' => ['plugins' => ""]];
         $view = $this->createMock(View::class);
         $subject = new FeedLinkCommand(null, $view);
         $view->expects($this->once())
