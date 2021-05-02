@@ -57,32 +57,33 @@ class RssCommand
     {
         global $sl, $pth, $h, $u, $plugin_cf;
 
-        $this->view->title = $this->feed->getTitle();
-        $this->view->link = CMSIMPLE_URL;
-        $this->view->description = $this->feed->getDescription();
-        $this->view->language = $sl;
-        $this->view->pubDate = date('r', filemtime($pth['file']['content']));
-        $this->view->generator = 'Yanp_XH';
-        $this->view->hasImage = $plugin_cf['yanp']['feed_image'] != '';
-        $this->view->imageUrl = $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']);
-        $this->view->pageIds = $this->newsService->getPageIds();
-        $this->view->itemHeading = function (int $id) use ($h): HtmlString {
-            return new HtmlString($h[$id]);
-        };
-        $this->view->itemLink = function (int $id) use ($u): string {
-            return CMSIMPLE_URL . "?{$u[$id]}";
-        };
-        $this->view->itemDescription = /** @return string|HtmlString */ function (int $id) {
-            return $this->newsService->getDescription($id);
-        };
-        $this->view->itemGuid = function (int $id) use ($u): string {
-            return CMSIMPLE_URL . "?{$u[$id]} " . $this->newsService->getLastMod($id);
-        };
-        $this->view->itemPubDate = function (int $id): string {
-            return date('r', $this->newsService->getLastMod($id));
-        };
         echo '<?xml version="1.0" encoding="UTF-8"?>', PHP_EOL;
-        $this->view->render('feed');
+        $this->view->render('feed', [
+            'title' => $this->feed->getTitle(),
+            'link' => CMSIMPLE_URL,
+            'description' => $this->feed->getDescription(),
+            'language' => $sl,
+            'pubDate' => date('r', filemtime($pth['file']['content'])),
+            'generator' => 'Yanp_XH',
+            'hasImage' => $plugin_cf['yanp']['feed_image'] != '',
+            'imageUrl' => $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']),
+            'pageIds' => $this->newsService->getPageIds(),
+            'itemHeading' => function (int $id) use ($h): HtmlString {
+                return new HtmlString($h[$id]);
+            },
+            'itemLink' => function (int $id) use ($u): string {
+                return CMSIMPLE_URL . "?{$u[$id]}";
+            },
+            'itemDescription' => /** @return string|HtmlString */ function (int $id) {
+                return $this->newsService->getDescription($id);
+            },
+            'itemGuid' => function (int $id) use ($u): string {
+                return CMSIMPLE_URL . "?{$u[$id]} " . $this->newsService->getLastMod($id);
+            },
+            'itemPubDate' => function (int $id): string {
+                return date('r', $this->newsService->getLastMod($id));
+            },
+        ]);
     }
 
     /**

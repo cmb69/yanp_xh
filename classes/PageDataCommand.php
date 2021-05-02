@@ -42,10 +42,11 @@ class PageDataCommand
     {
         global $sn, $su, $plugin_tx;
 
-        $this->view->actionUrl = "$sn?$su";
-        $this->view->timestamp = time();
-        $this->view->icon = new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info']));
-        $this->view->description = $this->pageData['yanp_description'];
-        $this->view->render('pdtab');
+        $this->view->render('pdtab', [
+            'actionUrl' => "$sn?$su",
+            'timestamp' => time(),
+            'icon' => new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info'])),
+            'description' => $this->pageData['yanp_description'],
+        ]);
     }
 }

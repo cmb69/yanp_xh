@@ -38,12 +38,13 @@ class InfoCommand
     {
         global $pth;
 
-        $this->view->version = Plugin::VERSION;
-        $this->view->checks = $this->getSystemChecks();
-        $this->view->stateIcon =  function (string $state) use ($pth): string {
-            return "{$pth['folder']['plugins']}yanp/images/$state.png";
-        };
-        $this->view->render('info');
+        $this->view->render('info', [
+            'version' => Plugin::VERSION,
+            'checks' => $this->getSystemChecks(),
+            'stateIcon' =>  function (string $state) use ($pth): string {
+                return "{$pth['folder']['plugins']}yanp/images/$state.png";
+            },
+        ]);
     }
 
     /**

@@ -26,14 +26,6 @@ class View
     /** @var array<string,mixed> */
     private $data = array();
 
-    /**
-     * @param mixed $value
-     */
-    public function __set(string $name, $value)
-    {
-        $this->data[$name] = $value;
-    }
-
     public function __get(string $name)
     {
         return $this->data[$name];
@@ -77,11 +69,16 @@ class View
         return vsprintf($plugin_tx['yanp'][$key], $args);
     }
 
-    /** @return void */
-    public function render(string $_template)
+    /**
+     * @param array<string,mixed> $data
+     * @return void
+     */
+    public function render(string $_template, array $data)
     {
         global $pth;
 
+        $this->data = $data;
+        unset($data);
         /** @psalm-suppress UnresolvableInclude */
         include "{$pth['folder']['plugins']}yanp/views/{$_template}.php";
     }

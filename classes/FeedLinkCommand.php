@@ -45,11 +45,12 @@ class FeedlinkCommand
     {
         global $pth;
 
-        $this->view->feedUrl = $this->getFeedUrl();
-        $this->view->icon = isset($this->icon)
-            ? $pth['folder']['templateimages'] . $this->icon
-            : $pth['folder']['plugins'].'yanp/images/feed.svg';
-        $this->view->render('feed-link');
+        $this->view->render('feed-link', [
+            'feedUrl' => $this->getFeedUrl(),
+            'icon' => isset($this->icon)
+                ? $pth['folder']['templateimages'] . $this->icon
+                : $pth['folder']['plugins'].'yanp/images/feed.svg',
+        ]);
     }
 
     private function getFeedUrl(): string
