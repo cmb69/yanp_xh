@@ -91,7 +91,7 @@ class View
         if (is_scalar($value)) {
             return XH_hsc((string) $value);
         } else {
-            return $value;
+            return (string) $value;
         }
     }
 }

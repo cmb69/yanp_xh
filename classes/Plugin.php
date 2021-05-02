@@ -125,6 +125,10 @@ class Plugin
     {
         global $pd_router, $plugin_cf;
 
-        return new NewsService($pd_router, $plugin_cf['yanp']['entries_max'], $plugin_cf['yanp']['html_markup']);
+        return new NewsService(
+            $pd_router,
+            (int) $plugin_cf['yanp']['entries_max'],
+            (bool) $plugin_cf['yanp']['html_markup']
+        );
     }
 }

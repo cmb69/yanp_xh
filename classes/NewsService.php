@@ -77,7 +77,7 @@ class NewsService
     {
         $pageData = $this->pageDataService->find_page($pageId);
         return $this->isHtml
-            ? new HtmlString($pageData['yanp_description'])
-            : $pageData['yanp_description'];
+            ? new HtmlString((string) $pageData['yanp_description'])
+            : (string) $pageData['yanp_description'];
     }
 }
