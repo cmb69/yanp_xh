@@ -26,6 +26,7 @@ class View
     /** @var array<string,mixed> */
     private $data = array();
 
+    /** @return mixed */
     public function __get(string $name)
     {
         return $this->data[$name];
@@ -36,7 +37,8 @@ class View
         return isset($this->data[$name]);
     }
 
-    public function __call(string $name, array $args)
+    /** @param array<mixed> $args */
+    public function __call(string $name, array $args): string
     {
         if (is_callable($this->data[$name])) {
             return $this->escape($this->data[$name](...$args));
@@ -79,7 +81,6 @@ class View
 
         $this->data = $data;
         unset($data);
-        /** @psalm-suppress UnresolvableInclude */
         include "{$pth['folder']['plugins']}yanp/views/{$_template}.php";
     }
 

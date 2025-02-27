@@ -24,13 +24,14 @@ namespace Yanp;
 class PageDataCommand
 {
     /**
-     * @var array
+     * @var array<mixed>
      */
     private $pageData;
 
     /** @var View */
     private $view;
 
+    /** @param array<mixed> $pageData */
     public function __construct(array $pageData, View $view)
     {
         $this->pageData = $pageData;

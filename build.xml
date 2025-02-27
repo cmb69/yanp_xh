@@ -26,9 +26,10 @@
         </exec>
     </target>
 
-    <target name="psalm" description="run static analysis">
-        <exec executable="psalm" passthru="true" checkreturn="true">
-            <arg value="--no-cache"/>
+    <target name="stan" description="run static analysis">
+        <exec executable="phpstan" passthru="true" checkreturn="true">
+            <arg value="--ansi"/>
+            <arg value="analyze"/>
         </exec>
     </target>
 
@@ -86,7 +87,7 @@
                 <exclude name="composer.*"/>
                 <exclude name="coverage.xml"/>
                 <exclude name="phpcompatinfo.json"/>
-                <exclude name="psalm.xml"/>
+                <exclude name="phpstan.*"/>
                 <exclude name="README*.md"/>
                 <exclude name="stubs.php"/>
                 <exclude name="teplad.xml"/>

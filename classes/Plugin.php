@@ -37,7 +37,7 @@ class Plugin
         if ($plugin_cf['yanp']['feed_enabled']) {
             (new RssCommand(self::getNewsService(), new Feed, new View))->execute();
         }
-        /** @psalm-suppress UndefinedConstant */
+        /** @phpstan-ignore if.alwaysFalse */
         if (XH_ADM) {
             XH_registerStandardPluginMenuItems(false);
 
@@ -104,21 +104,22 @@ class Plugin
     {
         ob_start();
         (new NewsboxCommand(self::getNewsService(), new View))->execute();
-        return ob_get_clean();
+        return (string) ob_get_clean();
     }
 
     public static function feedlinkCommand(?string $icon = null): string
     {
         ob_start();
         (new FeedlinkCommand($icon, new View))->execute();
-        return ob_get_clean();
+        return (string) ob_get_clean();
     }
 
+    /** @param array<mixed> $page */
     public static function viewCommand(array $page): string
     {
         ob_start();
         (new PageDataCommand($page, new View))->execute();
-        return ob_get_clean();
+        return (string) ob_get_clean();
     }
 
     private static function getNewsService(): NewsService

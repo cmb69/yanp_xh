@@ -63,7 +63,7 @@ class RssCommand
             'link' => CMSIMPLE_URL,
             'description' => $this->feed->getDescription(),
             'language' => $sl,
-            'pubDate' => date('r', filemtime($pth['file']['content'])),
+            'pubDate' => date('r', (int) filemtime($pth['file']['content'])),
             'generator' => 'Yanp_XH',
             'hasImage' => $plugin_cf['yanp']['feed_image'] != '',
             'imageUrl' => $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']),
