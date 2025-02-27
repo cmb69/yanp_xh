@@ -35,7 +35,7 @@ class Plugin
 
         self::registerUserFunctions();
         if ($plugin_cf['yanp']['feed_enabled']) {
-            (new RssCommand(self::getNewsService(), new Feed, new View))->execute();
+            (new RssCommand(self::getNewsService(), new Feed(), new View()))->execute();
         }
         /** @phpstan-ignore if.alwaysFalse */
         if (XH_ADM) {
@@ -64,7 +64,7 @@ class Plugin
         switch ($admin) {
             case '':
                 ob_start();
-                (new InfoCommand(new View))->execute();
+                (new InfoCommand(new View()))->execute();
                 $o .= ob_get_clean();
                 break;
             default:
@@ -103,14 +103,14 @@ class Plugin
     public static function newsboxCommand(): string
     {
         ob_start();
-        (new NewsboxCommand(self::getNewsService(), new View))->execute();
+        (new NewsboxCommand(self::getNewsService(), new View()))->execute();
         return (string) ob_get_clean();
     }
 
     public static function feedlinkCommand(?string $icon = null): string
     {
         ob_start();
-        (new FeedlinkCommand($icon, new View))->execute();
+        (new FeedlinkCommand($icon, new View()))->execute();
         return (string) ob_get_clean();
     }
 
@@ -118,7 +118,7 @@ class Plugin
     public static function viewCommand(array $page): string
     {
         ob_start();
-        (new PageDataCommand($page, new View))->execute();
+        (new PageDataCommand($page, new View()))->execute();
         return (string) ob_get_clean();
     }
 

@@ -49,7 +49,7 @@ class FeedlinkCommand
             'feedUrl' => $this->getFeedUrl(),
             'icon' => isset($this->icon)
                 ? $pth['folder']['templateimages'] . $this->icon
-                : $pth['folder']['plugins'].'yanp/images/feed.svg',
+                : $pth['folder']['plugins'] . 'yanp/images/feed.svg',
         ]);
     }
 

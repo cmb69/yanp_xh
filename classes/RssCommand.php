@@ -118,7 +118,7 @@ class RssCommand
                     array_splice($parts, $i, 1);
                     break;
                 case '..':
-                    array_splice($parts, $i-1, 2);
+                    array_splice($parts, $i - 1, 2);
                     $i--;
                     break;
                 default:
