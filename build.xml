@@ -22,7 +22,6 @@
             <arg file="index.php"/>
             <arg file="yanp_view.php"/>
             <arg file="classes"/>
-            <arg file="tests/unit"/>
         </exec>
     </target>
 
