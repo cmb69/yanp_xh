@@ -19,6 +19,8 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require_once "../../cmsimple/classes/PageDataRouter.php";
+
 spl_autoload_register(function ($classname) {
     $parts = explode('\\', $classname);
     if ($parts[0] === 'Yanp') {
