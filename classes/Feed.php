@@ -23,25 +23,37 @@ namespace Yanp;
 
 class Feed
 {
+    /** @var array<string,array<string,string>> */
+    private $tx;
+
+    /** @var array<string,array<string,string>> */
+    private $ptx;
+
+    /**
+     * @param array<string,array<string,string>> $tx
+     * @param array<string,array<string,string>> $ptx
+     */
+    public function __construct(array $tx, array $ptx)
+    {
+        $this->tx = $tx;
+        $this->ptx = $ptx;
+    }
+
     public function getTitle(): string
     {
-        global $tx, $plugin_tx;
-
-        if ($plugin_tx['yanp']['feed_title'] != '') {
-            return $plugin_tx['yanp']['feed_title'];
+        if ($this->ptx['yanp']['feed_title'] != '') {
+            return $this->ptx['yanp']['feed_title'];
         } else {
-            return $tx['site']['title'];
+            return $this->tx['site']['title'];
         }
     }
 
     public function getDescription(): string
     {
-        global $tx, $plugin_tx;
-
-        if ($plugin_tx['yanp']['feed_description'] != '') {
-            return $plugin_tx['yanp']['feed_description'];
+        if ($this->ptx['yanp']['feed_description'] != '') {
+            return $this->ptx['yanp']['feed_description'];
         } else {
-            return $tx['meta']['description'];
+            return $this->tx['meta']['description'];
         }
     }
 }

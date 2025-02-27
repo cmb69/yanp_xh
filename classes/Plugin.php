@@ -31,11 +31,11 @@ class Plugin
     /** @return void */
     public static function dispatch()
     {
-        global $pth, $pd_router, $plugin_cf, $plugin_tx;
+        global $pth, $pd_router, $tx, $plugin_cf, $plugin_tx;
 
         self::registerUserFunctions();
         if ($plugin_cf['yanp']['feed_enabled']) {
-            (new RssCommand(self::getNewsService(), new Feed(), new View()))->execute();
+            (new RssCommand(self::getNewsService(), new Feed($tx, $plugin_tx), new View()))->execute();
         }
         /** @phpstan-ignore if.alwaysFalse */
         if (XH_ADM) {
