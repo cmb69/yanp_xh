@@ -110,7 +110,7 @@ class Plugin
     public static function feedlinkCommand(?string $icon = null): string
     {
         ob_start();
-        (new FeedlinkCommand($icon, new View()))->execute();
+        (new FeedLinkCommand($icon, new View()))->execute();
         return (string) ob_get_clean();
     }
 

@@ -21,7 +21,7 @@
 
 namespace Yanp;
 
-class FeedlinkCommand
+class FeedLinkCommand
 {
     /**
      * @var string|null
