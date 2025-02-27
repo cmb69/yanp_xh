@@ -30,21 +30,6 @@
         </exec>
     </target>
 
-    <target name="mess" description="detects code flaws">
-        <exec executable="phpmd" passthru="true" checkreturn="true">
-            <arg line="index.php,yanp_view.php,classes,tests/unit ansi codesize,unusedcode"/>
-        </exec>
-    </target>
-
-    <target name="compat"
-            description="checks compatibility with PHP_CompatInfo">
-        <exec executable="phpcompatinfo" passthru="true" checkreturn="true">
-            <arg value="--ansi"/>
-            <arg value="analyser:run"/>
-            <arg file="classes"/>
-        </exec>
-    </target>
-
     <target name="unit-tests" description="runs all unit tests">
         <exec executable="phpunit" passthru="true" checkreturn="true">
             <arg value="--bootstrap"/>
