@@ -27,25 +27,25 @@ class FeedTest extends TestCase
 {
     public function testGetTitleFromYanp(): void
     {
-        $sut = new Feed([], ["yanp" => ["feed_title" => "The Feed"]]);
+        $sut = new Feed("A Site", "Site description", ["feed_title" => "The Feed"]);
         $this->assertEquals("The Feed", $sut->getTitle());
     }
 
     public function testGetTitleFromSite(): void
     {
-        $sut = new Feed(["site" => ["title" => "A Site"]], ["yanp" => ["feed_title" => ""]]);
+        $sut = new Feed("A Site", "Site description", ["feed_title" => ""]);
         $this->assertEquals("A Site", $sut->getTitle());
     }
 
     public function testGetDescriptionFromYanp(): void
     {
-        $sut = new Feed([], ["yanp" => ["feed_description" => "A Feed"]]);
+        $sut = new Feed("A Site", "Site description", ["feed_description" => "A Feed"]);
         $this->assertEquals("A Feed", $sut->getDescription());
     }
 
     public function testGetDescriptionFromSite(): void
     {
-        $sut = new Feed(["meta" => ["description" => "Site description"]], ["yanp" => ["feed_description" => ""]]);
+        $sut = new Feed("A Site", "Site description", ["feed_description" => ""]);
         $this->assertEquals("Site description", $sut->getDescription());
     }
 }

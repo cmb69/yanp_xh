@@ -35,7 +35,12 @@ class Plugin
 
         self::registerUserFunctions();
         if ($plugin_cf['yanp']['feed_enabled']) {
-            (new RssCommand(self::getNewsService(), new Feed($tx, $plugin_tx), new View()))->execute();
+            $rssCommand = new RssCommand(
+                self::getNewsService(),
+                new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
+                new View()
+            );
+            $rssCommand->execute();
         }
         /** @phpstan-ignore if.alwaysFalse */
         if (XH_ADM) {
