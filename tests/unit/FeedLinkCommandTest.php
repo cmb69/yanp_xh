@@ -23,7 +23,7 @@ namespace Yanp;
 
 use PHPUnit\Framework\TestCase;
 
-class FeedlinkCommandTest extends TestCase
+class FeedLinkCommandTest extends TestCase
 {
     public function testExecutionRendersTemplate(): void
     {
