@@ -26,7 +26,7 @@ use ReflectionMethod;
 
 class Plugin
 {
-    const VERSION = "2.1";
+    const VERSION = "2.2-dev";
 
     /** @return void */
     public static function dispatch()
