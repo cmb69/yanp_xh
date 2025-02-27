@@ -80,16 +80,15 @@
         <delete file="export.zip"/>
         <move todir="dist">
             <fileset dir="export">
+                <exclude name=".github/**"/>
                 <exclude name=".phive/**"/>
                 <exclude name="tests/**"/>
                 <exclude name="help/template.htm"/>
                 <exclude name="build.xml"/>
                 <exclude name="composer.*"/>
                 <exclude name="coverage.xml"/>
-                <exclude name="phpcompatinfo.json"/>
                 <exclude name="phpstan.*"/>
                 <exclude name="README*.md"/>
-                <exclude name="stubs.php"/>
                 <exclude name="teplad.xml"/>
             </fileset>
         </move>
