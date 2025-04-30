@@ -28,41 +28,10 @@ class Plugin
     /** @return void */
     public static function dispatch()
     {
-        global $pth, $pd_router, $plugin_cf, $plugin_tx;
+        global $plugin_cf;
 
         if ($plugin_cf['yanp']['feed_enabled']) {
             Dic::rssCommand()->execute();
-        }
-        /** @phpstan-ignore if.alwaysFalse */
-        if (XH_ADM) {
-            XH_registerStandardPluginMenuItems(false);
-
-            $pd_router->add_interest('yanp_timestamp');
-            $pd_router->add_interest('yanp_description');
-            $pd_router->add_tab(
-                $plugin_tx['yanp']['tab_label'],
-                $pth['folder']['plugins'] . 'yanp/yanp_view.php'
-            );
-
-            if (XH_wantsPluginAdministration('yanp')) {
-                self::handleAdministration();
-            }
-        }
-    }
-
-    /** @return void */
-    private static function handleAdministration()
-    {
-        global $admin, $o;
-
-        $o .= print_plugin_admin('off');
-
-        switch ($admin) {
-            case '':
-                $o .= Dic::infoCommand()->execute();
-                break;
-            default:
-                $o .= plugin_admin_common();
         }
     }
 }
