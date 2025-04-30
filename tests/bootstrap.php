@@ -20,6 +20,7 @@
  */
 
 require_once "../../cmsimple/classes/PageDataRouter.php";
+require_once "../../cmsimple/functions.php";
 
 spl_autoload_register(function ($classname) {
     $parts = explode('\\', $classname);
@@ -29,8 +30,3 @@ spl_autoload_register(function ($classname) {
 });
 
 const CMSIMPLE_XH_VERSION = '1.7.0';
-
-function XH_helpIcon()
-{
-    return "";
-}

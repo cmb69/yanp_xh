@@ -27,8 +27,10 @@ class PageDataCommandTest extends TestCase
 {
     public function testExecutionRendersTemplate(): void
     {
-        global $plugin_tx;
+        global $pth, $tx, $plugin_tx;
 
+        $pth["folder"]["corestyle"] = "../../assets/css/";
+        $tx["editmenu"]["help"] = "Help";
         $plugin_tx = ['yanp' => ['tab_description_info' => ""]];
         $view = $this->createMock(View::class);
         $subject = new PageDataCommand(['yanp_description' => ''], $view);

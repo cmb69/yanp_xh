@@ -21,17 +21,18 @@
 
 namespace Yanp;
 
+use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
 
 class InfoCommandTest extends TestCase
 {
-    public function testExecutionRendersTemplate(): void
+    public function testRendersPluginInfo(): void
     {
-        $view = $this->createMock(View::class);
+        $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new InfoCommand($view);
-        $view->expects($this->once())
-            ->method('render')
-            ->with($this->equalTo('info'));
+        ob_start();
         $subject->execute();
+        $output = ob_get_clean();
+        Approvals::verifyHtml($output);
     }
 }

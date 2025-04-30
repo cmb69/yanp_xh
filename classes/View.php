@@ -23,8 +23,21 @@ namespace Yanp;
 
 class View
 {
+    /** @var string */
+    private $templateFolder;
+
+    /** @var array<string,string> */
+    private $lang;
+
     /** @var array<string,mixed> */
     private $data = array();
+
+    /** @param array<string,string> $lang */
+    public function __construct(string $templateFolder, array $lang)
+    {
+        $this->templateFolder = $templateFolder;
+        $this->lang = $lang;
+    }
 
     /** @return mixed */
     public function __get(string $name)
@@ -51,9 +64,7 @@ class View
      */
     protected function text(string $key, ...$args): string
     {
-        global $plugin_tx;
-
-        return vsprintf($plugin_tx['yanp'][$key], $args);
+        return vsprintf($this->lang[$key], $args);
     }
 
     /**
@@ -61,14 +72,12 @@ class View
      */
     protected function plural(string $key, int $count, ...$args): string
     {
-        global $plugin_tx;
-
         if ($count == 0) {
             $key .= '_0';
         } else {
             $key .= XH_numberSuffix($count);
         }
-        return vsprintf($plugin_tx['yanp'][$key], $args);
+        return vsprintf($this->lang[$key], $args);
     }
 
     /**
@@ -77,11 +86,9 @@ class View
      */
     public function render(string $_template, array $data)
     {
-        global $pth;
-
         $this->data = $data;
         unset($data);
-        include "{$pth['folder']['plugins']}yanp/views/{$_template}.php";
+        include $this->templateFolder . $_template . ".php";
     }
 
     /**

@@ -21,20 +21,21 @@
 
 namespace Yanp;
 
+use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
 
 class FeedLinkCommandTest extends TestCase
 {
-    public function testExecutionRendersTemplate(): void
+    public function testRendersFeedLink(): void
     {
         global $pth;
 
         $pth = ['folder' => ['plugins' => ""]];
-        $view = $this->createMock(View::class);
+        $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new FeedLinkCommand(null, $view);
-        $view->expects($this->once())
-            ->method('render')
-            ->with($this->equalTo('feed-link'));
+        ob_start();
         $subject->execute();
+        $output = ob_get_clean();
+        Approvals::verifyHtml($output);
     }
 }

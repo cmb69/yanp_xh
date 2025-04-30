@@ -38,7 +38,7 @@ class Plugin
             $rssCommand = new RssCommand(
                 self::getNewsService(),
                 new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
-                new View()
+                new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"])
             );
             $rssCommand->execute();
         }
@@ -62,14 +62,14 @@ class Plugin
     /** @return void */
     private static function handleAdministration()
     {
-        global $admin, $o;
+        global $admin, $o, $pth, $plugin_tx;
 
         $o .= print_plugin_admin('off');
 
         switch ($admin) {
             case '':
                 ob_start();
-                (new InfoCommand(new View()))->execute();
+                (new InfoCommand(new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"])))->execute();
                 $o .= ob_get_clean();
                 break;
             default:
@@ -107,23 +107,29 @@ class Plugin
 
     public static function newsboxCommand(): string
     {
+        global $pth, $plugin_tx;
+        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
         ob_start();
-        (new NewsboxCommand(self::getNewsService(), new View()))->execute();
+        (new NewsboxCommand(self::getNewsService(), $view))->execute();
         return (string) ob_get_clean();
     }
 
     public static function feedlinkCommand(?string $icon = null): string
     {
+        global $pth, $plugin_tx;
+        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
         ob_start();
-        (new FeedLinkCommand($icon, new View()))->execute();
+        (new FeedLinkCommand($icon, $view))->execute();
         return (string) ob_get_clean();
     }
 
     /** @param array<mixed> $page */
     public static function viewCommand(array $page): string
     {
+        global $pth, $plugin_tx;
+        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
         ob_start();
-        (new PageDataCommand($page, new View()))->execute();
+        (new PageDataCommand($page, $view))->execute();
         return (string) ob_get_clean();
     }
 
