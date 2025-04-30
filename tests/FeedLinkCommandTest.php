@@ -33,9 +33,6 @@ class FeedLinkCommandTest extends TestCase
         $pth = ['folder' => ['plugins' => ""]];
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new FeedLinkCommand(null, $view);
-        ob_start();
-        $subject->execute();
-        $output = ob_get_clean();
-        Approvals::verifyHtml($output);
+        Approvals::verifyHtml($subject->execute());
     }
 }

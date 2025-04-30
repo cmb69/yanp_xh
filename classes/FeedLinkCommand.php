@@ -40,12 +40,11 @@ class FeedLinkCommand
         $this->view = $view;
     }
 
-    /** @return void */
-    public function execute()
+    public function execute(): string
     {
         global $pth;
 
-        $this->view->render('feed-link', [
+        return $this->view->render('feed-link', [
             'feedUrl' => $this->getFeedUrl(),
             'icon' => isset($this->icon)
                 ? $pth['folder']['templateimages'] . $this->icon

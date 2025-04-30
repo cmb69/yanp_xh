@@ -80,15 +80,14 @@ class View
         return vsprintf($this->lang[$key], $args);
     }
 
-    /**
-     * @param array<string,mixed> $data
-     * @return void
-     */
-    public function render(string $_template, array $data)
+    /** @param array<string,mixed> $data */
+    public function render(string $_template, array $data): string
     {
         $this->data = $data;
         unset($data);
+        ob_start();
         include $this->templateFolder . $_template . ".php";
+        return (string) ob_get_clean();
     }
 
     /**

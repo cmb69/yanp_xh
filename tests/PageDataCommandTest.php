@@ -37,9 +37,6 @@ class PageDataCommandTest extends TestCase
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new PageDataCommand(['yanp_description' => ''], $view);
         $request = new FakeRequest(["time" => strtotime("2025-04-30T15:45:43+00:00")]);
-        ob_start();
-        $subject->execute($request);
-        $output = ob_get_clean();
-        Approvals::verifyHtml($output);
+        Approvals::verifyHtml($subject->execute($request));
     }
 }

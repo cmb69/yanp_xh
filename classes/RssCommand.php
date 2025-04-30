@@ -58,7 +58,7 @@ class RssCommand
         global $sl, $pth, $h, $u, $plugin_cf;
 
         echo '<?xml version="1.0" encoding="UTF-8"?>', PHP_EOL;
-        $this->view->render('feed', [
+        echo $this->view->render('feed', [
             'title' => $this->feed->getTitle(),
             'link' => CMSIMPLE_URL,
             'description' => $this->feed->getDescription(),

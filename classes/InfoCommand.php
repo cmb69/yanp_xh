@@ -38,12 +38,11 @@ class InfoCommand
         $this->view = $view;
     }
 
-    /** @return void */
-    public function execute()
+    public function execute(): string
     {
         global $pth;
 
-        $this->view->render('info', [
+        return $this->view->render('info', [
             'version' => Plugin::VERSION,
             'checks' => $this->getSystemChecks(),
             'stateIcon' =>  function (string $state) use ($pth): string {

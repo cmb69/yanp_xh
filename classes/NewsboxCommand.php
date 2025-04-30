@@ -35,14 +35,11 @@ class NewsboxCommand
         $this->view = $view;
     }
 
-    /**
-     * @return void
-     */
-    public function execute()
+    public function execute(): string
     {
         global $h, $u, $sn, $plugin_cf, $plugin_tx;
 
-        $this->view->render('newsbox', [
+        return $this->view->render('newsbox', [
             'pageIds' => $this->newsService->getPageIds(),
             'headingTag' => $plugin_cf['yanp']['heading_level'],
             'heading' => function (int $id) use ($h): HtmlString {

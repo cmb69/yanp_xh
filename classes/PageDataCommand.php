@@ -40,12 +40,11 @@ class PageDataCommand
         $this->view = $view;
     }
 
-    /** @return void */
-    public function execute(Request $request)
+    public function execute(Request $request): string
     {
         global $sn, $su, $plugin_tx;
 
-        $this->view->render('pdtab', [
+        return $this->view->render('pdtab', [
             'actionUrl' => "$sn?$su",
             'timestamp' => $request->time(),
             'icon' => new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info'])),

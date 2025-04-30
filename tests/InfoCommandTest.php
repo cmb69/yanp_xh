@@ -31,9 +31,6 @@ class InfoCommandTest extends TestCase
     {
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new InfoCommand(new FakeSystemChecker(), $view);
-        ob_start();
-        $subject->execute();
-        $output = ob_get_clean();
-        Approvals::verifyHtml($output);
+        Approvals::verifyHtml($subject->execute());
     }
 }

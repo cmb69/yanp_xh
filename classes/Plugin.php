@@ -71,9 +71,7 @@ class Plugin
         switch ($admin) {
             case '':
                 $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-                ob_start();
-                (new InfoCommand(new SystemChecker(), $view))->execute();
-                $o .= ob_get_clean();
+                $o .= (new InfoCommand(new SystemChecker(), $view))->execute();
                 break;
             default:
                 $o .= plugin_admin_common();
@@ -112,18 +110,14 @@ class Plugin
     {
         global $pth, $plugin_tx;
         $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        ob_start();
-        (new NewsboxCommand(self::getNewsService(), $view))->execute();
-        return (string) ob_get_clean();
+        return (string) (new NewsboxCommand(self::getNewsService(), $view))->execute();
     }
 
     public static function feedlinkCommand(?string $icon = null): string
     {
         global $pth, $plugin_tx;
         $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        ob_start();
-        (new FeedLinkCommand($icon, $view))->execute();
-        return (string) ob_get_clean();
+        return (new FeedLinkCommand($icon, $view))->execute();
     }
 
     /** @param array<mixed> $page */
@@ -131,9 +125,7 @@ class Plugin
     {
         global $pth, $plugin_tx;
         $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        ob_start();
-        (new PageDataCommand($page, $view))->execute(Request::current());
-        return (string) ob_get_clean();
+        return (new PageDataCommand($page, $view))->execute(Request::current());
     }
 
     private static function getNewsService(): NewsService
