@@ -21,38 +21,57 @@
 
 namespace Yanp;
 
+use Plib\Request;
+use XH\Pages;
+
 class NewsboxCommand
 {
+    /** @var array<string,string> */
+    private $conf;
+
+    /** @var string */
+    private $dateFormat;
+
+    /** @var Pages */
+    private $pages;
+
     /** @var NewsService */
     private $newsService;
 
     /** @var View */
     private $view;
 
-    public function __construct(NewsService $newsService, View $view)
-    {
+    /** @param array<string,string> $conf */
+    public function __construct(
+        array $conf,
+        string $dateFormat,
+        Pages $pages,
+        NewsService $newsService,
+        View $view
+    ) {
+        $this->conf = $conf;
+        $this->dateFormat = $dateFormat;
+        $this->pages = $pages;
         $this->newsService = $newsService;
         $this->view = $view;
     }
 
-    public function execute(): string
+    public function execute(Request $request): string
     {
-        global $h, $u, $sn, $plugin_cf, $plugin_tx;
-
         return $this->view->render('newsbox', [
             'pageIds' => $this->newsService->getPageIds(),
-            'headingTag' => $plugin_cf['yanp']['heading_level'],
-            'heading' => function (int $id) use ($h): HtmlString {
-                return new HtmlString($h[$id]);
+            'headingTag' => $this->conf['heading_level'],
+            'heading' => function (int $id): HtmlString {
+                return new HtmlString($this->pages->heading($id));
             },
-            'date' => function (int $id) use ($plugin_tx): string {
-                return date($plugin_tx['yanp']['news_date_format'], $this->newsService->getLastMod($id));
+            'date' => function (int $id): string {
+                return date($this->dateFormat, $this->newsService->getLastMod($id));
             },
             'description' => /** @return string|HtmlString */ function (int $id) {
                 return $this->newsService->getDescription($id);
             },
-            'url' => function (int $id) use ($sn, $u): string {
-                return "$sn?{$u[$id]}";
+            'url' => function (int $id) use ($request): string {
+                return $request->url()->page($this->pages->url($id))->relative();
             },
         ]);
     }

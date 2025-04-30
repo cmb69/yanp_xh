@@ -42,7 +42,7 @@ const YANP_VERSION = "2.2-dev";
 
 function yanp_newsbox(): string
 {
-    return Dic::newsboxCommand()->execute();
+    return Dic::newsboxCommand()->execute(Request::current());
 }
 
 function yanp_feedlink(?string $icon = null): string

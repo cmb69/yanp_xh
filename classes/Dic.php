@@ -42,7 +42,14 @@ class Dic
 
     public static function newsboxCommand(): NewsboxCommand
     {
-        return new NewsboxCommand(self::newsService(), self::view());
+        global $plugin_cf, $plugin_tx;
+        return new NewsboxCommand(
+            $plugin_cf["yanp"],
+            $plugin_tx["yanp"]["news_date_format"],
+            new Pages(),
+            self::newsService(),
+            self::view()
+        );
     }
 
     public static function feedLinkCommand(?string $icon): FeedLinkCommand
