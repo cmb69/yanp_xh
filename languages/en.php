@@ -1,6 +1,5 @@
 <?php
 
-$plugin_tx['yanp']['label_version']="Version";
 $plugin_tx['yanp']['news_date_format']="F jS, Y";
 $plugin_tx['yanp']['news_read_more']="Read&nbsp;more&nbsp;&raquo;";
 $plugin_tx['yanp']['feed_title']="";

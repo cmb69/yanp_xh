@@ -6,8 +6,7 @@ if (!isset($this)) {
 ?>
 
 <!-- Yanp_XH info -->
-<h1>Yanp</h1>
-<p><?=$this->text('label_version')?>: <?=$this->version()?></p>
+<h1>Yanp <?=$this->version()?></h1>
 <h2><?=$this->text('syscheck_title')?></h2>
 <?php foreach ($this->checks as $check):?>
     <p class="xh_<?=$this->escape($check->state)?>"><?=$this->text($check->key, $check->param)?></p>
