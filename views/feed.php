@@ -1,8 +1,7 @@
 <?php
-if (!isset($this)) {
-    header('HTTP/1.0 404 Not Found');
-    exit;
-}
+
+if (!isset($this)) {http_reponse_code(403); exit;}
+
 ?>
 
 <!-- Yanp_XH feed -->
