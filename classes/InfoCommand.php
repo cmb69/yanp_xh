@@ -21,15 +21,20 @@
 
 namespace Yanp;
 
+use Plib\SystemChecker;
 use stdClass;
 
 class InfoCommand
 {
+    /** @var SystemChecker */
+    private $systemChecker;
+
     /** @var View */
     private $view;
 
-    public function __construct(View $view)
+    public function __construct(SystemChecker $systemChecker, View $view)
     {
+        $this->systemChecker = $systemChecker;
         $this->view = $view;
     }
 
@@ -84,16 +89,16 @@ class InfoCommand
 
     private function getPhpVersionState(string $version): string
     {
-        return version_compare(PHP_VERSION, $version) >= 0 ? 'success' : 'fail';
+        return $this->systemChecker->checkVersion(PHP_VERSION, $version) ? 'success' : 'fail';
     }
 
     private function getXhVersionState(string $version): string
     {
-        return version_compare(CMSIMPLE_XH_VERSION, "CMSimple_XH $version") >= 0 ? 'success' : 'fail';
+        return $this->systemChecker->checkVersion(CMSIMPLE_XH_VERSION, "CMSimple_XH $version") ? 'success' : 'fail';
     }
 
     private function getWritabilityState(string $filename): string
     {
-        return is_writable($filename) ? 'success' : 'warning';
+        return $this->systemChecker->checkWritability($filename) ? 'success' : 'warning';
     }
 }

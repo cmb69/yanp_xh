@@ -21,6 +21,7 @@
 
 namespace Yanp;
 
+use Plib\SystemChecker;
 use ReflectionClass;
 use ReflectionMethod;
 
@@ -68,8 +69,9 @@ class Plugin
 
         switch ($admin) {
             case '':
+                $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
                 ob_start();
-                (new InfoCommand(new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"])))->execute();
+                (new InfoCommand(new SystemChecker(), $view))->execute();
                 $o .= ob_get_clean();
                 break;
             default:

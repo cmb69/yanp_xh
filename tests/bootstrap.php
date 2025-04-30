@@ -22,6 +22,9 @@
 require_once "../../cmsimple/classes/PageDataRouter.php";
 require_once "../../cmsimple/functions.php";
 
+require_once "../plib/classes/SystemChecker.php";
+require_once "../plib/classes/FakeSystemChecker.php";
+
 spl_autoload_register(function ($classname) {
     $parts = explode('\\', $classname);
     if ($parts[0] === 'Yanp') {
