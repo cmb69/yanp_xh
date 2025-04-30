@@ -21,11 +21,6 @@
 
 namespace Yanp;
 
-use Plib\Request;
-use Plib\SystemChecker;
-use ReflectionClass;
-use ReflectionMethod;
-
 class Plugin
 {
     const VERSION = "2.2-dev";
@@ -33,16 +28,10 @@ class Plugin
     /** @return void */
     public static function dispatch()
     {
-        global $pth, $pd_router, $tx, $plugin_cf, $plugin_tx;
+        global $pth, $pd_router, $plugin_cf, $plugin_tx;
 
-        self::registerUserFunctions();
         if ($plugin_cf['yanp']['feed_enabled']) {
-            $rssCommand = new RssCommand(
-                self::getNewsService(),
-                new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
-                new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"])
-            );
-            $rssCommand->execute();
+            Dic::rssCommand()->execute();
         }
         /** @phpstan-ignore if.alwaysFalse */
         if (XH_ADM) {
@@ -64,78 +53,16 @@ class Plugin
     /** @return void */
     private static function handleAdministration()
     {
-        global $admin, $o, $pth, $plugin_tx;
+        global $admin, $o;
 
         $o .= print_plugin_admin('off');
 
         switch ($admin) {
             case '':
-                $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-                $o .= (new InfoCommand(new SystemChecker(), $view))->execute();
+                $o .= Dic::infoCommand()->execute();
                 break;
             default:
                 $o .= plugin_admin_common();
         }
-    }
-
-    /** @return void */
-    private static function registerUserFunctions()
-    {
-        $rc = new ReflectionClass(self::class);
-        foreach ($rc->getMethods(ReflectionMethod::IS_PUBLIC) as $rm) {
-            if (substr_compare($rm->getName(), "Command", -strlen("Command")) === 0) {
-                $name = $rm->getName();
-                $lcname = "yanp_" . substr(strtolower($name), 0, -strlen("Command"));
-                $params = $args = [];
-                foreach ($rm->getParameters() as $rp) {
-                    $param = $arg = "\${$rp->getName()}";
-                    if ($rp->isOptional()) {
-                        $default = var_export($rp->getDefaultValue(), true);
-                        assert($default !== null);
-                        $param .= " = " . $default;
-                    }
-                    $params[] = $param;
-                    $args[] = $arg;
-                }
-                $parameters = implode(", ", $params);
-                $arguments = implode(", ", $args);
-                $body = "return \\Yanp\\Plugin::$name($arguments);";
-                $code = "function $lcname($parameters) {\n\t$body\n}";
-                eval($code);
-            }
-        }
-    }
-
-    public static function newsboxCommand(): string
-    {
-        global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        return (string) (new NewsboxCommand(self::getNewsService(), $view))->execute();
-    }
-
-    public static function feedlinkCommand(?string $icon = null): string
-    {
-        global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        return (new FeedLinkCommand($icon, $view))->execute();
-    }
-
-    /** @param array<mixed> $page */
-    public static function viewCommand(array $page): string
-    {
-        global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
-        return (new PageDataCommand($page, $view))->execute(Request::current());
-    }
-
-    private static function getNewsService(): NewsService
-    {
-        global $pd_router, $plugin_cf;
-
-        return new NewsService(
-            $pd_router,
-            (int) $plugin_cf['yanp']['entries_max'],
-            (bool) $plugin_cf['yanp']['html_markup']
-        );
     }
 }

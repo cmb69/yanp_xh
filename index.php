@@ -19,6 +19,17 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Yanp\Dic;
 use Yanp\Plugin;
+
+function yanp_newsbox(): string
+{
+    return Dic::newsboxCommand()->execute();
+}
+
+function yanp_feedlink(?string $icon = null): string
+{
+    return Dic::feedLinkCommand($icon)->execute();
+}
 
 Plugin::dispatch();
