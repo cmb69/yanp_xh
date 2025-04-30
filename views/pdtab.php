@@ -10,7 +10,10 @@ if (!isset($this)) {
     <p><strong><?=$this->text('tab_form_label')?></strong></p>
     <input type="hidden" name="yanp_timestamp" value="<?=$this->timestamp()?>">
     <p>
-        <?=$this->icon()?>
+        <div class="pl_tooltip">
+            <img src="<?=$this->icon()?>">
+            <div><?=$this->text('tab_description_info')?></div>
+        </div>
         <label for="yanp_description"><?=$this->text('tab_description_label')?></label><br>
         <textarea id="yanp_description" name="yanp_description" cols="40"
                   row="10"><?=$this->description()?></textarea>

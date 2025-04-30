@@ -48,7 +48,8 @@ class Dic
     /** @param array<mixed> $page */
     public static function pageDataCommand(array $page): PageDataCommand
     {
-        return new PageDataCommand($page, self::view());
+        global $pth;
+        return new PageDataCommand($pth["folder"]["corestyle"], $page, self::view());
     }
 
     public static function infoCommand(): InfoCommand

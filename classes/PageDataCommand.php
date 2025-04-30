@@ -25,6 +25,9 @@ use Plib\Request;
 
 class PageDataCommand
 {
+    /** @var string */
+    private $coreStyleFolder;
+
     /**
      * @var array<mixed>
      */
@@ -34,20 +37,21 @@ class PageDataCommand
     private $view;
 
     /** @param array<mixed> $pageData */
-    public function __construct(array $pageData, View $view)
+    public function __construct(string $coreStyleFolder, array $pageData, View $view)
     {
+        $this->coreStyleFolder = $coreStyleFolder;
         $this->pageData = $pageData;
         $this->view = $view;
     }
 
     public function execute(Request $request): string
     {
-        global $sn, $su, $plugin_tx;
+        global $sn, $su;
 
         return $this->view->render('pdtab', [
             'actionUrl' => "$sn?$su",
             'timestamp' => $request->time(),
-            'icon' => new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info'])),
+            'icon' => $this->coreStyleFolder . "help_icon.svg",
             'description' => $this->pageData['yanp_description'],
         ]);
     }

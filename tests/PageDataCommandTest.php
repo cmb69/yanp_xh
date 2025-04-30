@@ -29,13 +29,8 @@ class PageDataCommandTest extends TestCase
 {
     public function testRendersPageDataTab(): void
     {
-        global $pth, $tx, $plugin_tx;
-
-        $pth["folder"]["corestyle"] = "../../assets/css/";
-        $tx["editmenu"]["help"] = "Help";
-        $plugin_tx = ['yanp' => ['tab_description_info' => ""]];
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
-        $subject = new PageDataCommand(['yanp_description' => ''], $view);
+        $subject = new PageDataCommand("../../cmsimple/assets/css/", ['yanp_description' => ''], $view);
         $request = new FakeRequest(["time" => strtotime("2025-04-30T15:45:43+00:00")]);
         Approvals::verifyHtml($subject->execute($request));
     }

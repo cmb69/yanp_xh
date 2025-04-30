@@ -11,7 +11,7 @@ class DicTest extends TestCase
     {
         global $pd_router, $pth, $tx, $plugin_cf, $plugin_tx;
         $pd_router = $this->createStub(PageDataRouter::class);
-        $pth = ["folder" => ["plugins" => ""]];
+        $pth = ["folder" => ["corestyle" => "", "plugins" => ""]];
         $tx = ["meta" => ["description" => ""], "site" => ["title" => ""]];
         $plugin_tx = ["yanp" => []];
         $plugin_cf = ["yanp" => ["entries_max" => "", "html_markup" => ""]];
