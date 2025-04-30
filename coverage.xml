@@ -9,7 +9,7 @@
       <file>yanp_view.php</file>
     </include>
     <report>
-      <html outputDirectory="./coverage" lowUpperBound="35" highLowerBound="70"/>
+      <html outputDirectory="./coverage"/>
     </report>
   </coverage>
   <testsuites>
