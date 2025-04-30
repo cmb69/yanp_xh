@@ -13,6 +13,7 @@ $plugin_tx['yanp']['tab_description_info']="The description that appears in the 
 $plugin_tx['yanp']['tab_button']="Save";
 $plugin_tx['yanp']['syscheck_title']="System check";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP version ≥ %s";
+$plugin_tx['yanp']['syscheck_plibversion']="Plib_XH version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Extension '%s' loaded";
 $plugin_tx['yanp']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
 $plugin_tx['yanp']['syscheck_writable']="Folder '%s' writable";

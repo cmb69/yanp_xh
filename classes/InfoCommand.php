@@ -61,6 +61,7 @@ class InfoCommand
 
         $phpVersion = '7.1.0';
         $xhVersion = '1.7.0';
+        $plibVersion = "1.7";
         $checks = array(
             (object) array(
                 'state' => $this->getPhpVersionState($phpVersion),
@@ -71,6 +72,11 @@ class InfoCommand
                 'state' => $this->getXhVersionState($xhVersion),
                 'key' => 'syscheck_xhversion',
                 'param' => $xhVersion
+            ),
+            (object) array(
+                'state' => $this->systemChecker->checkPlugin("plib", $plibVersion) ? 'success' : 'fail',
+                'key' => 'syscheck_plibversion',
+                'param' => $plibVersion
             )
         );
         $folders = [];

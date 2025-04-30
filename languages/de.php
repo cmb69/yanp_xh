@@ -13,6 +13,7 @@ $plugin_tx['yanp']['tab_description_info']="Die Beschreibung, die in der Newsbox
 $plugin_tx['yanp']['tab_button']="Speichern";
 $plugin_tx['yanp']['syscheck_title']="System-Prüfung";
 $plugin_tx['yanp']['syscheck_phpversion']="PHP Version ≥ %s";
+$plugin_tx['yanp']['syscheck_plibversion']="Plib_XH Version ≥ %s";
 $plugin_tx['yanp']['syscheck_extension']="Erweiterung '%s' geladen";
 $plugin_tx['yanp']['syscheck_writable']="Ordner '%s' beschreibbar";
 $plugin_tx['yanp']['syscheck_okay']="OK";
