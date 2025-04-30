@@ -5,7 +5,7 @@ if (!isset($this)) {http_reponse_code(403); exit;}
 ?>
 
 <!-- Yanp_XH newsbox -->
-<?php foreach ($this->pageIds as $pageId):?>
+<?foreach ($this->pageIds as $pageId):?>
 <div class="yanp-news">
   <<?=$this->headingTag()?>><?=$this->heading($pageId)?></<?=$this->headingTag()?>>
   <p><em><?=$this->date($pageId)?></em></p>
@@ -16,4 +16,4 @@ if (!isset($this)) {http_reponse_code(403); exit;}
     </span>
   </p>
 </div>
-<?php endforeach?>
+<?endforeach?>
