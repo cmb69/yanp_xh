@@ -36,3 +36,4 @@ spl_autoload_register(function ($classname) {
 });
 
 const CMSIMPLE_XH_VERSION = '1.7.0';
+const YANP_VERSION = "2.2-dev";

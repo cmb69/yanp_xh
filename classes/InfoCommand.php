@@ -43,7 +43,7 @@ class InfoCommand
         global $pth;
 
         return $this->view->render('info', [
-            'version' => Plugin::VERSION,
+            'version' => YANP_VERSION,
             'checks' => $this->getSystemChecks(),
             'stateIcon' =>  function (string $state) use ($pth): string {
                 return "{$pth['folder']['plugins']}yanp/images/$state.png";

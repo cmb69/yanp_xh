@@ -20,7 +20,18 @@
  */
 
 use Yanp\Dic;
-use Yanp\Plugin;
+
+if (!defined("CMSIMPLE_XH_VERSION")) {
+    http_response_code(403);
+    exit;
+}
+
+/** @var array<string,array<string,string>> $plugin_cf */
+
+if ($plugin_cf['yanp']['feed_enabled']) {
+    Dic::rssCommand()->execute();
+}
+const YANP_VERSION = "2.2-dev";
 
 function yanp_newsbox(): string
 {
@@ -31,5 +42,3 @@ function yanp_feedlink(?string $icon = null): string
 {
     return Dic::feedLinkCommand($icon)->execute();
 }
-
-Plugin::dispatch();
