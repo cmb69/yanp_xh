@@ -22,13 +22,18 @@
 namespace Yanp;
 
 use Plib\SystemChecker;
+use XH\Pages;
 
 class Dic
 {
     public static function rssCommand(): RssCommand
     {
-        global $tx, $plugin_tx;
+        global $pth, $tx, $plugin_cf, $plugin_tx;
         return new RssCommand(
+            $pth["folder"]["images"],
+            $pth["file"]["content"],
+            $plugin_cf["yanp"],
+            new Pages(),
             self::newsService(),
             new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
             self::View()

@@ -37,8 +37,6 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
 
  XH_registerStandardPluginMenuItems(false);
 
- $pd_router->add_interest("yanp_timestamp");
- $pd_router->add_interest("yanp_description");
  $pd_router->add_tab($plugin_tx["yanp"]["tab_label"], $pth["folder"]["plugins"] . "yanp/yanp_view.php");
 
  if (XH_wantsPluginAdministration("yanp")) {

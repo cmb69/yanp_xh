@@ -9,9 +9,10 @@ class DicTest extends TestCase
 {
     public function setUp(): void
     {
-        global $pd_router, $pth, $tx, $plugin_cf, $plugin_tx;
+        global $c, $pd_router, $pth, $tx, $plugin_cf, $plugin_tx;
+        $c = [];
         $pd_router = $this->createStub(PageDataRouter::class);
-        $pth = ["folder" => ["corestyle" => "", "plugins" => ""]];
+        $pth = ["folder" => ["corestyle" => "", "images" => "", "plugins" => ""], "file" => ["content" => ""]];
         $tx = ["meta" => ["description" => ""], "site" => ["title" => ""]];
         $plugin_tx = ["yanp" => []];
         $plugin_cf = ["yanp" => ["entries_max" => "", "html_markup" => ""]];

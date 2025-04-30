@@ -21,90 +21,105 @@
 
 namespace Yanp;
 
+use Plib\Request;
+use Plib\Response;
+use XH\Pages;
+
 class RssCommand
 {
+    /** @var string */
+    private $imageFolder;
+
+    /** @var string */
+    private $contentFile;
+
+    /** @var array<string,string> */
+    private $conf;
+
+    /** @var Pages */
+    private $pages;
+
     /** @var NewsService */
     private $newsService;
 
-    /**
-     * @var Feed
-     */
+    /** @var Feed */
     private $feed;
 
     /** @var View */
     private $view;
 
-    public function __construct(NewsService $newsService, Feed $feed, View $view)
-    {
+    /** @param array<string,string> $conf */
+    public function __construct(
+        string $imageFolder,
+        string $contentFile,
+        array $conf,
+        Pages $pages,
+        NewsService $newsService,
+        Feed $feed,
+        View $view
+    ) {
+        $this->imageFolder = $imageFolder;
+        $this->contentFile = $contentFile;
+        $this->conf = $conf;
+        $this->pages = $pages;
         $this->newsService = $newsService;
         $this->feed = $feed;
         $this->view = $view;
     }
 
-    /** @return void */
-    public function execute()
+    public function execute(Request $request): Response
     {
-        if (isset($_GET['yanp_feed'])) {
-            header('Content-Type: application/xml');
-            $this->renderRss();
-            exit;
+        if ($request->get("yanp_feed") !== null) {
+            return Response::create($this->renderRss($request))->withContentType("application/xml");
         }
-        $this->writeHeadLink();
+        return Response::create()->withHjs($this->headLink($request));
     }
 
-    /** @return void */
-    private function renderRss()
+    private function renderRss(Request $request): string
     {
-        global $sl, $pth, $h, $u, $plugin_cf;
-
-        echo '<?xml version="1.0" encoding="UTF-8"?>', PHP_EOL;
-        echo $this->view->render('feed', [
-            'title' => $this->feed->getTitle(),
-            'link' => CMSIMPLE_URL,
-            'description' => $this->feed->getDescription(),
-            'language' => $sl,
-            'pubDate' => date('r', (int) filemtime($pth['file']['content'])),
-            'generator' => 'Yanp_XH',
-            'hasImage' => $plugin_cf['yanp']['feed_image'] != '',
-            'imageUrl' => $this->getAbsoluteUrl($pth['folder']['images'] . $plugin_cf['yanp']['feed_image']),
-            'pageIds' => $this->newsService->getPageIds(),
-            'itemHeading' => function (int $id) use ($h): HtmlString {
-                return new HtmlString($h[$id]);
-            },
-            'itemLink' => function (int $id) use ($u): string {
-                return CMSIMPLE_URL . "?{$u[$id]}";
-            },
-            'itemDescription' => /** @return string|HtmlString */ function (int $id) {
-                return $this->newsService->getDescription($id);
-            },
-            'itemGuid' => function (int $id) use ($u): string {
-                return CMSIMPLE_URL . "?{$u[$id]} " . $this->newsService->getLastMod($id);
-            },
-            'itemPubDate' => function (int $id): string {
-                return date('r', $this->newsService->getLastMod($id));
-            },
-        ]);
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+            . $this->view->render('feed', [
+                'title' => $this->feed->getTitle(),
+                'link' => CMSIMPLE_URL,
+                'description' => $this->feed->getDescription(),
+                'language' => $request->language(),
+                'pubDate' => date('r', (int) filemtime($this->contentFile)),
+                'generator' => 'Yanp_XH',
+                'hasImage' => $this->conf['feed_image'] != '',
+                'imageUrl' => $this->getAbsoluteUrl($this->imageFolder . $this->conf['feed_image']),
+                'pageIds' => $this->newsService->getPageIds(),
+                'itemHeading' => function (int $id): HtmlString {
+                    return new HtmlString($this->pages->heading($id));
+                },
+                'itemLink' => function (int $id): string {
+                    return CMSIMPLE_URL . "?{$this->pages->url($id)}";
+                },
+                'itemDescription' => /** @return string|HtmlString */ function (int $id) {
+                    return $this->newsService->getDescription($id);
+                },
+                'itemGuid' => function (int $id): string {
+                    return CMSIMPLE_URL . "?{$this->pages->url($id)} " . $this->newsService->getLastMod($id);
+                },
+                'itemPubDate' => function (int $id): string {
+                    return date('r', $this->newsService->getLastMod($id));
+                },
+            ]);
     }
 
-    /**
-     * @return void
-     */
-    private function writeHeadLink()
+    private function headLink(Request $request): string
     {
-        global $hjs, $plugin_tx;
+        global $plugin_tx;
 
-        $fn = $this->getFeedUrl();
-        $hjs .= '<link rel="alternate" type="application/rss+xml"'
+        $fn = $this->getFeedUrl($request);
+        return '<link rel="alternate" type="application/rss+xml"'
             . ' title="' . $plugin_tx['yanp']['feed_link_title'] . '"'
             . ' href="' . $fn . '">'
             . "\n";
     }
 
-    private function getFeedUrl(): string
+    private function getFeedUrl(Request $request): string
     {
-        global $sn;
-
-        return $sn . '?&yanp_feed';
+        return $request->url()->page("")->with("yanp_feed")->absolute();
     }
 
     private function getAbsoluteUrl(string $url): string

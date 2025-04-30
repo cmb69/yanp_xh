@@ -19,17 +19,24 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Plib\Request;
+use XH\PageDataRouter;
 use Yanp\Dic;
 
 if (!defined("CMSIMPLE_XH_VERSION")) {
     http_response_code(403);
     exit;
 }
+/**
+ * @var PageDataRouter $pd_router
+ * @var array<string,array<string,string>> $plugin_cf
+ */
 
-/** @var array<string,array<string,string>> $plugin_cf */
+$pd_router->add_interest("yanp_timestamp");
+$pd_router->add_interest("yanp_description");
 
 if ($plugin_cf['yanp']['feed_enabled']) {
-    Dic::rssCommand()->execute();
+    Dic::rssCommand()->execute(Request::current())();
 }
 const YANP_VERSION = "2.2-dev";
 

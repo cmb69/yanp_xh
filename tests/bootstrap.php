@@ -20,9 +20,11 @@
  */
 
 require_once "../../cmsimple/classes/PageDataRouter.php";
+require_once "../../cmsimple/classes/Pages.php";
 require_once "../../cmsimple/functions.php";
 
 require_once "../plib/classes/Request.php";
+require_once "../plib/classes/Response.php";
 require_once "../plib/classes/SystemChecker.php";
 require_once "../plib/classes/Url.php";
 require_once "../plib/classes/FakeRequest.php";
@@ -37,3 +39,4 @@ spl_autoload_register(function ($classname) {
 
 const CMSIMPLE_XH_VERSION = '1.7.0';
 const YANP_VERSION = "2.2-dev";
+const CMSIMPLE_URL = "http://example.com/";
