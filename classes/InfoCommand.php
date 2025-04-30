@@ -54,7 +54,7 @@ class InfoCommand
     {
         global $pth;
 
-        $phpVersion = '7.0.0';
+        $phpVersion = '7.1.0';
         $xhVersion = '1.7.0';
         $checks = array(
             (object) array(
