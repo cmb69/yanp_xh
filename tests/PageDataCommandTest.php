@@ -29,7 +29,7 @@ class PageDataCommandTest extends TestCase
 {
     public function testRendersPageDataTab(): void
     {
-        global $pth, $tx;
+        global $pth, $tx, $plugin_tx;
 
         $pth["folder"]["corestyle"] = "../../assets/css/";
         $tx["editmenu"]["help"] = "Help";
