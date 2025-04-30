@@ -21,6 +21,8 @@
 
 namespace Yanp;
 
+use Plib\Request;
+
 class PageDataCommand
 {
     /**
@@ -39,13 +41,13 @@ class PageDataCommand
     }
 
     /** @return void */
-    public function execute()
+    public function execute(Request $request)
     {
         global $sn, $su, $plugin_tx;
 
         $this->view->render('pdtab', [
             'actionUrl' => "$sn?$su",
-            'timestamp' => time(),
+            'timestamp' => $request->time(),
             'icon' => new HtmlString(XH_helpIcon($plugin_tx['yanp']['tab_description_info'])),
             'description' => $this->pageData['yanp_description'],
         ]);

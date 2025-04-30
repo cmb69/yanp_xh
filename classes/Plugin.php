@@ -21,6 +21,7 @@
 
 namespace Yanp;
 
+use Plib\Request;
 use Plib\SystemChecker;
 use ReflectionClass;
 use ReflectionMethod;
@@ -39,7 +40,7 @@ class Plugin
             $rssCommand = new RssCommand(
                 self::getNewsService(),
                 new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
-                new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"])
+                new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"])
             );
             $rssCommand->execute();
         }
@@ -110,7 +111,7 @@ class Plugin
     public static function newsboxCommand(): string
     {
         global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
+        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
         ob_start();
         (new NewsboxCommand(self::getNewsService(), $view))->execute();
         return (string) ob_get_clean();
@@ -119,7 +120,7 @@ class Plugin
     public static function feedlinkCommand(?string $icon = null): string
     {
         global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
+        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
         ob_start();
         (new FeedLinkCommand($icon, $view))->execute();
         return (string) ob_get_clean();
@@ -129,9 +130,9 @@ class Plugin
     public static function viewCommand(array $page): string
     {
         global $pth, $plugin_tx;
-        $view = new View($pth["folder"]["plugins"] . "yanp/views", $plugin_tx["yanp"]);
+        $view = new View($pth["folder"]["plugins"] . "yanp/views/", $plugin_tx["yanp"]);
         ob_start();
-        (new PageDataCommand($page, $view))->execute();
+        (new PageDataCommand($page, $view))->execute(Request::current());
         return (string) ob_get_clean();
     }
 

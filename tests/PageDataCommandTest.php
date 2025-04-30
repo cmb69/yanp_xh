@@ -21,22 +21,25 @@
 
 namespace Yanp;
 
+use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
+use Plib\FakeRequest;
 
 class PageDataCommandTest extends TestCase
 {
-    public function testExecutionRendersTemplate(): void
+    public function testRendersPageDataTab(): void
     {
-        global $pth, $tx, $plugin_tx;
+        global $pth, $tx;
 
         $pth["folder"]["corestyle"] = "../../assets/css/";
         $tx["editmenu"]["help"] = "Help";
         $plugin_tx = ['yanp' => ['tab_description_info' => ""]];
-        $view = $this->createMock(View::class);
+        $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new PageDataCommand(['yanp_description' => ''], $view);
-        $view->expects($this->once())
-            ->method('render')
-            ->with($this->equalTo('pdtab'));
-        $subject->execute();
+        $request = new FakeRequest(["time" => strtotime("2025-04-30T15:45:43+00:00")]);
+        ob_start();
+        $subject->execute($request);
+        $output = ob_get_clean();
+        Approvals::verifyHtml($output);
     }
 }
