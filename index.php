@@ -47,5 +47,5 @@ function yanp_newsbox(): string
 
 function yanp_feedlink(?string $icon = null): string
 {
-    return Dic::feedLinkCommand($icon)->execute();
+    return Dic::feedLinkCommand($icon)->execute(Request::current());
 }

@@ -21,6 +21,8 @@
 
 namespace Yanp;
 
+use Plib\Request;
+
 class FeedLinkCommand
 {
     /**
@@ -40,22 +42,15 @@ class FeedLinkCommand
         $this->view = $view;
     }
 
-    public function execute(): string
+    public function execute(Request $request): string
     {
         global $pth;
 
         return $this->view->render('feed-link', [
-            'feedUrl' => $this->getFeedUrl(),
+            'feedUrl' => $request->url()->page("")->with("yanp_feed")->relative(),
             'icon' => isset($this->icon)
                 ? $pth['folder']['templateimages'] . $this->icon
                 : $pth['folder']['plugins'] . 'yanp/images/feed.svg',
         ]);
-    }
-
-    private function getFeedUrl(): string
-    {
-        global $sn;
-
-        return $sn . '?&yanp_feed';
     }
 }

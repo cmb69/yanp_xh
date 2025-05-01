@@ -46,10 +46,8 @@ class PageDataCommand
 
     public function execute(Request $request): string
     {
-        global $sn, $su;
-
         return $this->view->render('pdtab', [
-            'actionUrl' => "$sn?$su",
+            'actionUrl' => $request->url()->relative(),
             'timestamp' => $request->time(),
             'icon' => $this->coreStyleFolder . "help_icon.svg",
             'description' => $this->pageData['yanp_description'],

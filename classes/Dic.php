@@ -66,7 +66,12 @@ class Dic
 
     public static function infoCommand(): InfoCommand
     {
-        return new InfoCommand(new SystemChecker(), self::view());
+        global $pth;
+        return new InfoCommand(
+            $pth["folder"]["plugins"] . "yanp/",
+            new SystemChecker(),
+            self::view()
+        );
     }
 
     private static function newsService(): NewsService

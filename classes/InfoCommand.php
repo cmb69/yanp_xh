@@ -26,27 +26,32 @@ use stdClass;
 
 class InfoCommand
 {
+    /** @var string */
+    private $pluginFolder;
+
     /** @var SystemChecker */
     private $systemChecker;
 
     /** @var View */
     private $view;
 
-    public function __construct(SystemChecker $systemChecker, View $view)
-    {
+    public function __construct(
+        string $pluginFolder,
+        SystemChecker $systemChecker,
+        View $view
+    ) {
+        $this->pluginFolder = $pluginFolder;
         $this->systemChecker = $systemChecker;
         $this->view = $view;
     }
 
     public function execute(): string
     {
-        global $pth;
-
         return $this->view->render('info', [
             'version' => YANP_VERSION,
             'checks' => $this->getSystemChecks(),
-            'stateIcon' =>  function (string $state) use ($pth): string {
-                return "{$pth['folder']['plugins']}yanp/images/$state.png";
+            'stateIcon' =>  function (string $state): string {
+                return $this->pluginFolder . "images/$state.png";
             },
         ]);
     }
@@ -56,8 +61,6 @@ class InfoCommand
      */
     private function getSystemChecks(): array
     {
-        global $pth;
-
         $phpVersion = '7.1.0';
         $xhVersion = '1.7.0';
         $plibVersion = "1.7";
@@ -80,7 +83,7 @@ class InfoCommand
         );
         $folders = [];
         foreach (array('config/', 'css/', 'languages/') as $folder) {
-            $folders[] = "{$pth['folder']['plugins']}yanp/$folder";
+            $folders[] = $this->pluginFolder . $folder;
         }
         foreach ($folders as $folder) {
             $checks[] = (object) array(

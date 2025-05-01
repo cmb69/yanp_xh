@@ -23,6 +23,7 @@ namespace Yanp;
 
 use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
+use Plib\FakeRequest;
 
 class FeedLinkCommandTest extends TestCase
 {
@@ -33,6 +34,7 @@ class FeedLinkCommandTest extends TestCase
         $pth = ['folder' => ['plugins' => ""]];
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
         $subject = new FeedLinkCommand(null, $view);
-        Approvals::verifyHtml($subject->execute());
+        $request = new FakeRequest();
+        Approvals::verifyHtml($subject->execute($request));
     }
 }

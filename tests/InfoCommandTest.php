@@ -30,7 +30,11 @@ class InfoCommandTest extends TestCase
     public function testRendersPluginInfo(): void
     {
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
-        $subject = new InfoCommand(new FakeSystemChecker(), $view);
+        $subject = new InfoCommand(
+            "./plugins/yanp/",
+            new FakeSystemChecker(),
+            $view
+        );
         Approvals::verifyHtml($subject->execute());
     }
 }
