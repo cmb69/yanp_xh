@@ -48,12 +48,10 @@ class RssCommandTest extends TestCase
 
     public function testRendersHeadLink(): void
     {
-        global $plugin_tx;
-        $plugin_tx["yanp"]["feed_link_title"] = "My Feed";
         $response = $this->sut()->execute(new FakeRequest());
         $this->assertSame(
-            "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"My Feed\""
-                . " href=\"http://example.com/?&yanp_feed\">\n",
+            "\n<link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS feed\""
+                . " href=\"http://example.com/?&amp;yanp_feed\">\n",
             $response->hjs()
         );
     }

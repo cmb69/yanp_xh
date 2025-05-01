@@ -58,7 +58,9 @@ class RssCommand
         if ($request->get("yanp_feed") !== null) {
             return Response::create($this->renderRss($request))->withContentType("application/xml");
         }
-        return Response::create()->withHjs($this->headLink($request));
+        return Response::create()->withHjs($this->view->render("head_link", [
+            "url" => $request->url()->page("")->with("yanp_feed")->absolute(),
+        ]));
     }
 
     private function renderRss(Request $request): string
@@ -91,21 +93,5 @@ class RssCommand
                     return date('r', $timestamp);
                 },
             ]);
-    }
-
-    private function headLink(Request $request): string
-    {
-        global $plugin_tx;
-
-        $fn = $this->getFeedUrl($request);
-        return '<link rel="alternate" type="application/rss+xml"'
-            . ' title="' . $plugin_tx['yanp']['feed_link_title'] . '"'
-            . ' href="' . $fn . '">'
-            . "\n";
-    }
-
-    private function getFeedUrl(Request $request): string
-    {
-        return $request->url()->page("")->with("yanp_feed")->absolute();
     }
 }
