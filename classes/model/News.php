@@ -23,16 +23,25 @@ namespace Yanp\Model;
 
 class News
 {
+    /** @var int */
+    private $mtime;
+
     /** @var array<int,object{title:string,url:string,mtime:int,description:string}> */
     private $pages = [];
 
     /** @param array<int,object{title:string,url:string,mtime:int,description:string}> $pages */
-    public function __construct(array $pages)
+    public function __construct(int $mtime, array $pages)
     {
+        $this->mtime = $mtime;
         uasort($pages, function ($page1, $page2) {
             return -($page1->mtime <=> $page2->mtime);
         });
         $this->pages = $pages;
+    }
+
+    public function mtime(): int
+    {
+        return $this->mtime;
     }
 
     /** @return array<int,object{title:string,url:string,mtime:int,description:string}> */

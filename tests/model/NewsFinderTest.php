@@ -2,6 +2,7 @@
 
 namespace Yanp\Model;
 
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use XH\PageDataRouter;
@@ -18,6 +19,8 @@ class NewsFinderTest extends TestCase
 
     public function setUp(): void
     {
+        vfsStream::setup("root");
+        touch(vfsStream::url("root/content.htm"), strtotime("2025-04-30T22:06:11+00:00"));
         $this->pages = $this->createStub(Pages::class);
         $this->pages->method("heading")->willReturnMap([
             [8, "Eight"],
@@ -49,12 +52,12 @@ class NewsFinderTest extends TestCase
 
     private function sut(): NewsFinder
     {
-        return new NewsFinder($this->pages, $this->pageData);
+        return new NewsFinder(vfsStream::url("root/content.htm"), $this->pages, $this->pageData);
     }
 
     public function testFindsNews(): void
     {
-        $expected = new News([
+        $expected = new News(strtotime("2025-04-30T22:06:11+00:00"), [
             8 => (object) [
                 "title" => "Eight",
                 "url" => "Eight",

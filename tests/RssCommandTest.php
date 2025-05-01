@@ -3,13 +3,10 @@
 namespace Yanp;
 
 use ApprovalTests\Approvals;
-use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Plib\FakeRequest;
 use Plib\View;
-use XH\PageDataRouter;
-use XH\Pages;
 use Yanp\Model\News;
 use Yanp\Model\NewsFinder;
 
@@ -17,9 +14,6 @@ class RssCommandTest extends TestCase
 {
     /** @var string */
     private $imageFolder;
-
-    /** @var string */
-    private $contentFile;
 
     /** @var array<string,string> */
     private $conf;
@@ -38,9 +32,7 @@ class RssCommandTest extends TestCase
 
     public function setUp(): void
     {
-        vfsStream::setup("root");
         $this->imageFolder = "";
-        $this->contentFile = vfsStream::url("root/content.php");
         $this->conf = XH_includeVar("./config/config.php", "plugin_cf")["yanp"];
         $this->lang = XH_includeVar("./languages/en.php", "plugin_tx")["yanp"];
         $this->newsFinder = $this->createStub(NewsFinder::class);
@@ -52,7 +44,6 @@ class RssCommandTest extends TestCase
     {
         return new RssCommand(
             $this->imageFolder,
-            $this->contentFile,
             $this->conf,
             $this->newsFinder,
             $this->feed,
@@ -74,8 +65,7 @@ class RssCommandTest extends TestCase
 
     public function testRendersFeed(): void
     {
-        touch(vfsStream::url("root/content.php"), strtotime("2025-04-30T22:06:11+00:00"));
-        $this->newsFinder->method("find")->willReturn(new News([
+        $this->newsFinder->method("find")->willReturn(new News(strtotime("2025-04-30T22:06:11+00:00"), [
             8 => (object) [
                 "title" => "Eight",
                 "url" => "Eight",

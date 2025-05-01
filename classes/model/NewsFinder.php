@@ -26,20 +26,28 @@ use XH\Pages;
 
 class NewsFinder
 {
+    /** @var string */
+    private $contentFile;
+
     /** @var Pages */
     private $pages;
 
     /** @var PageDataRouter */
     private $pageData;
 
-    public function __construct(Pages $pages, PageDataRouter $pageData)
-    {
+    public function __construct(
+        string $contentFile,
+        Pages $pages,
+        PageDataRouter $pageData
+    ) {
+        $this->contentFile = $contentFile;
         $this->pages = $pages;
         $this->pageData = $pageData;
     }
 
     public function find(): News
     {
+        $mtime = (int) filemtime($this->contentFile);
         $newsPages = [];
         foreach ($this->pageData->find_all() as $id => $data) {
             if ($data["published"] !== "0" && $data["yanp_description"] != "") {
@@ -54,6 +62,6 @@ class NewsFinder
                 ];
             }
         }
-        return new News($newsPages);
+        return new News($mtime, $newsPages);
     }
 }

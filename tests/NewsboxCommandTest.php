@@ -43,7 +43,7 @@ class NewsboxCommandTest extends TestCase
 
     public function testRendersNewsbox(): void
     {
-        $this->newsFinder->method("find")->willReturn(new News([
+        $this->newsFinder->method("find")->willReturn(new News(strtotime("2025-04-30T22:06:11+00:00"), [
             8 => (object) [
                 "title" => "Eight",
                 "url" => "Eight",

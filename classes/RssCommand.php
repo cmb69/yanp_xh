@@ -31,9 +31,6 @@ class RssCommand
     /** @var string */
     private $imageFolder;
 
-    /** @var string */
-    private $contentFile;
-
     /** @var array<string,string> */
     private $conf;
 
@@ -49,14 +46,12 @@ class RssCommand
     /** @param array<string,string> $conf */
     public function __construct(
         string $imageFolder,
-        string $contentFile,
         array $conf,
         NewsFinder $newsFinder,
         Feed $feed,
         View $view
     ) {
         $this->imageFolder = $imageFolder;
-        $this->contentFile = $contentFile;
         $this->conf = $conf;
         $this->newsFinder = $newsFinder;
         $this->feed = $feed;
@@ -80,7 +75,7 @@ class RssCommand
                 'link' => $request->url()->page("")->absolute(),
                 'description' => $this->feed->getDescription(),
                 'language' => $request->language(),
-                'pubDate' => date('r', (int) filemtime($this->contentFile)),
+                'pubDate' => date('r', $news->mtime()),
                 'generator' => 'Yanp_XH',
                 'hasImage' => $this->conf['feed_image'] != '',
                 'imageUrl' => $request->url()->path($this->imageFolder . $this->conf['feed_image'])->absolute(),
