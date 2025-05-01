@@ -22,6 +22,7 @@
 namespace Yanp;
 
 use Plib\SystemChecker;
+use Plib\View;
 use XH\Pages;
 
 class Dic
@@ -36,7 +37,7 @@ class Dic
             new Pages(),
             self::newsService(),
             new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
-            self::View()
+            self::view()
         );
     }
 
@@ -79,8 +80,7 @@ class Dic
         global $pd_router, $plugin_cf;
         return new NewsService(
             $pd_router,
-            (int) $plugin_cf["yanp"]["entries_max"],
-            (bool) $plugin_cf["yanp"]["html_markup"]
+            (int) $plugin_cf["yanp"]["entries_max"]
         );
     }
 

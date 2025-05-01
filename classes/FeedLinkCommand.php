@@ -22,6 +22,7 @@
 namespace Yanp;
 
 use Plib\Request;
+use Plib\View;
 
 class FeedLinkCommand
 {

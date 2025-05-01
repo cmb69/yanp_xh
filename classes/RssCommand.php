@@ -23,6 +23,7 @@ namespace Yanp;
 
 use Plib\Request;
 use Plib\Response;
+use Plib\View;
 use XH\Pages;
 
 class RssCommand
@@ -88,14 +89,18 @@ class RssCommand
                 'hasImage' => $this->conf['feed_image'] != '',
                 'imageUrl' => $request->url()->path($this->imageFolder . $this->conf['feed_image'])->absolute(),
                 'pageIds' => $this->newsService->getPageIds(),
-                'itemHeading' => function (int $id): HtmlString {
-                    return new HtmlString($this->pages->heading($id));
+                'itemHeading' => function (int $id): string {
+                    return $this->pages->heading($id);
                 },
                 'itemLink' => function (int $id) use ($request): string {
                     return $request->url()->page($this->pages->url($id))->absolute();
                 },
-                'itemDescription' => /** @return string|HtmlString */ function (int $id) {
-                    return $this->newsService->getDescription($id);
+                'itemDescription' => function (int $id): string {
+                    $res = $this->newsService->getDescription($id);
+                    if (!$this->conf["html_markup"]) {
+                        $res = $this->view->esc($res);
+                    }
+                    return $res;
                 },
                 'itemGuid' => function (int $id) use ($request): string {
                     return $request->url()->page($this->pages->url($id))->absolute() . " "

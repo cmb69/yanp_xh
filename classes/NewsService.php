@@ -31,14 +31,10 @@ class NewsService
     /** @var int */
     private $maxEntries;
 
-    /** @var bool */
-    private $isHtml;
-
-    public function __construct(PageDataService $pageDataService, int $maxEntries, bool $isHtml)
+    public function __construct(PageDataService $pageDataService, int $maxEntries)
     {
         $this->pageDataService = $pageDataService;
         $this->maxEntries = $maxEntries;
-        $this->isHtml = $isHtml;
     }
 
     /**
@@ -70,14 +66,9 @@ class NewsService
         );
     }
 
-    /**
-     * @return string|HtmlString
-     */
-    public function getDescription(int $pageId)
+    public function getDescription(int $pageId): string
     {
         $pageData = $this->pageDataService->find_page($pageId);
-        return $this->isHtml
-            ? new HtmlString((string) $pageData['yanp_description'])
-            : (string) $pageData['yanp_description'];
+        return (string) $pageData['yanp_description'];
     }
 }

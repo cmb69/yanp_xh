@@ -32,14 +32,14 @@ class NewsServiceTest extends TestCase
         $pageDataService->method("find_all")->willReturn([[
             "published" => "1", "yanp_description" => "latest news"
         ]]);
-        $sut = new NewsService($pageDataService, 3, true);
+        $sut = new NewsService($pageDataService, 3);
         $this->assertEquals([0], $sut->getPageIds());
     }
 
     public function testGetLastMod(): void
     {
         $pageDataService = $this->createStub(PageDataService::class);
-        $sut = new NewsService($pageDataService, 3, true);
+        $sut = new NewsService($pageDataService, 3);
         $this->assertEquals(0, $sut->getLastMod(0));
     }
 
@@ -47,9 +47,8 @@ class NewsServiceTest extends TestCase
     {
         $pageDataService = $this->createStub(PageDataService::class);
         $pageDataService->method('find_page')->willReturn(["yanp_description" => "<p>some news</p>"]);
-        $sut = new NewsService($pageDataService, 3, true);
+        $sut = new NewsService($pageDataService, 3);
         $res = $sut->getDescription(0);
-        $this->assertInstanceOf(HtmlString::class, $res);
         $this->assertEquals("<p>some news</p>", $res);
     }
 }

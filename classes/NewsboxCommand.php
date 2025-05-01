@@ -22,6 +22,7 @@
 namespace Yanp;
 
 use Plib\Request;
+use Plib\View;
 use XH\Pages;
 
 class NewsboxCommand
@@ -61,14 +62,18 @@ class NewsboxCommand
         return $this->view->render('newsbox', [
             'pageIds' => $this->newsService->getPageIds(),
             'headingTag' => $this->conf['heading_level'],
-            'heading' => function (int $id): HtmlString {
-                return new HtmlString($this->pages->heading($id));
+            'heading' => function (int $id): string {
+                return $this->pages->heading($id);
             },
             'date' => function (int $id): string {
                 return date($this->dateFormat, $this->newsService->getLastMod($id));
             },
-            'description' => /** @return string|HtmlString */ function (int $id) {
-                return $this->newsService->getDescription($id);
+            'description' => function (int $id): string {
+                $res = $this->newsService->getDescription($id);
+                if (!$this->conf["html_markup"]) {
+                    $res = $this->view->esc($res);
+                }
+                return $res;
             },
             'url' => function (int $id) use ($request): string {
                 return $request->url()->page($this->pages->url($id))->relative();

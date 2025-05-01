@@ -7,6 +7,7 @@ use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Plib\FakeRequest;
+use Plib\View;
 use XH\Pages;
 
 class RssCommandTest extends TestCase

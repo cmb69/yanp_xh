@@ -24,6 +24,7 @@ namespace Yanp;
 use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
 use Plib\FakeSystemChecker;
+use Plib\View;
 
 class InfoCommandTest extends TestCase
 {

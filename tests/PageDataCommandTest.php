@@ -24,6 +24,7 @@ namespace Yanp;
 use ApprovalTests\Approvals;
 use PHPUnit\Framework\TestCase;
 use Plib\FakeRequest;
+use Plib\View;
 
 class PageDataCommandTest extends TestCase
 {

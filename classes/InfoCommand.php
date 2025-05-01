@@ -22,6 +22,7 @@
 namespace Yanp;
 
 use Plib\SystemChecker;
+use Plib\View;
 
 class InfoCommand
 {
