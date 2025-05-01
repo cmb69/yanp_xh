@@ -17,9 +17,6 @@ class NewsboxCommandTest extends TestCase
     /** @var array<string,string> */
     private $lang;
 
-    /** @var string */
-    private $dateFormat;
-
     /** @var Pages&Stub */
     private $pages;
 
@@ -33,7 +30,6 @@ class NewsboxCommandTest extends TestCase
     {
         $this->conf = XH_includeVar("./config/config.php", "plugin_cf")["yanp"];
         $this->lang = XH_includeVar("./languages/en.php", "plugin_tx")["yanp"];
-        $this->dateFormat = $this->lang["news_date_format"];
         $this->pages = $this->createStub(Pages::class);
         $this->newsService = $this->createStub(NewsService::class);
         $this->view = new View("./views/", $this->lang);
@@ -43,7 +39,6 @@ class NewsboxCommandTest extends TestCase
     {
         return new NewsboxCommand(
             $this->conf,
-            $this->dateFormat,
             $this->pages,
             $this->newsService,
             $this->view

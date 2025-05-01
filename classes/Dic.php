@@ -43,10 +43,9 @@ class Dic
 
     public static function newsboxCommand(): NewsboxCommand
     {
-        global $plugin_cf, $plugin_tx;
+        global $plugin_cf;
         return new NewsboxCommand(
             $plugin_cf["yanp"],
-            $plugin_tx["yanp"]["news_date_format"],
             new Pages(),
             self::newsService(),
             self::view()

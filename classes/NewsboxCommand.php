@@ -30,9 +30,6 @@ class NewsboxCommand
     /** @var array<string,string> */
     private $conf;
 
-    /** @var string */
-    private $dateFormat;
-
     /** @var Pages */
     private $pages;
 
@@ -45,13 +42,11 @@ class NewsboxCommand
     /** @param array<string,string> $conf */
     public function __construct(
         array $conf,
-        string $dateFormat,
         Pages $pages,
         NewsService $newsService,
         View $view
     ) {
         $this->conf = $conf;
-        $this->dateFormat = $dateFormat;
         $this->pages = $pages;
         $this->newsService = $newsService;
         $this->view = $view;
@@ -66,7 +61,7 @@ class NewsboxCommand
                 return $this->pages->heading($id);
             },
             'date' => function (int $id): string {
-                return date($this->dateFormat, $this->newsService->getLastMod($id));
+                return date($this->view->plain("news_date_format"), $this->newsService->getLastMod($id));
             },
             'description' => function (int $id): string {
                 $res = $this->newsService->getDescription($id);
