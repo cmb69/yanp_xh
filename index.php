@@ -30,7 +30,7 @@ if (!defined("CMSIMPLE_XH_VERSION")) {
     exit;
 }
 
-const YANP_VERSION = "2.2-dev";
+const YANP_VERSION = "2.2";
 
 function yanp_newsbox(): string
 {
