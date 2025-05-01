@@ -43,6 +43,7 @@ class NewsboxCommandTest extends TestCase
 
     public function testRendersNewsbox(): void
     {
+        $this->conf["html_markup"] = "";
         $this->newsFinder->method("find")->willReturn(new News(
             "",
             "",

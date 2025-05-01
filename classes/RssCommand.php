@@ -72,7 +72,7 @@ class RssCommand
                 'language' => $request->language(),
                 'pubDate' => date('r', $news->mtime()),
                 'generator' => 'Yanp_XH',
-                'hasImage' => $this->conf['feed_image'] != '',
+                'hasImage' => $this->conf['feed_image'],
                 'imageUrl' => $request->url()->path($this->imageFolder . $this->conf['feed_image'])->absolute(),
                 'pages' => $news->pages((int) $this->conf["entries_max"]),
                 'itemLink' => function (string $url) use ($request): string {

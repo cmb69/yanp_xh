@@ -30,7 +30,7 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
     <description><?=$this->esc($description)?></description>
     <language><?=$this->esc($language)?></language>
 <?if ($this->text('feed_copyright')):?>
-    <copyright><?$this->text('feed_copyright')?></copyright>
+    <copyright><?=$this->text('feed_copyright')?></copyright>
 <?endif?>
     <pubDate><?=$this->esc($pubDate)?></pubDate>
     <generator><?=$this->esc($generator)?></generator>

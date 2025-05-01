@@ -51,7 +51,13 @@ class Dic
 
     public static function feedLinkCommand(?string $icon): FeedLinkCommand
     {
-        return new FeedLinkCommand($icon, self::view());
+        global $pth;
+        return new FeedLinkCommand(
+            $pth["folder"]["templateimages"],
+            $pth["folder"]["plugins"] . "yanp/",
+            $icon,
+            self::view()
+        );
     }
 
     /** @param array<mixed> $page */

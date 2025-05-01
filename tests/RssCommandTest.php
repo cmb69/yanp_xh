@@ -60,6 +60,11 @@ class RssCommandTest extends TestCase
 
     public function testRendersFeed(): void
     {
+        $this->imageFolder = "./userfiles/images/";
+        $this->conf["html_markup"] = "";
+        $this->conf["feed_image"] = "logo.png";
+        $this->lang["feed_copyright"] = "Christoph M. Becker";
+        $this->view = new View("./views/", $this->lang);
         $this->newsFinder->method("find")->willReturn(new News(
             "title",
             "description",
