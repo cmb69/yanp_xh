@@ -22,7 +22,6 @@
 namespace Yanp;
 
 use Plib\SystemChecker;
-use stdClass;
 
 class InfoCommand
 {
@@ -56,9 +55,7 @@ class InfoCommand
         ]);
     }
 
-    /**
-     * @return array<int,stdClass>
-     */
+    /** @return list<object{state:string,key:string,param:string}> */
     private function getSystemChecks(): array
     {
         $phpVersion = '7.1.0';
