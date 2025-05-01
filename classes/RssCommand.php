@@ -55,6 +55,9 @@ class RssCommand
 
     public function execute(Request $request): Response
     {
+        if (!$this->conf["feed_enabled"]) {
+            return Response::create();
+        }
         if ($request->get("yanp_feed") !== null) {
             return Response::create($this->renderRss($request))->withContentType("application/xml");
         }

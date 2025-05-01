@@ -86,4 +86,19 @@ class RssCommandTest extends TestCase
         $response = $this->sut()->execute($request);
         Approvals::verifyHtml($response->output());
     }
+
+    public function testRendersNoHeadLinkIfDisabled(): void
+    {
+        $this->conf["feed_enabled"] = "";
+        $response = $this->sut()->execute(new FakeRequest());
+        $this->assertNull($response->hjs());
+    }
+
+    public function testRendersNoFeedIfDisable(): void
+    {
+        $this->conf["feed_enabled"] = "";
+        $request = new FakeRequest(["url" => "http://example.com/?&yanp_feed"]);
+        $response = $this->sut()->execute($request);
+        $this->assertSame("", $response->output());
+    }
 }
