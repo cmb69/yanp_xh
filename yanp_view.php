@@ -22,7 +22,7 @@
 use Plib\Request;
 use Yanp\Dic;
 
-/** @param array<mixed> $page */
+/** @param array<string,string> $page */
 function yanp_view(array $page): string
 {
     return Dic::pageDataCommand()->execute($page, Request::current());
