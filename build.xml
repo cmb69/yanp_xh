@@ -128,7 +128,7 @@
         <include name="css/stylesheet.css"/>
       </fileset>
     </delete>
-    <zip destfile="Yanp_XH-2.3-dev-PATCH.zip" basedir="dist" includeemptydirs="false"/>
+    <zip destfile="Yanp_XH-2.3-dev-update-from-2.x.zip" basedir="dist" includeemptydirs="false"/>
     <delete dir="patchee" quiet="true"/>
     <delete dir="current" quiet="true"/>
     <delete dir="dist" quiet="true"/>
