@@ -24,9 +24,6 @@ class RssCommandTest extends TestCase
     /** @var NewsFinder&Stub */
     private $newsFinder;
 
-    /** @var Feed */
-    private $feed;
-
     /** @var View */
     private $view;
 
@@ -36,7 +33,6 @@ class RssCommandTest extends TestCase
         $this->conf = XH_includeVar("./config/config.php", "plugin_cf")["yanp"];
         $this->lang = XH_includeVar("./languages/en.php", "plugin_tx")["yanp"];
         $this->newsFinder = $this->createStub(NewsFinder::class);
-        $this->feed = new Feed("title", "description", $this->lang);
         $this->view = new View("./views/", $this->lang);
     }
 
@@ -46,7 +42,6 @@ class RssCommandTest extends TestCase
             $this->imageFolder,
             $this->conf,
             $this->newsFinder,
-            $this->feed,
             $this->view
         );
     }
@@ -65,20 +60,25 @@ class RssCommandTest extends TestCase
 
     public function testRendersFeed(): void
     {
-        $this->newsFinder->method("find")->willReturn(new News(strtotime("2025-04-30T22:06:11+00:00"), [
-            8 => (object) [
-                "title" => "Eight",
-                "url" => "Eight",
-                "mtime" => strtotime("2025-04-30T22:06:00+00:00"),
-                "description" => "description of eight",
-            ],
-            15 => (object) [
-                "title" => "Fifteen",
-                "url" => "Ten/Fifteen",
-                "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
-                "description" => "description of fifteen",
-            ],
-        ]));
+        $this->newsFinder->method("find")->willReturn(new News(
+            "title",
+            "description",
+            strtotime("2025-04-30T22:06:11+00:00"),
+            [
+                8 => (object) [
+                    "title" => "Eight",
+                    "url" => "Eight",
+                    "mtime" => strtotime("2025-04-30T22:06:00+00:00"),
+                    "description" => "description of eight",
+                ],
+                15 => (object) [
+                    "title" => "Fifteen",
+                    "url" => "Ten/Fifteen",
+                    "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
+                    "description" => "description of fifteen",
+                ],
+            ]
+        ));
         $request = new FakeRequest(["url" => "http://example.com/?&yanp_feed"]);
         $response = $this->sut()->execute($request);
         Approvals::verifyHtml($response->output());

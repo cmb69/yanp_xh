@@ -43,20 +43,25 @@ class NewsboxCommandTest extends TestCase
 
     public function testRendersNewsbox(): void
     {
-        $this->newsFinder->method("find")->willReturn(new News(strtotime("2025-04-30T22:06:11+00:00"), [
-            8 => (object) [
-                "title" => "Eight",
-                "url" => "Eight",
-                "mtime" => strtotime("2025-04-30T22:06:00+00:00"),
-                "description" => "description of eight",
-            ],
-            15 => (object) [
-                "title" => "Fifteen",
-                "url" => "Ten/Fifteen",
-                "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
-                "description" => "description of fifteen",
-            ],
-        ]));
+        $this->newsFinder->method("find")->willReturn(new News(
+            "",
+            "",
+            strtotime("2025-04-30T22:06:11+00:00"),
+            [
+                8 => (object) [
+                    "title" => "Eight",
+                    "url" => "Eight",
+                    "mtime" => strtotime("2025-04-30T22:06:00+00:00"),
+                    "description" => "description of eight",
+                ],
+                15 => (object) [
+                    "title" => "Fifteen",
+                    "url" => "Ten/Fifteen",
+                    "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
+                    "description" => "description of fifteen",
+                ],
+            ]
+        ));
         $request = new FakeRequest();
         $response = $this->sut()->execute($request);
         Approvals::verifyHtml($response);

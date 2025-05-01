@@ -30,12 +30,11 @@ class Dic
 {
     public static function rssCommand(): RssCommand
     {
-        global $pth, $tx, $plugin_cf, $plugin_tx;
+        global $pth, $plugin_cf;
         return new RssCommand(
             $pth["folder"]["images"],
             $plugin_cf["yanp"],
             self::newsFinder(),
-            new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
             self::view()
         );
     }
@@ -74,8 +73,14 @@ class Dic
 
     private static function newsFinder(): NewsFinder
     {
-        global $pth, $pd_router;
-        return new NewsFinder($pth["file"]["content"], new Pages(), $pd_router);
+        global $pth, $pd_router, $tx, $plugin_tx;
+        return new NewsFinder(
+            $pth["file"]["content"],
+            $tx,
+            $plugin_tx["yanp"],
+            new Pages(),
+            $pd_router
+        );
     }
 
     private static function view(): View

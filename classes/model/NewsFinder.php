@@ -29,24 +29,40 @@ class NewsFinder
     /** @var string */
     private $contentFile;
 
+    /** @var array<string,array<string,string>> */
+    private $coreLang;
+
+    /** @var array<string,string> */
+    private $lang;
+
     /** @var Pages */
     private $pages;
 
     /** @var PageDataRouter */
     private $pageData;
 
+    /**
+     * @param array<string,array<string,string>> $coreLang
+     * @param array<string,string> $lang
+     */
     public function __construct(
         string $contentFile,
+        array $coreLang,
+        array $lang,
         Pages $pages,
         PageDataRouter $pageData
     ) {
         $this->contentFile = $contentFile;
+        $this->coreLang = $coreLang;
+        $this->lang = $lang;
         $this->pages = $pages;
         $this->pageData = $pageData;
     }
 
     public function find(): News
     {
+        $title = $this->lang["feed_title"] ?: $this->coreLang["site"]["title"];
+        $description = $this->lang["feed_description"] ?: $this->coreLang["meta"]["description"];
         $mtime = (int) filemtime($this->contentFile);
         $newsPages = [];
         foreach ($this->pageData->find_all() as $id => $data) {
@@ -62,6 +78,6 @@ class NewsFinder
                 ];
             }
         }
-        return new News($mtime, $newsPages);
+        return new News($title, $description, $mtime, $newsPages);
     }
 }

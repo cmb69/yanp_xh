@@ -37,9 +37,6 @@ class RssCommand
     /** @var NewsFinder */
     private $newsFinder;
 
-    /** @var Feed */
-    private $feed;
-
     /** @var View */
     private $view;
 
@@ -48,13 +45,11 @@ class RssCommand
         string $imageFolder,
         array $conf,
         NewsFinder $newsFinder,
-        Feed $feed,
         View $view
     ) {
         $this->imageFolder = $imageFolder;
         $this->conf = $conf;
         $this->newsFinder = $newsFinder;
-        $this->feed = $feed;
         $this->view = $view;
     }
 
@@ -71,9 +66,9 @@ class RssCommand
         $news = $this->newsFinder->find();
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             . $this->view->render('feed', [
-                'title' => $this->feed->getTitle(),
+                'title' => $news->title(),
                 'link' => $request->url()->page("")->absolute(),
-                'description' => $this->feed->getDescription(),
+                'description' => $news->description(),
                 'language' => $request->language(),
                 'pubDate' => date('r', $news->mtime()),
                 'generator' => 'Yanp_XH',
