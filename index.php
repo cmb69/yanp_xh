@@ -19,6 +19,8 @@
  * along with Yanp_XH.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// phpcs:disable PSR1.Files.SideEffects
+
 use Plib\Request;
 use XH\PageDataRouter;
 use Yanp\Dic;
