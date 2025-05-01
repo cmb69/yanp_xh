@@ -56,8 +56,8 @@ class Dic
     {
         global $pth;
         return new FeedLinkCommand(
-            $pth["folder"]["templateimages"],
             $pth["folder"]["plugins"] . "yanp/",
+            $pth["folder"]["templateimages"],
             self::view()
         );
     }
