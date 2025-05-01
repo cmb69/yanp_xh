@@ -49,9 +49,6 @@ class InfoCommand
         return $this->view->render('info', [
             'version' => YANP_VERSION,
             'checks' => $this->getSystemChecks(),
-            'stateIcon' =>  function (string $state): string {
-                return $this->pluginFolder . "images/$state.png";
-            },
         ]);
     }
 
