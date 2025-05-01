@@ -59,7 +59,7 @@ class NewsboxCommandTest extends TestCase
                     "title" => "Fifteen",
                     "url" => "Ten/Fifteen",
                     "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
-                    "description" => "description of fifteen",
+                    "description" => "description of five & teen",
                 ],
             ]
         ));

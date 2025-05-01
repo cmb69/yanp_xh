@@ -3,6 +3,7 @@
 namespace Yanp;
 
 use ApprovalTests\Approvals;
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -100,14 +101,10 @@ class RssCommandTest extends TestCase
     /** @requires extension dom */
     public function testHandlesBrokenFeed(): void
     {
-        $pages = $this->pages();
-        $pages[8]->description = "me & you";
-        $this->newsFinder->method("find")->willReturn(new News(
-            "title",
-            "description",
-            strtotime("2025-04-30T22:06:11+00:00"),
-            $pages
-        ));
+        // somehow break the feed
+        vfsStream::setup("root");
+        touch(vfsStream::url("root/feed.php"));
+        $this->view = new View(vfsStream::url("root/"), $this->lang);
         $request = new FakeRequest(["url" => "http://example.com/?&yanp_feed"]);
         $this->logger->expects($this->once())->method("log")->with("error", "RSS feed", "the RSS feed is invalid");
         $response = $this->sut()->execute($request);
@@ -128,7 +125,7 @@ class RssCommandTest extends TestCase
                 "title" => "Fifteen",
                 "url" => "Ten/Fifteen",
                 "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
-                "description" => "description of fifteen",
+                "description" => "description of five & teen",
             ],
         ];
     }

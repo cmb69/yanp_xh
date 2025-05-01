@@ -16,7 +16,6 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
  * @var string $imageUrl
  * @var array<int,object{title:string,url:string,mtime:int,description:string}> $pages
  * @var callable $itemLink
- * @var callable $escapedItemDescription
  * @var callable $itemGuid
  * @var callable $formatDate
  */
@@ -45,7 +44,7 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
     <item>
       <title><?=$this->esc($page->title)?></title>
       <link><?=$this->esc($itemLink($page->url))?></link>
-      <description><?=$this->raw($escapedItemDescription($page->description))?></description>
+      <description><?=$this->esc($page->description)?></description>
       <guid isPermaLink="false"><?=$this->esc($itemGuid($page->url, $page->mtime))?></guid>
       <pubDate><?=$this->esc($formatDate($page->mtime))?></pubDate>
     </item>

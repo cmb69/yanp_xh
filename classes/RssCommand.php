@@ -102,12 +102,6 @@ class RssCommand
                 'itemLink' => function (string $url) use ($request): string {
                     return $request->url()->page($url)->absolute();
                 },
-                'escapedItemDescription' => function (string $description): string {
-                    if (!$this->conf["html_markup"]) {
-                        $description = $this->view->esc($description);
-                    }
-                    return $description;
-                },
                 'itemGuid' => function (string $url, int $mtime) use ($request): string {
                     return $request->url()->page($url)->absolute() . " " . $mtime;
                 },
