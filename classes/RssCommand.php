@@ -80,25 +80,26 @@ class RssCommand
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             . $this->view->render('feed', [
                 'title' => $this->feed->getTitle(),
-                'link' => CMSIMPLE_URL,
+                'link' => $request->url()->page("")->absolute(),
                 'description' => $this->feed->getDescription(),
                 'language' => $request->language(),
                 'pubDate' => date('r', (int) filemtime($this->contentFile)),
                 'generator' => 'Yanp_XH',
                 'hasImage' => $this->conf['feed_image'] != '',
-                'imageUrl' => $this->getAbsoluteUrl($this->imageFolder . $this->conf['feed_image']),
+                'imageUrl' => $request->url()->path($this->imageFolder . $this->conf['feed_image'])->absolute(),
                 'pageIds' => $this->newsService->getPageIds(),
                 'itemHeading' => function (int $id): HtmlString {
                     return new HtmlString($this->pages->heading($id));
                 },
-                'itemLink' => function (int $id): string {
-                    return CMSIMPLE_URL . "?{$this->pages->url($id)}";
+                'itemLink' => function (int $id) use ($request): string {
+                    return $request->url()->page($this->pages->url($id))->absolute();
                 },
                 'itemDescription' => /** @return string|HtmlString */ function (int $id) {
                     return $this->newsService->getDescription($id);
                 },
-                'itemGuid' => function (int $id): string {
-                    return CMSIMPLE_URL . "?{$this->pages->url($id)} " . $this->newsService->getLastMod($id);
+                'itemGuid' => function (int $id) use ($request): string {
+                    return $request->url()->page($this->pages->url($id))->absolute() . " "
+                        . $this->newsService->getLastMod($id);
                 },
                 'itemPubDate' => function (int $id): string {
                     return date('r', $this->newsService->getLastMod($id));
@@ -120,26 +121,5 @@ class RssCommand
     private function getFeedUrl(Request $request): string
     {
         return $request->url()->page("")->with("yanp_feed")->absolute();
-    }
-
-    private function getAbsoluteUrl(string $url): string
-    {
-        list($scheme, $path) = explode('//', CMSIMPLE_URL . $url);
-        $parts = explode('/', $path);
-        $i = 0;
-        while ($i < count($parts)) {
-            switch ($parts[$i]) {
-                case '.':
-                    array_splice($parts, $i, 1);
-                    break;
-                case '..':
-                    array_splice($parts, $i - 1, 2);
-                    $i--;
-                    break;
-                default:
-                    $i++;
-            }
-        }
-        return $scheme . '//' . implode('/', $parts);
     }
 }
