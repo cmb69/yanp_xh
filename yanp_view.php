@@ -25,5 +25,5 @@ use Yanp\Dic;
 /** @param array<mixed> $page */
 function yanp_view(array $page): string
 {
-    return Dic::pageDataCommand($page)->execute(Request::current());
+    return Dic::pageDataCommand()->execute($page, Request::current());
 }

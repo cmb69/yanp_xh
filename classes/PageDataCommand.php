@@ -29,29 +29,23 @@ class PageDataCommand
     /** @var string */
     private $coreStyleFolder;
 
-    /**
-     * @var array<mixed>
-     */
-    private $pageData;
-
     /** @var View */
     private $view;
 
-    /** @param array<mixed> $pageData */
-    public function __construct(string $coreStyleFolder, array $pageData, View $view)
+    public function __construct(string $coreStyleFolder, View $view)
     {
         $this->coreStyleFolder = $coreStyleFolder;
-        $this->pageData = $pageData;
         $this->view = $view;
     }
 
-    public function execute(Request $request): string
+    /** @param array<string,string> $pageData */
+    public function execute(array $pageData, Request $request): string
     {
         return $this->view->render('pdtab', [
             'actionUrl' => $request->url()->relative(),
             'timestamp' => $request->time(),
             'icon' => $this->coreStyleFolder . "help_icon.svg",
-            'description' => $this->pageData['yanp_description'],
+            'description' => $pageData['yanp_description'],
         ]);
     }
 }

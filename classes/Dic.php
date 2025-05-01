@@ -49,22 +49,20 @@ class Dic
         );
     }
 
-    public static function feedLinkCommand(?string $icon): FeedLinkCommand
+    public static function feedLinkCommand(): FeedLinkCommand
     {
         global $pth;
         return new FeedLinkCommand(
             $pth["folder"]["templateimages"],
             $pth["folder"]["plugins"] . "yanp/",
-            $icon,
             self::view()
         );
     }
 
-    /** @param array<mixed> $page */
-    public static function pageDataCommand(array $page): PageDataCommand
+    public static function pageDataCommand(): PageDataCommand
     {
         global $pth;
-        return new PageDataCommand($pth["folder"]["corestyle"], $page, self::view());
+        return new PageDataCommand($pth["folder"]["corestyle"], self::view());
     }
 
     public static function infoCommand(): InfoCommand

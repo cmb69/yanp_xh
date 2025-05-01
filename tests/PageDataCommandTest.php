@@ -31,8 +31,8 @@ class PageDataCommandTest extends TestCase
     public function testRendersPageDataTab(): void
     {
         $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
-        $subject = new PageDataCommand("../../cmsimple/assets/css/", ['yanp_description' => ''], $view);
+        $subject = new PageDataCommand("../../cmsimple/assets/css/", $view);
         $request = new FakeRequest(["time" => strtotime("2025-04-30T15:45:43+00:00")]);
-        Approvals::verifyHtml($subject->execute($request));
+        Approvals::verifyHtml($subject->execute(["yanp_description" => ""], $request));
     }
 }

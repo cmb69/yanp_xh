@@ -28,14 +28,31 @@ use Plib\View;
 
 class FeedLinkCommandTest extends TestCase
 {
+    /** @var View */
+    private $view;
+
+    public function setUp(): void
+    {
+        $this->view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
+    }
+
+    private function sut(): FeedLinkCommand
+    {
+        return new FeedLinkCommand("./plugins/yanp/", "./templates/fhs-simple-2019/images", $this->view);
+    }
+
     public function testRendersFeedLink(): void
     {
-        global $pth;
-
-        $pth = ['folder' => ['plugins' => ""]];
-        $view = new View("./views/", XH_includeVar("./languages/en.php", "plugin_tx")["yanp"]);
-        $subject = new FeedLinkCommand("./plugins/yanp/", "./templates/fhs-simple-2019/images", null, $view);
         $request = new FakeRequest();
-        Approvals::verifyHtml($subject->execute($request));
+        Approvals::verifyHtml($this->sut()->execute(null, $request));
+    }
+
+    public function testRendersFeedLinkWithTemplateImage(): void
+    {
+        $request = new FakeRequest();
+        $this->assertStringContainsString(
+            'src="./templates/fhs-simple-2019/imagesfeed.svg',
+            $this->sut()->execute("feed.svg", $request)
+        );
     }
 }

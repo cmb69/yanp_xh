@@ -32,26 +32,22 @@ class FeedLinkCommand
     /** @var string */
     private $imageFolder;
 
-    /** @var ?string */
-    private $icon;
-
     /** @var View */
     private $view;
 
-    public function __construct(string $pluginFolder, string $imageFolder, ?string $icon, View $view)
+    public function __construct(string $pluginFolder, string $imageFolder, View $view)
     {
         $this->pluginFolder = $pluginFolder;
         $this->imageFolder = $imageFolder;
-        $this->icon = $icon;
         $this->view = $view;
     }
 
-    public function execute(Request $request): string
+    public function execute(?string $icon, Request $request): string
     {
         return $this->view->render('feed-link', [
             'feedUrl' => $request->url()->page("")->with("yanp_feed")->relative(),
-            'icon' => isset($this->icon)
-                ? $this->imageFolder . $this->icon
+            'icon' => $icon !== null
+                ? $this->imageFolder . $icon
                 : $this->pluginFolder . "images/feed.svg",
         ]);
     }
