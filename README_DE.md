@@ -21,6 +21,8 @@ in Erwägung ziehen.
 - [Installation](#installation)
 - [Einstellungen](#einstellungen)
 - [Verwendung](#verwendung)
+  - [Anzeigen der Newsbox](#anzeigen-der-newsbox)
+  - [RSS-Feed verfügbar machen](#rss-feed-verfügbar-machen)
 - [Einschränkungen](#einschränkungen)
 - [Fehlerbehebung](#fehlerbehebung)
 - [Lizenz](#lizenz)
@@ -139,9 +141,15 @@ und geben Sie dessen Dateinamen als Parameter an:
 <?=Yanp_feedlink('dateiname.svg')?>
 ````
 
-Auf jeden Fall sollten Sie den RSS-Feed
-[validieren](https://www.rssboard.org/rss-validator/),
-um mögliche Probleme zu erkennen.
+Ist die DOM-Extension von PHP verfügbar, wird der Feed vor der Auslieferung validiert.
+Ist er nicht valide (was normalerweise nicht der Fall sein sollte),
+wird eine Fehlermeldung an Clients zurückgegeben,
+und das Problem wird als Fehler in der Log-Datei von CMSimple_XH protokolliert.
+Wenn das passiert, kann man sich als Admin anmelden, und dann den RSS-Feed
+dennoch abzurufen. Eventuell meldet bereits der Browser einen Fehler;
+andernfalls kann ein [Validator](https://validator.w3.org/feed/) verwendet werden,
+um herauszufinden wo genau das Problem liegt. Siehe [Fehlerbehebung](#fehlerbehebung),
+falls das Problem nicht selbst gelöst werden kann.
 
 ## Einschränkungen
 

@@ -37,7 +37,11 @@
 <li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#settings">Settings</a></li>
-<li><a href="#usage">Usage</a></li>
+<li><a href="#usage">Usage</a>
+<ul>
+<li><a href="#displaying-the-newsbox">Displaying the newsbox</a></li>
+<li><a href="#making-the-rss-feed-available">Making the RSS feed available</a></li>
+</ul></li>
 <li><a href="#limitations">Limitations</a></li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
 <li><a href="#license">License</a></li>
@@ -74,7 +78,7 @@
 <pre><code>&lt;?=Yanp_feedlink()?&gt;</code></pre>
 <p>This basically works like <code>mailformlink()</code>. If you want to display another feed icon, just put it into the <code>images/</code> folder of your template, and give its filename as parameter:</p>
 <pre><code>&lt;?=Yanp_feedlink(&#39;filename.svg&#39;)?&gt;</code></pre>
-<p>In any case, you should <a href="https://www.rssboard.org/rss-validator/">validate</a> the RSS feed to be informed about possible problems.</p>
+<p>If the DOM extension of PHP is available, the feed is validated before it is delivered. If it is invalid (what is usually not supposed to happen), an error will be returned to clients, and the problem is logged as error into the log file of CMSimple_XH. If that happens, you can log in as admin, and then request the RSS feed nonetheless. The browser may already report an error; otherwise use a <a href="https://validator.w3.org/feed/">validator</a> to find out what exactly is wrong. See <a href="#troubleshooting">troubleshooting</a>, if you are unable to solve the problem yourself.</p>
 <h2 id="limitations">Limitations</h2>
 <p>When the website can be requested with www and without it (e.g. <code>www.example.com</code> and <code>example.com</code>) without redirecting one to the other, the RSS feed may not link correctly back to itself. It is generally recommended that you establish a 301 redirect from <code>www.example.com</code> to <code>example.com</code> or vice versa.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>

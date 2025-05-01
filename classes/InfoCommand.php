@@ -60,21 +60,26 @@ class InfoCommand
         $xhVersion = '1.7.0';
         $plibVersion = "1.7";
         $checks = array(
-            (object) array(
+            (object) [
                 'state' => $this->getPhpVersionState($phpVersion),
                 'key' => 'syscheck_phpversion',
                 'param' => $phpVersion
-            ),
-            (object) array(
+            ],
+            (object) [
                 'state' => $this->getXhVersionState($xhVersion),
                 'key' => 'syscheck_xhversion',
                 'param' => $xhVersion
-            ),
-            (object) array(
+            ],
+            (object) [
+                'state' => $this->systemChecker->checkExtension("dom") ? "success" : "warning",
+                'key' => 'syscheck_extension',
+                'param' => "DOM",
+            ],
+            (object) [
                 'state' => $this->systemChecker->checkPlugin("plib", $plibVersion) ? 'success' : 'fail',
                 'key' => 'syscheck_plibversion',
                 'param' => $plibVersion
-            )
+            ],
         );
         $folders = [];
         foreach (array('config/', 'css/', 'languages/') as $folder) {

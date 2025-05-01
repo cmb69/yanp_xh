@@ -16,6 +16,8 @@ or [Realblog\_XH](https://github.com/cmb69/realblog_xh).
 - [Installation](#installation)
 - [Settings](#settings)
 - [Usage](#usage)
+  - [Displaying the newsbox](#displaying-the-newsbox)
+  - [Making the RSS feed available](#making-the-rss-feed-available)
 - [Limitations](#limitations)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -129,8 +131,15 @@ and give its filename as parameter:
 <?=Yanp_feedlink('filename.svg')?>
 ````
 
-In any case, you should [validate](https://www.rssboard.org/rss-validator/)
-the RSS feed to be informed about possible problems.
+If the DOM extension of PHP is available, the feed is validated before it is
+delivered.  If it is invalid (what is usually not supposed to happen),
+an error will be returned to clients, and the
+problem is logged as error into the log file of CMSimple_XH.
+If that happens, you can log in as admin, and then request the RSS feed
+nonetheless.  The browser may already report an error; otherwise use a
+[validator](https://validator.w3.org/feed/) to find out what exactly is wrong.
+See [troubleshooting](#troubleshooting), if you are unable to solve the problem
+yourself.
 
 ## Limitations
 

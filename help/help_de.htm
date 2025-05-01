@@ -37,7 +37,11 @@
 <li><a href="#download">Download</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#einstellungen">Einstellungen</a></li>
-<li><a href="#verwendung">Verwendung</a></li>
+<li><a href="#verwendung">Verwendung</a>
+<ul>
+<li><a href="#anzeigen-der-newsbox">Anzeigen der Newsbox</a></li>
+<li><a href="#rss-feed-verfügbar-machen">RSS-Feed verfügbar machen</a></li>
+</ul></li>
 <li><a href="#einschränkungen">Einschränkungen</a></li>
 <li><a href="#fehlerbehebung">Fehlerbehebung</a></li>
 <li><a href="#lizenz">Lizenz</a></li>
@@ -74,7 +78,7 @@
 <pre><code>&lt;?=Yanp_feedlink()?&gt;</code></pre>
 <p>Das funktioniert analog zu <code>mailformlink()</code>. Wenn Sie ein anderes Feed-Icon anzeigen möchten, legen Sie es im <code>images/</code> Ordner Ihres Templates ab, und geben Sie dessen Dateinamen als Parameter an:</p>
 <pre><code>&lt;?=Yanp_feedlink(&#39;dateiname.svg&#39;)?&gt;</code></pre>
-<p>Auf jeden Fall sollten Sie den RSS-Feed <a href="https://www.rssboard.org/rss-validator/">validieren</a>, um mögliche Probleme zu erkennen.</p>
+<p>Ist die DOM-Extension von PHP verfügbar, wird der Feed vor der Auslieferung validiert. Ist er nicht valide (was normalerweise nicht der Fall sein sollte), wird eine Fehlermeldung an Clients zurückgegeben, und das Problem wird als Fehler in der Log-Datei von CMSimple_XH protokolliert. Wenn das passiert, kann man sich als Admin anmelden, und dann den RSS-Feed dennoch abzurufen. Eventuell meldet bereits der Browser einen Fehler; andernfalls kann ein <a href="https://validator.w3.org/feed/">Validator</a> verwendet werden, um herauszufinden wo genau das Problem liegt. Siehe <a href="#fehlerbehebung">Fehlerbehebung</a>, falls das Problem nicht selbst gelöst werden kann.</p>
 <h2 id="einschränkungen">Einschränkungen</h2>
 <p>Wenn die Website mit und ohne www aufgerufen werden kann (z.B. <code>www.example.com</code> und <code>example.com</code>) ohne die eine Variante auf die andere weiter zu leiten, kann es passieren, dass der RSS Feed nicht korrekt zu sich selbst zurück verlinkt. Es wird grundsätzlich empfohlen, dass Sie einen 301 Redirect von <code>www.example.com</code> zu <code>example.com</code> oder umgekehrt einrichten.</p>
 <h2 id="fehlerbehebung">Fehlerbehebung</h2>

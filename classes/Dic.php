@@ -21,6 +21,7 @@
 
 namespace Yanp;
 
+use Plib\Logger;
 use Plib\SystemChecker;
 use Plib\View;
 use XH\Pages;
@@ -32,9 +33,11 @@ class Dic
     {
         global $pth, $plugin_cf;
         return new RssCommand(
+            $pth["folder"]["plugins"] . "yanp/",
             $pth["folder"]["images"],
             $plugin_cf["yanp"],
             self::newsFinder(),
+            new Logger("yanp"),
             self::view()
         );
     }
