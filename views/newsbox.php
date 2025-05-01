@@ -6,24 +6,23 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
 
 /**
  * @var View $this
- * @var list<int> $pageIds
+ * @var array<int,object{title:string,url:string,mtime:int,description:string}> $pages
  * @var string $headingTag
- * @var callable $heading
- * @var callable $date
- * @var callable $description
+ * @var callable $formatDate
+ * @var callable $escapedDescription
  * @var callable $url
  */
 ?>
 
 <!-- Yanp_XH newsbox -->
-<?foreach ($pageIds as $pageId):?>
+<?foreach ($pages as $pageId => $page):?>
 <div class="yanp-news">
-  <<?=$this->esc($headingTag)?>><?=$this->raw($heading($pageId))?></<?=$this->esc($headingTag)?>>
-  <p><em><?=$this->esc($date($pageId))?></em></p>
+  <<?=$this->esc($headingTag)?>><?=$this->esc($page->title)?></<?=$this->esc($headingTag)?>>
+  <p><em><?=$this->esc($formatDate($page->mtime))?></em></p>
   <p>
-    <?=$this->raw($description($pageId))?>
+    <?=$this->raw($escapedDescription($page->description))?>
     <span class="read-more">
-      <a href="<?=$this->esc($url($pageId))?>" title="<?=$this->raw($heading($pageId))?>"><?=$this->plain('news_read_more')?></a>
+      <a href="<?=$this->esc($url($page->url))?>" title="<?=$this->esc($page->title)?>"><?=$this->plain('news_read_more')?></a>
     </span>
   </p>
 </div>

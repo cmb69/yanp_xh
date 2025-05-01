@@ -24,7 +24,7 @@ namespace Yanp;
 use Plib\Request;
 use Plib\Response;
 use Plib\View;
-use XH\Pages;
+use Yanp\Model\NewsFinder;
 
 class RssCommand
 {
@@ -37,11 +37,8 @@ class RssCommand
     /** @var array<string,string> */
     private $conf;
 
-    /** @var Pages */
-    private $pages;
-
-    /** @var NewsService */
-    private $newsService;
+    /** @var NewsFinder */
+    private $newsFinder;
 
     /** @var Feed */
     private $feed;
@@ -54,16 +51,14 @@ class RssCommand
         string $imageFolder,
         string $contentFile,
         array $conf,
-        Pages $pages,
-        NewsService $newsService,
+        NewsFinder $newsFinder,
         Feed $feed,
         View $view
     ) {
         $this->imageFolder = $imageFolder;
         $this->contentFile = $contentFile;
         $this->conf = $conf;
-        $this->pages = $pages;
-        $this->newsService = $newsService;
+        $this->newsFinder = $newsFinder;
         $this->feed = $feed;
         $this->view = $view;
     }
@@ -78,6 +73,7 @@ class RssCommand
 
     private function renderRss(Request $request): string
     {
+        $news = $this->newsFinder->find();
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             . $this->view->render('feed', [
                 'title' => $this->feed->getTitle(),
@@ -88,26 +84,21 @@ class RssCommand
                 'generator' => 'Yanp_XH',
                 'hasImage' => $this->conf['feed_image'] != '',
                 'imageUrl' => $request->url()->path($this->imageFolder . $this->conf['feed_image'])->absolute(),
-                'pageIds' => $this->newsService->getPageIds(),
-                'itemHeading' => function (int $id): string {
-                    return $this->pages->heading($id);
+                'pages' => $news->pages((int) $this->conf["entries_max"]),
+                'itemLink' => function (string $url) use ($request): string {
+                    return $request->url()->page($url)->absolute();
                 },
-                'itemLink' => function (int $id) use ($request): string {
-                    return $request->url()->page($this->pages->url($id))->absolute();
-                },
-                'itemDescription' => function (int $id): string {
-                    $res = $this->newsService->getDescription($id);
+                'escapedItemDescription' => function (string $description): string {
                     if (!$this->conf["html_markup"]) {
-                        $res = $this->view->esc($res);
+                        $description = $this->view->esc($description);
                     }
-                    return $res;
+                    return $description;
                 },
-                'itemGuid' => function (int $id) use ($request): string {
-                    return $request->url()->page($this->pages->url($id))->absolute() . " "
-                        . $this->newsService->getLastMod($id);
+                'itemGuid' => function (string $url, int $mtime) use ($request): string {
+                    return $request->url()->page($url)->absolute() . " " . $mtime;
                 },
-                'itemPubDate' => function (int $id): string {
-                    return date('r', $this->newsService->getLastMod($id));
+                'formatDate' => function (int $timestamp): string {
+                    return date('r', $timestamp);
                 },
             ]);
     }

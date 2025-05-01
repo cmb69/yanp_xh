@@ -14,12 +14,11 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
  * @var string $generator
  * @var bool $hasImage
  * @var string $imageUrl
- * @var list<int> $pageIds
- * @var callable $itemHeading
+ * @var array<int,object{title:string,url:string,mtime:int,description:string}> $pages
  * @var callable $itemLink
- * @var callable $itemDescription
+ * @var callable $escapedItemDescription
  * @var callable $itemGuid
- * @var callable $itemPubDate
+ * @var callable $formatDate
  */
 ?>
 
@@ -42,13 +41,13 @@ if (!defined("CMSIMPLE_XH_VERSION")) {http_response_code(403); exit;}
       <link><?=$this->esc($link)?></link>
     </image>
 <?endif?>
-<?foreach ($pageIds as $pageId):?>
+<?foreach ($pages as $pageId => $page):?>
     <item>
-      <title><?=$this->raw($itemHeading($pageId))?></title>
-      <link><?=$this->esc($itemLink($pageId))?></link>
-      <description><?=$this->raw($itemDescription($pageId))?></description>
-      <guid isPermaLink="false"><?=$this->esc($itemGuid($pageId))?></guid>
-      <pubDate><?=$this->esc($itemPubDate($pageId))?></pubDate>
+      <title><?=$this->esc($page->title)?></title>
+      <link><?=$this->esc($itemLink($page->url))?></link>
+      <description><?=$this->raw($escapedItemDescription($page->description))?></description>
+      <guid isPermaLink="false"><?=$this->esc($itemGuid($page->url, $page->mtime))?></guid>
+      <pubDate><?=$this->esc($formatDate($page->mtime))?></pubDate>
     </item>
 <?endforeach?>
   </channel>

@@ -24,18 +24,18 @@ namespace Yanp;
 use Plib\SystemChecker;
 use Plib\View;
 use XH\Pages;
+use Yanp\Model\NewsFinder;
 
 class Dic
 {
     public static function rssCommand(): RssCommand
     {
-        global $pth, $tx, $plugin_cf, $plugin_tx;
+        global $pth, $pd_router, $tx, $plugin_cf, $plugin_tx;
         return new RssCommand(
             $pth["folder"]["images"],
             $pth["file"]["content"],
             $plugin_cf["yanp"],
-            new Pages(),
-            self::newsService(),
+            self::newsFinder(),
             new Feed($tx["site"]["title"], $tx["meta"]["description"], $plugin_tx["yanp"]),
             self::view()
         );
@@ -43,11 +43,10 @@ class Dic
 
     public static function newsboxCommand(): NewsboxCommand
     {
-        global $plugin_cf;
+        global $pd_router, $plugin_cf;
         return new NewsboxCommand(
             $plugin_cf["yanp"],
-            new Pages(),
-            self::newsService(),
+            self::newsFinder(),
             self::view()
         );
     }
@@ -74,13 +73,10 @@ class Dic
         );
     }
 
-    private static function newsService(): NewsService
+    private static function newsFinder(): NewsFinder
     {
-        global $pd_router, $plugin_cf;
-        return new NewsService(
-            $pd_router,
-            (int) $plugin_cf["yanp"]["entries_max"]
-        );
+        global $pd_router;
+        return new NewsFinder(new Pages(), $pd_router);
     }
 
     private static function view(): View

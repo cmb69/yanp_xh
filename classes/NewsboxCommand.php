@@ -23,18 +23,15 @@ namespace Yanp;
 
 use Plib\Request;
 use Plib\View;
-use XH\Pages;
+use Yanp\Model\NewsFinder;
 
 class NewsboxCommand
 {
     /** @var array<string,string> */
     private $conf;
 
-    /** @var Pages */
-    private $pages;
-
-    /** @var NewsService */
-    private $newsService;
+    /** @var NewsFinder */
+    private $newsFinder;
 
     /** @var View */
     private $view;
@@ -42,36 +39,31 @@ class NewsboxCommand
     /** @param array<string,string> $conf */
     public function __construct(
         array $conf,
-        Pages $pages,
-        NewsService $newsService,
+        NewsFinder $newsFinder,
         View $view
     ) {
         $this->conf = $conf;
-        $this->pages = $pages;
-        $this->newsService = $newsService;
+        $this->newsFinder = $newsFinder;
         $this->view = $view;
     }
 
     public function execute(Request $request): string
     {
+        $news = $this->newsFinder->find();
         return $this->view->render('newsbox', [
-            'pageIds' => $this->newsService->getPageIds(),
+            'pages' => $news->pages((int) $this->conf["entries_max"]),
             'headingTag' => $this->conf['heading_level'],
-            'heading' => function (int $id): string {
-                return $this->pages->heading($id);
+            'formatDate' => function (int $timestamp): string {
+                return date($this->view->plain("news_date_format"), $timestamp);
             },
-            'date' => function (int $id): string {
-                return date($this->view->plain("news_date_format"), $this->newsService->getLastMod($id));
-            },
-            'description' => function (int $id): string {
-                $res = $this->newsService->getDescription($id);
+            'escapedDescription' => function (string $description): string {
                 if (!$this->conf["html_markup"]) {
-                    $res = $this->view->esc($res);
+                    $description = $this->view->esc($description);
                 }
-                return $res;
+                return $description;
             },
-            'url' => function (int $id) use ($request): string {
-                return $request->url()->page($this->pages->url($id))->relative();
+            'url' => function (string $url) use ($request): string {
+                return $request->url()->page($url)->relative();
             },
         ]);
     }

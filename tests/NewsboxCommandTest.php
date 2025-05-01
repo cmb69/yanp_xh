@@ -7,7 +7,8 @@ use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Plib\FakeRequest;
 use Plib\View;
-use XH\Pages;
+use Yanp\Model\News;
+use Yanp\Model\NewsFinder;
 
 class NewsboxCommandTest extends TestCase
 {
@@ -17,11 +18,8 @@ class NewsboxCommandTest extends TestCase
     /** @var array<string,string> */
     private $lang;
 
-    /** @var Pages&Stub */
-    private $pages;
-
-    /** @var NewsService&Stub */
-    private $newsService;
+    /** @var NewsFinder&Stub */
+    private $newsFinder;
 
     /** @var View */
     private $view;
@@ -30,8 +28,7 @@ class NewsboxCommandTest extends TestCase
     {
         $this->conf = XH_includeVar("./config/config.php", "plugin_cf")["yanp"];
         $this->lang = XH_includeVar("./languages/en.php", "plugin_tx")["yanp"];
-        $this->pages = $this->createStub(Pages::class);
-        $this->newsService = $this->createStub(NewsService::class);
+        $this->newsFinder = $this->createStub(NewsFinder::class);
         $this->view = new View("./views/", $this->lang);
     }
 
@@ -39,31 +36,27 @@ class NewsboxCommandTest extends TestCase
     {
         return new NewsboxCommand(
             $this->conf,
-            $this->pages,
-            $this->newsService,
+            $this->newsFinder,
             $this->view
         );
     }
 
     public function testRendersNewsbox(): void
     {
-        $this->newsService->method("getPageIds")->willReturn([8, 15]);
-        $this->newsService->method("getDescription")->willReturnMap([
-            [8, "description of eight"],
-            [15, "description of fifteen"],
-        ]);
-        $this->newsService->method("getLastMod")->willReturnMap([
-            [8, strtotime("2025-04-30T22:06:00+00:00")],
-            [15, strtotime("2025-04-30T22:05:11+00:00")],
-        ]);
-        $this->pages->method("heading")->willReturnMap([
-            [8, "Eight"],
-            [15, "Fifteen"],
-        ]);
-        $this->pages->method("url")->willReturnMap([
-            [8, "Eight"],
-            [15, "Ten/Fifteen"],
-        ]);
+        $this->newsFinder->method("find")->willReturn(new News([
+            8 => (object) [
+                "title" => "Eight",
+                "url" => "Eight",
+                "mtime" => strtotime("2025-04-30T22:06:00+00:00"),
+                "description" => "description of eight",
+            ],
+            15 => (object) [
+                "title" => "Fifteen",
+                "url" => "Ten/Fifteen",
+                "mtime" => strtotime("2025-04-30T22:05:11+00:00"),
+                "description" => "description of fifteen",
+            ],
+        ]));
         $request = new FakeRequest();
         $response = $this->sut()->execute($request);
         Approvals::verifyHtml($response);
